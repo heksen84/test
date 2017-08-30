@@ -14,7 +14,7 @@ FT_GlyphSlot  	slot;
 
 /* 
 ------------------------------------
-рендеринг текста
+СЂРµРЅРґРµСЂРёРЅРі С‚РµРєСЃС‚Р°
 ------------------------------------*/	
 /*void RenderText(const String &text, float x, float y){
 	const char *p;	
@@ -33,7 +33,7 @@ FT_GlyphSlot  	slot;
 
 /* 
 ------------------------------------
-обработка ввода
+РѕР±СЂР°Р±РѕС‚РєР° РІРІРѕРґР°
 ------------------------------------*/	
 void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods){
     switch(key) {
@@ -47,14 +47,14 @@ void mouse_button_callback(GLFWwindow* window, int button, int action, int mods)
 
 /* 
 --------------------------------
-точка входа 
+С‚РѕС‡РєР° РІС…РѕРґР°
 --------------------------------*/	
 int main(void)
 {
 	
 	GLFWimage image;	
-	imglib::loadPng("C:/Gell/bin/data/image.png", &image);	
-	//msg::info("%dx%d размер=%d", image.width, image.height, sizeof(image.pixels));
+	imglib::loadPng("data/image.png", &image);
+	//msg::info("%dx%d СЂР°Р·РјРµСЂ=%d", image.width, image.height, sizeof(image.pixels));
 	
 	/*Texture t1("image.png");
 	Texture t2("image.jpg");
@@ -68,36 +68,38 @@ int main(void)
 	FT_Library ft;
 	int result = 0;
 	
-    if (!glfwInit()) msg::error("glfwInit: Какая-то проблемка");
+
+    if (!glfwInit())
+    	msg::error("glfwInit: problem!");
 	
 	monitor = glfwGetPrimaryMonitor();
 	mode 	= glfwGetVideoMode(monitor);
 
-	glfwWindowHint(GLFW_RED_BITS, mode->redBits);
-	glfwWindowHint(GLFW_GREEN_BITS,	mode->greenBits);
-	glfwWindowHint(GLFW_BLUE_BITS, mode->blueBits);
-	glfwWindowHint(GLFW_REFRESH_RATE, mode->refreshRate);
+	glfwWindowHint(GLFW_RED_BITS, 		mode->redBits);
+	glfwWindowHint(GLFW_GREEN_BITS,		mode->greenBits);
+	glfwWindowHint(GLFW_BLUE_BITS, 		mode->blueBits);
+	glfwWindowHint(GLFW_REFRESH_RATE, 	mode->refreshRate);
 	
 	window = glfwCreateWindow(mode->width, mode->height, "@GELL", monitor, NULL);
 	
-	if (!window) msg::error("glfwCreateWindow: Не могу создать окно!");
+	if (!window) msg::error("glfwCreateWindow: problem!");
 
     /* Make the window's context current */
     glfwMakeContextCurrent(window);
 	
-	/* нзначить ввод */
+	/* РЅР·РЅР°С‡РёС‚СЊ РІРІРѕРґ */
 	glfwSetKeyCallback(window, key_callback);
 	glfwSetMouseButtonCallback(window, mouse_button_callback);
 	
-	// --- Инициализация FreeType
+	// --- РРЅРёС†РёР°Р»РёР·Р°С†РёСЏ FreeType
 	if (FT_Init_FreeType(&ft)) 
 		msg::error("FT_Init_FreeType");
 
-	// --- Инициализация FreeType
-	result = FT_New_Face( ft, "C:/Gell/bin/data/arial.ttf", 0, &face );
+	// --- РРЅРёС†РёР°Р»РёР·Р°С†РёСЏ FreeType
+	result = FT_New_Face( ft, "data/arial.ttf", 0, &face );
 	
-	if ( result == FT_Err_Unknown_File_Format ) msg::error("FreeType: Не известный формат файла");		
-	else if ( result ) msg::error("FreeType: Не понятная ошибка, либо файл не найден!");		
+	if ( result == FT_Err_Unknown_File_Format ) msg::error("FreeType: file format error!");
+	else if ( result ) msg::error("FreeType: file not found!");
 	
 	FT_Set_Pixel_Sizes(face, 0, 48);	
 	

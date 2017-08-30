@@ -7,9 +7,12 @@
 #include "imglib.h"
 #include "util.h"
 
-Texture::Texture(const String &filename){
-	
-	data = nullptr;
+Texture::Texture(const String &filename)
+{
+	width 		= 0;
+	height 		= 0;
+	pixeldepth 	= 0;
+	data 		= nullptr;
 	
 	if( util::getFileExtension(filename) == "png" )	{	
 		msg::info("loadPng");
