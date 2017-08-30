@@ -152,13 +152,13 @@ GLuint png_texture_load(const char * file_name, int * width, int * height)
 void imglib::loadPng(const String &filename, GLFWimage *image)
 {	
   FILE *fp = fopen(filename.c_str(), "rb");  
-  if (!fp) msg::error("imglib::loadPng: fopen error!", filename.c_str());
+  if (!fp) msg::error("imglib::loadPng: fopen error", filename.c_str());
 
   png_structp png = png_create_read_struct(PNG_LIBPNG_VER_STRING, NULL, NULL, NULL);
-  if(!png) msg::error("imglib::loadPng: png_create_read_struct error!");
+  if(!png) msg::error("imglib::loadPng: png_create_read_struct error");
 
   png_infop info = png_create_info_struct(png);
-  if(!info) msg::error("imglib::loadPng: png_create_info_struct error!");
+  if(!info) msg::error("imglib::loadPng: png_create_info_struct error");
 
   if(setjmp(png_jmpbuf(png))) msg::error("read_png_file: setjmp");
 
