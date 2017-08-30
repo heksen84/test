@@ -68,6 +68,7 @@ int main(void)
 	FT_Library ft;
 	int result = 0;
 	
+	msg::info("HELLO!");
 
     if (!glfwInit())
     	msg::error("glfwInit: problem!");
