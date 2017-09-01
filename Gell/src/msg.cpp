@@ -26,7 +26,7 @@ void msg::warning(const char *msg, ... ){
 	MessageBox(0, text, "Warning", MB_ICONWARNING);
 }
 
-/* информация */
+/* -информация */
 void msg::info(const char *msg, ... ){	
 	va_start( argptr, msg );
 	vsprintf( text, msg, argptr );
