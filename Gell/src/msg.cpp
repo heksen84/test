@@ -14,7 +14,7 @@ void msg::error(const char *msg, ... ) {
 	va_start( argptr, msg );
 	vsprintf( text, msg, argptr );
 	va_end( argptr);	
-	MessageBox(0, text, "Работать не будем", MB_ICONERROR);
+	MessageBox(0, text, "I will not work", MB_ICONERROR);
 	exit(1);
 }
 
@@ -23,7 +23,7 @@ void msg::warning(const char *msg, ... ){
 	va_start( argptr, msg );
 	vsprintf( text, msg, argptr );
 	va_end( argptr);	
-	MessageBox(0, text, "Внимание", MB_ICONWARNING);	
+	MessageBox(0, text, "Warning", MB_ICONWARNING);
 }
 
 /* информация */
@@ -31,5 +31,5 @@ void msg::info(const char *msg, ... ){
 	va_start( argptr, msg );
 	vsprintf( text, msg, argptr );
 	va_end( argptr);	
-	MessageBox(0, text, "Инфо", MB_ICONINFORMATION);	
+	MessageBox(0, text, "Information", MB_ICONINFORMATION);
 }

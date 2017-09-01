@@ -52,6 +52,8 @@ void mouse_button_callback(GLFWwindow* window, int button, int action, int mods)
 int main(void)
 {
 	
+	msg::info("DEMO");
+
 	GLFWimage image;	
 	imglib::loadPng("D:/projects/Gell/Gell/Release/data/image.png", &image);
 	//msg::info("%dx%d размер=%d", image.width, image.height, sizeof(image.pixels));
@@ -67,8 +69,6 @@ int main(void)
 	// FreeType --
 	FT_Library ft;
 	int result = 0;
-	
-	//msg::info("HELLO!");
 
     if (!glfwInit())
     	msg::error("glfwInit: problem");
@@ -91,7 +91,7 @@ int main(void)
 	/* нзначить ввод */
 	glfwSetKeyCallback(window, key_callback);
 	glfwSetMouseButtonCallback(window, mouse_button_callback);
-	
+
 	// --- Инициализация FreeType
 	if (FT_Init_FreeType(&ft)) 
 		msg::error("FT_Init_FreeType");
