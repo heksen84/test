@@ -6,6 +6,7 @@
 #include "imglib.h"
 #include "util.h"
 #include "texture.h"
+#include "obj.h"
 
 bool run = true;
 

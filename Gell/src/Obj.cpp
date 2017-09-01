@@ -8,11 +8,12 @@
 #include "Obj.h"
 
 Obj::Obj() {
-	// TODO Auto-generated constructor stub
-
 }
 
 Obj::~Obj() {
-	// TODO Auto-generated destructor stub
+}
+
+void Obj::loadFromFile(const String &filename) {
+
 }
 
