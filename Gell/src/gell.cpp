@@ -52,16 +52,11 @@ void mouse_button_callback(GLFWwindow* window, int button, int action, int mods)
 --------------------------------*/	
 int main(void)
 {
-	
-	msg::info("DEMO");
-
 	GLFWimage image;	
 	imglib::loadPng("D:/projects/Gell/Gell/Release/data/image.png", &image);
-	//msg::info("%dx%d размер=%d", image.width, image.height, sizeof(image.pixels));
-	
-	/*Texture t1("image.png");
-	Texture t2("image.jpg");
-	Texture t3("image");*/
+
+	Obj model;
+	model.loadFromFile("mesh.obj");
 		
 	GLFWwindow* window;	
 	GLFWmonitor* monitor;	
