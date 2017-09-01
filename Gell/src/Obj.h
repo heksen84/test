@@ -10,6 +10,7 @@
 #include "common.h"
 
 class Obj {
+
 public:
 	Obj();
 	virtual ~Obj();

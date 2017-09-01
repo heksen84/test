@@ -5,6 +5,7 @@
 // C++ standart library
 #include <string>
 #include <map>
+#include <vector>
 
 // C standart headers
 #include <stdlib.h>
@@ -16,6 +17,10 @@ typedef unsigned char 	byte;
 
 #define SAFE_DELETE(a) if( (a) != nullptr ) delete (a); (a) = nullptr;
 #define SAFE_DELETE_ARRAY(ptr) { if(ptr) { delete [](ptr); (ptr)=nullptr; } }
+
+// math library
+#include <glm/vec2.hpp>
+#include <glm/vec3.hpp>
 
 #define GLEW_STATIC
 #include <glew/glew.h>
