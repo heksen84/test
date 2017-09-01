@@ -53,7 +53,7 @@ int main(void)
 {
 	
 	GLFWimage image;	
-	imglib::loadPng("data/image.png", &image);
+	imglib::loadPng("D:/projects/Gell/Gell/Release/data/image.png", &image);
 	//msg::info("%dx%d размер=%d", image.width, image.height, sizeof(image.pixels));
 	
 	/*Texture t1("image.png");
@@ -97,7 +97,7 @@ int main(void)
 		msg::error("FT_Init_FreeType");
 
 	// --- Инициализация FreeType
-	result = FT_New_Face( ft, "data/arial.ttf", 0, &face );
+	result = FT_New_Face( ft, "D:/projects/Gell/Gell/Release/data/arial.ttf", 0, &face );
 	
 	if ( result == FT_Err_Unknown_File_Format ) msg::error("FreeType: file format error");
 	else if ( result ) msg::error("FreeType: file not found");
@@ -120,10 +120,10 @@ int main(void)
 		glClear(GL_COLOR_BUFFER_BIT);
 				
 		glBegin(GL_QUADS);
-			glColor3f(0.0f, 0.0f, 0.9f);
+			glColor3f(0.0f, 1.0f, 0.0f);
 			glVertex2f(-0.5f, -0.5f); 
 			glVertex2f( 0.5f, -0.5f);
-			glColor3f(1.0f, 1.0f, 0.5f);
+			glColor3f(1.0f, 0.0f, 0.0f);
 			glVertex2f( 0.5f,  0.5f);
 			glVertex2f(-0.5f,  0.5f);
 		glEnd();
