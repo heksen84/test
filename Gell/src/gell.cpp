@@ -77,9 +77,10 @@ int main(void)
 	glfwWindowHint(GLFW_BLUE_BITS, 		mode->blueBits);
 	glfwWindowHint(GLFW_REFRESH_RATE, 	mode->refreshRate);
 	
-	window = glfwCreateWindow(mode->width, mode->height, "@GELL", monitor, NULL);
+	window = glfwCreateWindow(mode->width, mode->height, "[ Strategy ]", monitor, NULL);
 	
-	if (!window) msg::error("glfwCreateWindow: problem");
+	if (!window)
+		msg::error("glfwCreateWindow: problem");
 
     /* Make the window's context current */
     glfwMakeContextCurrent(window);
@@ -95,8 +96,10 @@ int main(void)
 	// --- Инициализация FreeType
 	result = FT_New_Face( ft, "D:/projects/Gell/Gell/Release/data/arial.ttf", 0, &face );
 	
-	if ( result == FT_Err_Unknown_File_Format ) msg::error("FreeType: file format error");
-	else if ( result ) msg::error("FreeType: file not found");
+	if ( result == FT_Err_Unknown_File_Format )
+		msg::error("FreeType: file format error");
+	else if ( result )
+		msg::error("FreeType: file not found");
 	
 	FT_Set_Pixel_Sizes(face, 0, 48);	
 	
@@ -117,7 +120,7 @@ int main(void)
 				
 		glBegin(GL_QUADS);
 			glColor3f(0.0f, 0.0f, 1.0f);
-			glVertex2f(-0.5f, -0.5f); 
+			glVertex2f(-0.5f, -0.5f);
 			glVertex2f( 0.5f, -0.5f);
 			glColor3f(0.0f, 1.0f, 0.0f);
 			glVertex2f( 0.5f,  0.5f);

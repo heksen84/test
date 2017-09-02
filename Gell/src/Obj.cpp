@@ -161,9 +161,19 @@ void LoadOBJ( string Path, vector<vec3>& Verticies, vector<vec3>& Normals, vecto
 }*/
 
 /*
+ * ------------------------------------------
  * Загрузка модели
+ * ------------------------------------------
  */
 void Obj::loadFromFile(const String &filename) {
-	msg::info("%s loaded", filename.c_str());
+
+	String Data;
+	std::ifstream File(filename.c_str());
+	if (!File.is_open())
+		msg::error("loadFromFle: file %s not open", filename.c_str());
+
+	while ( !File.eof() ){
+		getline(File, Data);
+	}
 }
 

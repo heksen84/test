@@ -6,6 +6,8 @@
 #include <string>
 #include <map>
 #include <vector>
+#include <iostream>
+#include <fstream>
 
 // C standart headers
 #include <stdlib.h>

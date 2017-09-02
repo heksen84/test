@@ -14,7 +14,7 @@ void msg::error(const char *msg, ... ) {
 	va_start( argptr, msg );
 	vsprintf( text, msg, argptr );
 	va_end( argptr);	
-	MessageBox(0, text, "I will not work", MB_ICONERROR);
+	MessageBox(0, text, "Error", MB_ICONERROR);
 	exit(1);
 }
 
