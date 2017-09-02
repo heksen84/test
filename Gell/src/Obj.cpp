@@ -169,8 +169,10 @@ void Obj::loadFromFile(const String &filename) {
 
 	String data;
 	std::ifstream file(filename.c_str());
+
+	// проверка на готовность файла
 	if (!file.is_open())
-		msg::error("loadFromFle: file %s not open", filename.c_str());
+		msg::error("Obj::loadFromFle: file %s not open", filename.c_str());
 
 	while ( !file.eof() ) {
 		getline(file, data);
@@ -181,7 +183,7 @@ void Obj::loadFromFile(const String &filename) {
 	    			 	// int NumRead = sscanf( Line.c_str(), "%6s %f %f %f", Prefix, &X, &Y, &Z );
 	    				for (uint a = (i+1); a < data.size(); a++) {
 	    					if ( data[a] == ' ') {
-	    					msg::warning(data.substr(i+1, a-1).c_str());
+	    						//msg::info(data.substr(i+1, a-1).c_str());
 	    					}
 	    				}
 	    			}
