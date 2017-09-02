@@ -1,5 +1,5 @@
-#ifndef _TEXTURE_H_
-#define _TEXTURE_H_
+#ifndef TEXTURE_H_
+#define TEXTURE_H_
 #include "common.h"
 
 class Texture

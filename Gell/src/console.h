@@ -1,5 +1,5 @@
-#ifndef _CONSOLE_H_
-#define _CONSOLE_H_
+#ifndef CONSOLE_H_
+#define CONSOLE_H_
 
 class Console
 {

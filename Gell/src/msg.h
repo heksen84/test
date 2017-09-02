@@ -1,5 +1,5 @@
-#ifndef _MSG_H_
-#define _MSG_H_
+#ifndef MSG_H_
+#define MSG_H_
 
 class msg
 {

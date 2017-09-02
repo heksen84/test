@@ -1,5 +1,5 @@
-#ifndef _PANEL_H_
-#define _PANEL_H_
+#ifndef PANEL_H_
+#define PANEL_H_
 
 class Panel
 {

@@ -1,5 +1,5 @@
-#ifndef _IMGLIB_H_
-#define _IMGLIB_H_
+#ifndef IMGLIB_H_
+#define IMGLIB_H_
 #include "common.h"
 
 typedef struct{

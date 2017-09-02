@@ -176,4 +176,3 @@ void Obj::loadFromFile(const String &filename) {
 		getline(File, Data);
 	}
 }
-
