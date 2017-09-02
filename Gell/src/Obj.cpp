@@ -174,13 +174,19 @@ void Obj::loadFromFile(const String &filename) {
 
 	while ( !file.eof() ) {
 		getline(file, data);
-	    if ( data[0] == 'v' and data[1] != 't' and data[1] != 'n' ) {
+		if ( data[0] == 'v' and data[1] != 't' and data[1] != 'n') {
 	    	for (uint i = 1; i < data.size(); i++) {
 	    		if ( data[i] == ' ') {
-	    			// верезать с текущей (позиции + 1) до следующего пробела
+	    				// верезать с текущей (позиции + 1) до следующего пробела
+	    			 	// int NumRead = sscanf( Line.c_str(), "%6s %f %f %f", Prefix, &X, &Y, &Z );
+	    				for (uint a = (i+1); a < data.size(); a++) {
+	    					if ( data[a] == ' ') {
+	    					msg::warning(data.substr(i+1, a-1).c_str());
+	    					}
+	    				}
+	    			}
 	    		}
 	    	}
+	    	continue;
 	    	}
-    		break;
 	    }
-}
