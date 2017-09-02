@@ -52,11 +52,11 @@ void mouse_button_callback(GLFWwindow* window, int button, int action, int mods)
 --------------------------------*/	
 int main(void)
 {
-	GLFWimage image;	
-	imglib::loadPng("D:/projects/Gell/Gell/Release/data/image.png", &image);
+	//GLFWimage image;
+	//imglib::loadPng("D:/projects/Gell/Gell/Release/data/image.png", &image);
 
 	Obj model;
-	model.loadFromFile("D:/projects/Gell/Gell/Release/data/Turkana_boy_OBJ.obj");
+	model.loadFromFile("D:/projects/Gell/Gell/Release/data/meshes/box.obj");
 		
 	GLFWwindow* window;	
 	GLFWmonitor* monitor;	
@@ -107,12 +107,12 @@ int main(void)
 		msg::error("glewInit");
 	}
 	
-	GLuint texture;
+	/*GLuint texture;
 	glGenTextures(1, &texture);
 	glBindTexture(GL_TEXTURE_2D, texture);
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, image.width, image.height, 0, GL_RGB, GL_UNSIGNED_BYTE, image.pixels);
 	glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR);*/
 	
 	while (run) {
 		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);		
