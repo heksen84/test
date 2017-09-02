@@ -7,10 +7,6 @@
 
 #include "Obj.h"
 
-std::vector< glm::vec3 > temp_vertices;
-std::vector< glm::vec3 > temp_uvs;
-std::vector< glm::vec3 > temp_normals;
-
 Obj::Obj() {
 }
 
@@ -167,12 +163,23 @@ void LoadOBJ( string Path, vector<vec3>& Verticies, vector<vec3>& Normals, vecto
  */
 void Obj::loadFromFile(const String &filename) {
 
-	String Data;
-	std::ifstream File(filename.c_str());
-	if (!File.is_open())
+	std::vector< glm::vec3 > vertices;
+	std::vector< glm::vec3 > uvs;
+	std::vector< glm::vec3 > normals;
+
+	String data;
+	std::ifstream file(filename.c_str());
+	if (!file.is_open())
 		msg::error("loadFromFle: file %s not open", filename.c_str());
 
-	while ( !File.eof() ){
-		getline(File, Data);
+	while ( !file.eof() )
+	{
+		getline(file, data);
+	    if ( data[0] == 'v' and data[1] != 't' and data[1] != 'n' )
+	    {
+	            glm::vec3 Current;
+	            float x,y,z;
+	            sscanf("%f%f%f", data.c_str(), &x,&y,&z);
+	    }
 	}
 }
