@@ -56,7 +56,7 @@ int main(void)
 	imglib::loadPng("D:/projects/Gell/Gell/Release/data/image.png", &image);
 
 	Obj model;
-	model.loadFromFile("mesh.obj");
+	model.loadFromFile("D:/projects/Gell/Gell/Release/data/Turkana_boy_OBJ.obj");
 		
 	GLFWwindow* window;	
 	GLFWmonitor* monitor;	
