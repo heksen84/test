@@ -7,6 +7,10 @@
 
 #include "Obj.h"
 
+std::vector< glm::vec3 > vertices;
+std::vector< glm::vec3 > uvs;
+std::vector< glm::vec3 > normals;
+
 Obj::Obj() {
 }
 
@@ -162,10 +166,6 @@ void LoadOBJ( string Path, vector<vec3>& Verticies, vector<vec3>& Normals, vecto
  * ------------------------------------------
  */
 void Obj::loadFromFile(const String &filename) {
-
-	std::vector< glm::vec3 > vertices;
-	std::vector< glm::vec3 > uvs;
-	std::vector< glm::vec3 > normals;
 
 	String data;
 	std::ifstream file(filename.c_str());
