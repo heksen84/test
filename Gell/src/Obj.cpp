@@ -172,14 +172,15 @@ void Obj::loadFromFile(const String &filename) {
 	if (!file.is_open())
 		msg::error("loadFromFle: file %s not open", filename.c_str());
 
-	while ( !file.eof() )
-	{
+	while ( !file.eof() ) {
 		getline(file, data);
-	    if ( data[0] == 'v' and data[1] != 't' and data[1] != 'n' )
-	    {
-	            glm::vec3 Current;
-	            float x,y,z;
-	            sscanf("%f%f%f", data.c_str(), &x,&y,&z);
+	    if ( data[0] == 'v' and data[1] != 't' and data[1] != 'n' ) {
+	    	for (uint i = 1; i < data.size(); i++) {
+	    		if ( data[i] == ' ') {
+	    			// верезать с текущей (позиции + 1) до следующего пробела
+	    		}
+	    	}
+	    	}
+    		break;
 	    }
-	}
 }
