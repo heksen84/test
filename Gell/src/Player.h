@@ -1,8 +1,8 @@
 /*
  * Player.h
  *
- *  Created on: 03 сент. 2017 г.
- *      Author: Соня
+ *  Created on: 03 пїЅпїЅпїЅпїЅ. 2017 пїЅ.
+ *      Author: пїЅпїЅпїЅпїЅ
  */
 
 #ifndef PLAYER_H_

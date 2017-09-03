@@ -1,8 +1,8 @@
 /*
  * Player.cpp
  *
- *  Created on: 03 сент. 2017 г.
- *      Author: Соня
+ *  Created on: 03 09 2017
+ *      Author: Ilya Bobkov
  */
 
 #include "Player.h"
