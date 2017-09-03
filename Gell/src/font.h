@@ -5,7 +5,7 @@ class Font
 {
 	public:	
 		Font();
-		~Font();
+		virtual ~Font();
 };
 
 #endif

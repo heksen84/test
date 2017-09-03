@@ -5,7 +5,7 @@ class Console
 {
 	public:
 		Console();
-		~Console();
+		virtual ~Console();
 		
 		void Render();
 };

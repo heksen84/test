@@ -11,7 +11,7 @@ class Texture
 		byte *data;
 		
 		Texture(const String &filename);
-		~Texture();		
+		virtual ~Texture();
 };
 
 #endif
