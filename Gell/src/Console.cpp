@@ -1,6 +1,6 @@
 /*
 --------------------------
- console.cpp
+ Console.cpp
  Ilya Bobkov KZ 2017 (c)
 --------------------------*/
 #include "Console.h"

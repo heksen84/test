@@ -1,6 +1,6 @@
 /*
 --------------------------
- msg.cpp
+ Msg.cpp
  Ilya Bobkov KZ 2017 (c)
 --------------------------*/
 #include "Msg.h"

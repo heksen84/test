@@ -1,6 +1,6 @@
 /*
 --------------------------
- texture.cpp
+ Texture.cpp
  Ilya Bobkov KZ 2017 (c)
 --------------------------*/
 #include "Texture.h"

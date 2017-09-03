@@ -1,6 +1,6 @@
 /*
 --------------------------
- imglib.cpp
+ Imglib.cpp
  Ilya Bobkov KZ 2017 (c)
 --------------------------*/
 #include "Imglib.h"

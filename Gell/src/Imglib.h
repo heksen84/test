@@ -2,8 +2,10 @@
 #define IMGLIB_H_
 #include "Common.h"
 
-typedef struct{
-	uint width, height; 
+typedef struct
+{
+	uint width;
+	uint height;
 	uint pixeldepth;
 	byte *pixels;	
 } Img;
