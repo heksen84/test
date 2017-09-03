@@ -66,6 +66,7 @@ int main(void)
 	FT_Library ft;
 	int result = 0;
 
+
     if (!glfwInit())
     	msg::error("glfwInit: problem");
 	
@@ -77,7 +78,7 @@ int main(void)
 	glfwWindowHint(GLFW_BLUE_BITS, 		mode->blueBits);
 	glfwWindowHint(GLFW_REFRESH_RATE, 	mode->refreshRate);
 	
-	window = glfwCreateWindow(mode->width, mode->height, "[ Strategy ]", monitor, NULL);
+	window = glfwCreateWindow(mode->width, mode->height, "-- [степь] --", monitor, NULL);
 	
 	if (!window)
 		msg::error("glfwCreateWindow: problem");

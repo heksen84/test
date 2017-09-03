@@ -7,10 +7,6 @@
 
 #include "Obj.h"
 
-std::vector< glm::vec4 > vertices;
-std::vector< glm::vec3 > normals;
-std::vector<GLushort> elements;
-
 Obj::Obj() {
 }
 
@@ -62,4 +58,17 @@ void Obj::loadFromFile(const String &filename)
 	            elements.push_back(c);
 	        }
 	    }
+}
+
+// вернуть вершины
+std::vector< glm::vec4 > Obj::getVertices() {
+	return vertices;
+}
+// вернуть нормали
+std::vector< glm::vec3 > Obj::getNormals() {
+	return normals;
+}
+// вернуть элементы
+std::vector<GLushort> Obj::getElements(){
+	return elements;
 }
