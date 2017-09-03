@@ -3,8 +3,8 @@
  msg.cpp
  Ilya Bobkov KZ 2017 (c)
 --------------------------*/
-#include "msg.h"
-#include "common.h"
+#include "Msg.h"
+#include "Common.h"
 
 va_list	argptr;
 char text[4096];

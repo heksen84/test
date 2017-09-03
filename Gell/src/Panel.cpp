@@ -3,8 +3,8 @@
  panel.cpp
  Ilya Bobkov KZ 2017 (c)
 --------------------------*/
-#include "panel.h"
-#include "common.h"
+#include "Panel.h"
+#include "Common.h"
 
 void Panel::Render()
 {

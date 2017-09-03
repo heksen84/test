@@ -34,5 +34,5 @@ typedef unsigned char 	byte;
 #include <freetype/ft2build.h>
 #include FT_FREETYPE_H
 
-#include "msg.h"  
+#include "Msg.h"
 #endif

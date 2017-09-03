@@ -1,6 +1,6 @@
 #ifndef TEXTURE_H_
 #define TEXTURE_H_
-#include "common.h"
+#include "Common.h"
 
 class Texture
 {

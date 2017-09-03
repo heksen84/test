@@ -2,11 +2,11 @@
 // gell.cpp
 // Ilya Bobkov KZ 2017 (c)
 // --------------------------
-#include "common.h"
-#include "imglib.h"
-#include "util.h"
-#include "texture.h"
-#include "obj.h"
+#include "Common.h"
+#include "Imglib.h"
+#include "Util.h"
+#include "Texture.h"
+#include "Obj.h"
 
 bool run = true;
 

@@ -1,6 +1,6 @@
 #ifndef IMGLIB_H_
 #define IMGLIB_H_
-#include "common.h"
+#include "Common.h"
 
 typedef struct{
 	uint width, height; 

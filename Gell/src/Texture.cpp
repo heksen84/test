@@ -3,9 +3,9 @@
  texture.cpp
  Ilya Bobkov KZ 2017 (c)
 --------------------------*/
-#include "texture.h"
-#include "imglib.h"
-#include "util.h"
+#include "Texture.h"
+#include "Imglib.h"
+#include "Util.h"
 
 Texture::Texture(const String &filename)
 {

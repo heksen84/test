@@ -1,13 +1,13 @@
 /*
  * Obj.h
  *
- *  Created on: 01 сент. 2017 г.
- *      Author: Соня
+ *  Created on: 01 пїЅпїЅпїЅпїЅ. 2017 пїЅ.
+ *      Author: пїЅпїЅпїЅпїЅ
  */
 
 #ifndef OBJ_H_
 #define OBJ_H_
-#include "common.h"
+#include "Common.h"
 
 class Obj {
 

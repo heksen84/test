@@ -3,7 +3,7 @@
  util.cpp
  Ilya Bobkov KZ 2017 (c)
 --------------------------*/
-#include "util.h"
+#include "Util.h"
 
 String util::getFileExtension(const String &filename)
 {	
