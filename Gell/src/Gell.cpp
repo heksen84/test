@@ -55,12 +55,11 @@ int main(void)
 	GLFWwindow* window;
 	GLFWmonitor* monitor;
 	const GLFWvidmode* mode;
-
 	FT_Library ft;
-	int result 	= 0;
+	int result;
 
-    if (!glfwInit())
-    	msg::error("glfwInit: problem");
+	if (!glfwInit())
+		msg::error("glfwInit error");
 
 	monitor = glfwGetPrimaryMonitor();
 	if (!monitor)
