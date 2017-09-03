@@ -1,6 +1,7 @@
 #ifndef COMMON_H_
 #define COMMON_H_
-#define GAMEPATH "D:/projects/Gell/Gell/Release/data"
+
+#define DATA_PATH "D:/projects/Gell/Gell/Release/data"
 
 // windows
 #include <windows.h>
@@ -25,11 +26,9 @@ typedef unsigned char 	byte;
 #define SAFE_DELETE(a) if( (a) != nullptr ) delete (a); (a) = nullptr;
 #define SAFE_DELETE_ARRAY(ptr) { if(ptr) { delete [](ptr); (ptr)=nullptr; } }
 
-
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
-
 
 #define GLEW_STATIC
 #include <glew/glew.h>
