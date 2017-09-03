@@ -23,7 +23,7 @@ Texture::Texture(const String &filename)
 			msg::info("loadJpeg");
 	}
 	else 
-		msg::error("Texture: нет данных");
+		msg::error("Texture %s error", filename.c_str());
 }
 
 Texture::~Texture()

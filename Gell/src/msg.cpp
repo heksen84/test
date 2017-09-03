@@ -9,7 +9,7 @@
 va_list	argptr;
 char text[4096];
 	
-/* ошибка */
+/* РѕС€РёР±РєР° */
 void msg::error(const char *msg, ... ) {	
 	va_start( argptr, msg );
 	vsprintf( text, msg, argptr );
@@ -18,7 +18,7 @@ void msg::error(const char *msg, ... ) {
 	exit(1);
 }
 
-/* предупреждение */
+/* РїСЂРµРґСѓРїСЂРµР¶РґРµРЅРёРµ */
 void msg::warning(const char *msg, ... ){
 	va_start( argptr, msg );
 	vsprintf( text, msg, argptr );
@@ -26,7 +26,7 @@ void msg::warning(const char *msg, ... ){
 	MessageBox(0, text, "Warning", MB_ICONWARNING);
 }
 
-/* -информация */
+/* РёРЅС„РѕР±РѕРєСЃ */
 void msg::info(const char *msg, ... ){	
 	va_start( argptr, msg );
 	vsprintf( text, msg, argptr );
