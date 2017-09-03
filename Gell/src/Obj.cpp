@@ -11,6 +11,7 @@ Obj::Obj() {
 }
 
 Obj::~Obj() {
+	MessageBoxW( NULL, L"Шешек атып алма ағаштары\nБозғылт тұман өзен үстінде.", L"Объект разрушен", MB_OK );
 }
 
 /*
@@ -24,7 +25,8 @@ Obj::~Obj() {
  */
 void Obj::loadFromFile(const String &filename)
 {
-		std::ifstream file(filename, std::ios::in);
+
+	std::ifstream file(filename, std::ios::in);
 
 		if (!file)
 			msg::error("Obj::loadFromFle: Cannot open file %s", filename.c_str());

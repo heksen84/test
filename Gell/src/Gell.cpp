@@ -52,10 +52,6 @@ void mouse_button_callback(GLFWwindow* window, int button, int action, int mods)
 --------------------------------*/	
 int main(void)
 {
-
-	//std::setlocale (LC_ALL, 0);
-	//MessageBox( NULL, TEXT("іңғіңғіңғ"), TEXT("Test"), MB_OK );
-
 	GLFWwindow* window;
 	GLFWmonitor* monitor;
 	const GLFWvidmode* mode;

@@ -3,7 +3,7 @@
  Imglib.cpp
  Ilya Bobkov KZ 2017 (c)
 --------------------------*/
-#include "Imglib.h"
+#include "ImgLib.h"
 
 int width;
 int height;
