@@ -1,5 +1,8 @@
 #ifndef COMMON_H_
 #define COMMON_H_
+#define GAMEPATH "D:/projects/Gell/Gell/Release/data"
+
+// windows
 #include <windows.h>
 
 // C++ standart library
