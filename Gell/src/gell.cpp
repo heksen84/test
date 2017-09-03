@@ -52,23 +52,23 @@ void mouse_button_callback(GLFWwindow* window, int button, int action, int mods)
 --------------------------------*/	
 int main(void)
 {
-	//GLFWimage image;
-	//imglib::loadPng("D:/projects/Gell/Gell/Release/data/image.png", &image);
-		
-	GLFWwindow* window;	
-	GLFWmonitor* monitor;	
-	const GLFWvidmode* mode;		
-	
-	// FreeType --
-	FT_Library ft;
-	int result = 0;
+	GLFWwindow* window;
+	GLFWmonitor* monitor;
+	const GLFWvidmode* mode;
 
+	FT_Library ft;
+	int result 	= 0;
 
     if (!glfwInit())
     	msg::error("glfwInit: problem");
-	
+
 	monitor = glfwGetPrimaryMonitor();
-	mode 	= glfwGetVideoMode(monitor);
+	if (!monitor)
+		msg::error("glfwGetPrimaryMonitor problem");
+
+	mode = glfwGetVideoMode(monitor);
+	if (!mode)
+		msg::error("glfwGetVideoMode problem");
 
 	glfwWindowHint(GLFW_RED_BITS, 		mode->redBits);
 	glfwWindowHint(GLFW_GREEN_BITS,		mode->greenBits);
@@ -105,6 +105,9 @@ int main(void)
 		msg::error("glewInit");
 	}
 	
+
+	//GLFWimage image;
+	//imglib::loadPng("D:/projects/Gell/Gell/Release/data/image.png", &image);
 
 	Obj mesh;
 	mesh.loadFromFile("D:/projects/Gell/Gell/Release/data/meshes/box.obj");
