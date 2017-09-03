@@ -1,8 +1,8 @@
 /*
- * Player.h
+ * Player.cpp
  *
- *  Created on: 03 ����. 2017 �.
- *      Author: ����
+ *  Created on: 03 09 2017
+ *      Author: Ilya Bobkov
  */
 
 #ifndef PLAYER_H_
