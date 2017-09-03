@@ -76,9 +76,10 @@ Obj::~Obj() {
  */
 void Obj::loadFromFile(const String &filename)
 {
-
 		std::ifstream file(filename, std::ios::in);
-		if (!file) msg::error("Obj::loadFromFle: Cannot open file %s", filename.c_str());
+
+		if (!file)
+			msg::error("Obj::loadFromFle: Cannot open file %s", filename.c_str());
 
 		String line;
 	    while (getline(file, line))
