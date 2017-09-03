@@ -54,9 +54,6 @@ int main(void)
 {
 	//GLFWimage image;
 	//imglib::loadPng("D:/projects/Gell/Gell/Release/data/image.png", &image);
-
-	Obj model;
-	model.loadFromFile("D:/projects/Gell/Gell/Release/data/meshes/box.obj");
 		
 	GLFWwindow* window;	
 	GLFWmonitor* monitor;	
@@ -108,6 +105,15 @@ int main(void)
 		msg::error("glewInit");
 	}
 	
+
+	Obj mesh;
+	mesh.loadFromFile("D:/projects/Gell/Gell/Release/data/meshes/box.obj");
+
+	GLuint buffer;
+	glGenBuffers(1, &buffer);
+	glBindBuffer(GL_ARRAY_BUFFER, buffer);
+	glBufferData(GL_ARRAY_BUFFER, mesh.getVertices().size() * sizeof(mesh.getVertices()[0]), mesh.getVertices().data(), GL_STATIC_DRAW);
+
 	/*GLuint texture;
 	glGenTextures(1, &texture);
 	glBindTexture(GL_TEXTURE_2D, texture);
