@@ -7,9 +7,9 @@
 
 #include "Obj.h"
 
-std::vector< glm::vec3 > vertices;
-std::vector< glm::vec3 > uvs;
+std::vector< glm::vec4 > vertices;
 std::vector< glm::vec3 > normals;
+std::vector<GLushort> elements;
 
 Obj::Obj() {
 }
@@ -71,32 +71,42 @@ Obj::~Obj() {
  * v  - вершина x,y,z,w
  * vt - текстурные координаты (u,v,w)
  * vn - нормали (x,y,z)
+ * f  - индекс поверхности
  * ------------------------------------------
  */
-void Obj::loadFromFile(const String &filename) {
+void Obj::loadFromFile(const String &filename)
+{
 
-	String data;
-	std::ifstream file(filename.c_str());
+		std::ifstream file(filename, std::ios::in);
+		if (!file) msg::error("Obj::loadFromFle: Cannot open file %s", filename.c_str());
 
-	// проверка на готовность файла
-	if (!file.is_open())
-		msg::error("Obj::loadFromFle: file %s not open", filename.c_str());
-
-	while ( !file.eof() ) {
-		getline(file, data);
-		if ( data[0] == 'v' and data[1] != 't' and data[1] != 'n') {
-	    	for (uint i = 1; i < data.size(); i++) {
-	    		if ( data[i] == ' ') {
-	    				// верезать с текущей (позиции + 1) до следующего пробела
-	    			 	// int NumRead = sscanf( Line.c_str(), "%6s %f %f %f", Prefix, &X, &Y, &Z );
-	    				for (uint a = (i+1); a < data.size(); a++) {
-	    					if ( data[a] == ' ') {
-	    						//msg::info(data.substr(i+1, a-1).c_str());
-	    					}
-	    				}
-	    			}
-	    		}
+		String line;
+	    while (getline(file, line))
+	    {
+	    	// вершины
+	    	if (line.substr(0,2) == "v ")
+	        {
+	            std::istringstream s(line.substr(2));
+	            glm::vec4 v; s >> v.x; s >> v.y; s >> v.z; v.w = 1.0f;
+	            vertices.push_back(v);
+	        }
+	    	// нормали
+	    	else if (line.substr(0,2) == "vn")
+	    	{
+	    		std::istringstream s(line.substr(2));
+	    		glm::vec3 v; s >> v.x; s >> v.y; s >> v.z;
+	    		normals.push_back(v);
 	    	}
-	    	continue;
-	    	}
+	    	// индексы поверхности
+	        else if (line.substr(0,2) == "f ")
+	        {
+	        	std::istringstream s(line.substr(2));
+	            GLushort a,b,c;
+	            s >> a; s >> b; s >> c;
+	            a--; b--; c--;
+	            elements.push_back(a);
+	            elements.push_back(b);
+	            elements.push_back(c);
+	        }
 	    }
+}

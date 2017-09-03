@@ -8,6 +8,7 @@
 #include <vector>
 #include <iostream>
 #include <fstream>
+#include <sstream>
 
 // C standart headers
 #include <stdlib.h>
@@ -20,9 +21,11 @@ typedef unsigned char 	byte;
 #define SAFE_DELETE(a) if( (a) != nullptr ) delete (a); (a) = nullptr;
 #define SAFE_DELETE_ARRAY(ptr) { if(ptr) { delete [](ptr); (ptr)=nullptr; } }
 
-// math library
-#include <glm/vec2.hpp>
-#include <glm/vec3.hpp>
+
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
+
 
 #define GLEW_STATIC
 #include <glew/glew.h>
