@@ -1,8 +1,8 @@
 /*
  * Obj.h
  *
- *  Created on: 01 ����. 2017 �.
- *      Author: ����
+ *  Created on: 01 09. 2017 �.
+ *      Author: Ilya
  */
 
 #ifndef OBJ_H_
