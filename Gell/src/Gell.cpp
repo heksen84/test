@@ -62,15 +62,15 @@ int main(void)
 	 * ининциализация
 	 */
 	if (!glfwInit())
-		msg::error("glfwInit error");
+		msg::error(L"glfwInit error");
 
 	monitor = glfwGetPrimaryMonitor();
 	if (!monitor)
-		msg::error("glfwGetPrimaryMonitor problem");
+		msg::error(L"glfwGetPrimaryMonitor problem");
 
 	mode = glfwGetVideoMode(monitor);
 	if (!mode)
-		msg::error("glfwGetVideoMode problem");
+		msg::error(L"glfwGetVideoMode problem");
 
 	glfwWindowHint(GLFW_RED_BITS, 		mode->redBits);
 	glfwWindowHint(GLFW_GREEN_BITS,		mode->greenBits);
@@ -80,7 +80,7 @@ int main(void)
 	window = glfwCreateWindow(mode->width, mode->height, "[ Strategy ]", monitor, NULL);
 	
 	if (!window)
-		msg::error("glfwCreateWindow: problem");
+		msg::error(L"glfwCreateWindow: problem");
 
     /* Make the window's context current */
     glfwMakeContextCurrent(window);
@@ -91,21 +91,21 @@ int main(void)
 
 	// --- Инициализация FreeType
 	if (FT_Init_FreeType(&ft)) 
-		msg::error("FT_Init_FreeType");
+		msg::error(L"FT_Init_FreeType");
 
 
 	// --- Инициализация FreeType
 	result = FT_New_Face( ft, "D:/projects/Gell/Gell/Release/data/arial.ttf", 0, &face );
 	
 	if ( result == FT_Err_Unknown_File_Format )
-		msg::error("FreeType: file format error");
+		msg::error(L"FreeType: file format error");
 	else if ( result )
-		msg::error("FreeType: file not found");
+		msg::error(L"FreeType: file not found");
 	
 	FT_Set_Pixel_Sizes(face, 0, 48);	
 	
 	if (glewInit() != GLEW_OK) {
-		msg::error("glewInit");
+		msg::error(L"glewInit");
 	}
 	
 

@@ -4,9 +4,9 @@
 class msg
 {
 	public:	
-	static void error(const char *msg, ... );
-	static void warning(const char *msg, ... );
-	static void info(const char *msg, ... );
+	static void error(const wchar_t *msg, ... );
+	static void warning(const wchar_t *msg, ... );
+	static void info(const wchar_t *msg, ... );
 };
 
 #endif
