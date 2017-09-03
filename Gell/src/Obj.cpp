@@ -1,8 +1,8 @@
 /*
  * Obj.cpp
  *
- *  Created on: 01 сент. 2017 г.
- *      Author: Соня
+ *  Created on: 01 СЃРµРЅС‚. 2017 Рі.
+ *      Author: РЎРѕРЅСЏ
  */
 
 #include "Obj.h"
@@ -67,11 +67,11 @@ Obj::~Obj() {
 
 /*
  * ------------------------------------------
- * Загрузка модели
- * v  - вершина x,y,z,w
- * vt - текстурные координаты (u,v,w)
- * vn - нормали (x,y,z)
- * f  - индекс поверхности
+ * Р—Р°РіСЂСѓР·РєР° РјРѕРґРµР»Рё
+ * v  - РІРµСЂС€РёРЅР° x,y,z,w
+ * vt - С‚РµРєСЃС‚СѓСЂРЅС‹Рµ РєРѕРѕСЂРґРёРЅР°С‚С‹ (u,v,w)
+ * vn - РЅРѕСЂРјР°Р»Рё (x,y,z)
+ * f  - РёРЅРґРµРєСЃ РїРѕРІРµСЂС…РЅРѕСЃС‚Рё
  * ------------------------------------------
  */
 void Obj::loadFromFile(const String &filename)
@@ -84,21 +84,21 @@ void Obj::loadFromFile(const String &filename)
 		String line;
 	    while (getline(file, line))
 	    {
-	    	// вершины
+	    	// РІРµСЂС€РёРЅС‹
 	    	if (line.substr(0,2) == "v ")
 	        {
 	            std::istringstream s(line.substr(2));
 	            glm::vec4 v; s >> v.x; s >> v.y; s >> v.z; v.w = 1.0f;
 	            vertices.push_back(v);
 	        }
-	    	// нормали
+	    	// РЅРѕСЂРјР°Р»Рё
 	    	else if (line.substr(0,2) == "vn")
 	    	{
 	    		std::istringstream s(line.substr(2));
 	    		glm::vec3 v; s >> v.x; s >> v.y; s >> v.z;
 	    		normals.push_back(v);
 	    	}
-	    	// индексы поверхности
+	    	// РёРЅРґРµРєСЃС‹ РїРѕРІРµСЂС…РЅРѕСЃС‚Рё
 	        else if (line.substr(0,2) == "f ")
 	        {
 	        	std::istringstream s(line.substr(2));
