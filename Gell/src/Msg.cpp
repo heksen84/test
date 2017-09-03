@@ -7,7 +7,7 @@
 #include "Common.h"
 
 va_list	argptr;
-wchar_t text[4096];
+wchar_t text[512];
 	
 /* ошибка */
 void msg::error(const wchar_t *msg, ... ) {
