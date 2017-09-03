@@ -16,6 +16,7 @@
 // C standart headers
 #include <stdlib.h>
 #include <stdio.h>
+#include <wchar.h>
 
 typedef std::string 	String;
 typedef unsigned int  	uint;

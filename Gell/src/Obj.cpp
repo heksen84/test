@@ -37,6 +37,7 @@ void Obj::loadFromFile(const String &filename)
 	        {
 	            std::istringstream s(line.substr(2));
 	            glm::vec4 v; s >> v.x; s >> v.y; s >> v.z; v.w = 1.0f;
+	            //msg::info("%f %f %f", v.x, v.y, v.z);
 	            vertices.push_back(v);
 	        }
 	    	// нормали
@@ -61,14 +62,14 @@ void Obj::loadFromFile(const String &filename)
 }
 
 // вернуть вершины
-std::vector< glm::vec4 > Obj::getVertices() {
+std::vector< glm::vec4 > &Obj::getVertices() {
 	return vertices;
 }
 // вернуть нормали
-std::vector< glm::vec3 > Obj::getNormals() {
+std::vector< glm::vec3 > &Obj::getNormals() {
 	return normals;
 }
 // вернуть элементы
-std::vector<GLushort> Obj::getElements(){
+std::vector<GLushort> &Obj::getElements(){
 	return elements;
 }

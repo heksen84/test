@@ -52,6 +52,10 @@ void mouse_button_callback(GLFWwindow* window, int button, int action, int mods)
 --------------------------------*/	
 int main(void)
 {
+
+	//std::setlocale (LC_ALL, 0);
+	//MessageBox( NULL, TEXT("іңғіңғіңғ"), TEXT("Test"), MB_OK );
+
 	GLFWwindow* window;
 	GLFWmonitor* monitor;
 	const GLFWvidmode* mode;
@@ -92,6 +96,7 @@ int main(void)
 	// --- Инициализация FreeType
 	if (FT_Init_FreeType(&ft)) 
 		msg::error("FT_Init_FreeType");
+
 
 	// --- Инициализация FreeType
 	result = FT_New_Face( ft, "D:/projects/Gell/Gell/Release/data/arial.ttf", 0, &face );
