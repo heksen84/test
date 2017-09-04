@@ -94,7 +94,6 @@ int main(void)
 	if (FT_Init_FreeType(&ft)) 
 		msg::error(L"FT_Init_FreeType");
 
-
 	// --- Инициализация FreeType
 	result = FT_New_Face( ft, "D:/projects/Gell/Gell/Release/data/arial.ttf", 0, &face );
 	
