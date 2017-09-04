@@ -1,6 +1,7 @@
 // --------------------------
 // gell.cpp
 // Ilya Bobkov KZ 2017 (c)
+// Тёмные земли
 // --------------------------
 #include "Common.h"
 #include "Imglib.h"
@@ -59,6 +60,22 @@ int main(void)
 	FT_Library ft;
 	int result;
 
+	// --- Инициализация FreeType
+	if (FT_Init_FreeType(&ft))
+		msg::error(L"FT_Init_FreeType");
+
+	// --- Инициализация FreeType
+	result = FT_New_Face( ft, "D:/projects/Steppe/data/arial.ttf", 0, &face );
+
+	if ( result == FT_Err_Unknown_File_Format )
+		msg::error(L"FreeType: file format error");
+	else
+		if ( result )
+			msg::error(L"FreeType: font not found");
+
+	FT_Set_Pixel_Sizes(face, 0, 48);
+
+
 	/*
 	 * ининциализация
 	 */
@@ -89,28 +106,13 @@ int main(void)
 	/* нзначить ввод */
 	glfwSetKeyCallback(window, key_callback);
 	glfwSetMouseButtonCallback(window, mouse_button_callback);
-
-	// --- Инициализация FreeType
-	if (FT_Init_FreeType(&ft)) 
-		msg::error(L"FT_Init_FreeType");
-
-	// --- Инициализация FreeType
-	result = FT_New_Face( ft, "D:/projects/Gell/Gell/Release/data/arial.ttf", 0, &face );
-	
-	if ( result == FT_Err_Unknown_File_Format )
-		msg::error(L"FreeType: file format error");
-	else
-		if ( result )
-			msg::error(L"FreeType: file not found");
-	
-	FT_Set_Pixel_Sizes(face, 0, 48);	
 	
 	if (glewInit() != GLEW_OK) {
 		msg::error(L"glewInit");
 	}
 	
 	Obj mesh;
-	mesh.loadFromFile("D:/projects/Gell/Gell/Release/data/meshes/box.obj");
+	mesh.loadFromFile("D:/projects/Steppe/data/meshes/box.obj");
 
 	 glEnable(GL_DEPTH_TEST);
 	 glDepthFunc(GL_LESS);
