@@ -147,7 +147,7 @@ int main(void)
 	 "#version 400\n"
 	 "out vec4 frag_colour;"
 	 "void main() {"
-	 "  frag_colour = vec4(0.9, 0.0, 0.0, 1.0);"
+	 "  frag_colour = vec4(0.9, 0.5, 0.5, 1.0);"
 	 "}";
 
 	 GLuint vs = glCreateShader(GL_VERTEX_SHADER);
@@ -157,16 +157,17 @@ int main(void)
 	 glShaderSource(fs, 1, &fragment_shader, NULL);
 	 glCompileShader(fs);
 
-	 GLuint shader_programme = glCreateProgram();
-	 glAttachShader(shader_programme, fs);
-	 glAttachShader(shader_programme, vs);
-	 glLinkProgram(shader_programme);
+	 GLuint shader_programm = glCreateProgram();
+	 glAttachShader(shader_programm, fs);
+	 glAttachShader(shader_programm, vs);
+	 glLinkProgram(shader_programm);
 
 	 while (run)
 	 {
+		  glClearColor (0.0, 0.0, 0.2, 0.0);
 		 // wipe the drawing surface clear
 		  glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-		  glUseProgram(shader_programme);
+		  glUseProgram(shader_programm);
 		  glBindVertexArray(vao);
 		  // draw points 0-3 from the currently bound VAO with current in-use shader
 		  glDrawArrays(GL_TRIANGLES, 0, 3);
