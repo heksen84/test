@@ -53,7 +53,6 @@ void mouse_button_callback(GLFWwindow* window, int button, int action, int mods)
 --------------------------------*/	
 int main(void)
 {
-
 	GLFWwindow* window;
 	GLFWmonitor* monitor;
 	const GLFWvidmode* mode;
@@ -74,7 +73,6 @@ int main(void)
 			msg::error(L"FreeType: font not found");
 
 	FT_Set_Pixel_Sizes(face, 0, 48);
-
 
 	/*
 	 * ининциализация
