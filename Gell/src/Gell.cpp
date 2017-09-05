@@ -12,7 +12,23 @@
 bool run = true;
 
 FT_Face     	face;
-FT_GlyphSlot  	slot; 
+FT_GlyphSlot  	slot;
+
+
+const char* vertex_shader =
+	 "#version 400\n"
+	 "in vec3 vp;"
+	 "void main() {"
+	 "  gl_Position = vec4(vp, 1.0);"
+	 "}";
+
+	 const char* fragment_shader =
+	 "#version 400\n"
+	 "out vec4 frag_colour;"
+	 "void main() {"
+	 "  frag_colour = vec4(0.9, 0.5, 0.5, 1.0);"
+	 "}";
+
 
 /* 
 ------------------------------------
@@ -45,6 +61,11 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
 
 void mouse_button_callback(GLFWwindow* window, int button, int action, int mods){
     if (button == GLFW_MOUSE_BUTTON_RIGHT && action == GLFW_PRESS) run=false;
+}
+
+void mouse_callback(GLFWwindow* window, double xpos, double ypos)
+{
+
 }
 
 /* 
@@ -104,6 +125,7 @@ int main(void)
 	/* нзначить ввод */
 	glfwSetKeyCallback(window, key_callback);
 	glfwSetMouseButtonCallback(window, mouse_button_callback);
+	glfwSetCursorPosCallback(window, mouse_callback);
 	
 	if (glewInit() != GLEW_OK) {
 		msg::error(L"glewInit");
@@ -135,19 +157,6 @@ int main(void)
 	 glBindBuffer(GL_ARRAY_BUFFER, vbo);
 	 glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, NULL);
 	
-	 const char* vertex_shader =
-	 "#version 400\n"
-	 "in vec3 vp;"
-	 "void main() {"
-	 "  gl_Position = vec4(vp, 1.0);"
-	 "}";
-
-	 const char* fragment_shader =
-	 "#version 400\n"
-	 "out vec4 frag_colour;"
-	 "void main() {"
-	 "  frag_colour = vec4(0.9, 0.5, 0.5, 1.0);"
-	 "}";
 
 	 GLuint vs = glCreateShader(GL_VERTEX_SHADER);
 	 glShaderSource(vs, 1, &vertex_shader, NULL);
