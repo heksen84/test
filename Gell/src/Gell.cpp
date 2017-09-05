@@ -36,12 +36,12 @@ const char* vertex_shader =
 --------------------------------*/	
 int main(void)
 {
-
 	GLFW::init();
 
 	GLFWwindow* window;
 	GLFWmonitor* monitor;
 	const GLFWvidmode* mode;
+
 	FT_Library ft;
 	int result;
 

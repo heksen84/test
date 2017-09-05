@@ -40,7 +40,7 @@ typedef unsigned char 	byte;
 
 #include "Msg.h"
 
-
+// глобально
 extern bool g_AppRun;
 
 #endif
