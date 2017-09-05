@@ -9,6 +9,7 @@
 #include "Texture.h"
 #include "Obj.h"
 #include "Input.h"
+#include "GLFW.h"
 
 bool g_AppRun = true;
 
@@ -35,6 +36,9 @@ const char* vertex_shader =
 --------------------------------*/	
 int main(void)
 {
+
+	GLFW::init();
+
 	GLFWwindow* window;
 	GLFWmonitor* monitor;
 	const GLFWvidmode* mode;

@@ -12,6 +12,7 @@ class GLFW {
 public:
 	GLFW();
 	virtual ~GLFW();
+	static void init();
 };
 
 #endif /* GLFW_H_ */
