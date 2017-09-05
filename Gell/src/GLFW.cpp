@@ -8,6 +8,10 @@
 #include "GLFW.h"
 #include "Common.h"
 
+GLFWwindow* window;
+GLFWmonitor* monitor;
+const GLFWvidmode* mode;
+
 GLFW::GLFW() {
 	// TODO Auto-generated constructor stub
 
