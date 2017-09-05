@@ -83,7 +83,7 @@ int main(void)
     /* Make the window's context current */
     glfwMakeContextCurrent(window);
 	
-	/* нзначить ввод */
+	/* назначить ввод */
     glfwSetKeyCallback(window, key_callback);
 	glfwSetMouseButtonCallback(window, mouse_button_callback);
 	glfwSetCursorPosCallback(window, mouse_callback);
