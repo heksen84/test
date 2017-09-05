@@ -39,4 +39,8 @@ typedef unsigned char 	byte;
 #include FT_FREETYPE_H
 
 #include "Msg.h"
+
+
+extern bool g_AppRun;
+
 #endif

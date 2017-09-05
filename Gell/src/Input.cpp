@@ -7,12 +7,25 @@
 
 #include "Input.h"
 
-Input::Input() {
-	// TODO Auto-generated constructor stub
-
+/*
+------------------------------------
+обработка ввода
+------------------------------------*/
+void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods){
+    switch(key) {
+		case GLFW_KEY_ESCAPE:
+			g_AppRun=false;
+			break;
+	}
 }
 
-Input::~Input() {
-	// TODO Auto-generated destructor stub
+void mouse_button_callback(GLFWwindow* window, int button, int action, int mods){
+    if (button == GLFW_MOUSE_BUTTON_RIGHT && action == GLFW_PRESS){
+    	g_AppRun=false;
+    }
 }
 
+void mouse_callback(GLFWwindow* window, double xpos, double ypos)
+{
+
+}

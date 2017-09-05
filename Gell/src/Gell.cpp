@@ -8,12 +8,12 @@
 #include "Util.h"
 #include "Texture.h"
 #include "Obj.h"
+#include "Input.h"
 
-bool run = true;
+bool g_AppRun = true;
 
 FT_Face     	face;
 FT_GlyphSlot  	slot;
-
 
 const char* vertex_shader =
 	 "#version 400\n"
@@ -28,45 +28,6 @@ const char* vertex_shader =
 	 "void main() {"
 	 "  frag_colour = vec4(0.9, 0.5, 0.5, 1.0);"
 	 "}";
-
-
-/* 
-------------------------------------
-рендеринг текста
-------------------------------------*/	
-/*void RenderText(const String &text, float x, float y){
-	const char *p;	
-	slot = face->glyph;
-	for(p = text.c_str(); *p; p++) {
-		if(FT_Load_Char(face, *p, FT_LOAD_RENDER)) 
-			continue;
-			slot = face->glyph;			
-			glTexImage2D(GL_TEXTURE_2D, 0, GL_RED, slot->bitmap.width, slot->bitmap.rows, 0, GL_RED, GL_UNSIGNED_BYTE, slot->bitmap.buffer);			
-			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-	}
-}*/
-
-/* 
-------------------------------------
-обработка ввода
-------------------------------------*/	
-void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods){
-    switch(key) {
-		case GLFW_KEY_ESCAPE: run=false; break;		
-	}
-}
-
-void mouse_button_callback(GLFWwindow* window, int button, int action, int mods){
-    if (button == GLFW_MOUSE_BUTTON_RIGHT && action == GLFW_PRESS) run=false;
-}
-
-void mouse_callback(GLFWwindow* window, double xpos, double ypos)
-{
-
-}
 
 /* 
 --------------------------------
@@ -123,10 +84,10 @@ int main(void)
     glfwMakeContextCurrent(window);
 	
 	/* нзначить ввод */
-	glfwSetKeyCallback(window, key_callback);
+    glfwSetKeyCallback(window, key_callback);
 	glfwSetMouseButtonCallback(window, mouse_button_callback);
 	glfwSetCursorPosCallback(window, mouse_callback);
-	
+
 	if (glewInit() != GLEW_OK) {
 		msg::error(L"glewInit");
 	}
@@ -170,7 +131,7 @@ int main(void)
 	 glAttachShader(shader_programm, vs);
 	 glLinkProgram(shader_programm);
 
-	 while (run)
+	 while (g_AppRun)
 	 {
 		  glClearColor (0.0, 0.0, 0.2, 0.0);
 		 // wipe the drawing surface clear
