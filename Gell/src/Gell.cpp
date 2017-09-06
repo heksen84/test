@@ -8,7 +8,6 @@
 #include "Util.h"
 #include "Texture.h"
 #include "ObjMesh.h"
-#include "Input.h"
 #include "GLFW.h"
 #include "FreeType.h"
 
@@ -28,6 +27,13 @@ const char* vertex_shader =
 	 "  frag_colour = vec4(0.9, 0.5, 0.5, 1.0);"
 	 "}";
 
+	 float points[] =
+	 {
+		    0.0f,  0.5f,  0.0f,
+		    0.5f, -0.5f,  0.0f,
+		   -0.5f, -0.5f,  0.0f
+	 };
+
 /* 
 --------------------------------
 точка входа
@@ -36,11 +42,6 @@ int main(void)
 {
 	InitGLFW();
 	InitFreeType();
-
-	/* назначить ввод */
-	glfwSetKeyCallback(window, key_callback);
-	glfwSetMouseButtonCallback(window, mouse_button_callback);
-	glfwSetCursorPosCallback(window, mouse_callback);
 
 	if (glewInit() != GLEW_OK) {
 			msg::error(L"glewInit");
@@ -51,13 +52,6 @@ int main(void)
 
 	 glEnable(GL_DEPTH_TEST);
 	 glDepthFunc(GL_LESS);
-
-	 float points[] =
-	 {
-	    0.0f,  0.5f,  0.0f,
-	    0.5f, -0.5f,  0.0f,
-	   -0.5f, -0.5f,  0.0f
-	 };
 
 	 /* генерирую буфер */
 	 GLuint vbo = 0;

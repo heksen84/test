@@ -6,6 +6,7 @@
  */
 
 #include "GLFW.h"
+#include "Input.h"
 
 GLFWwindow*  window;
 GLFWmonitor* monitor;
@@ -32,4 +33,10 @@ void InitGLFW(void)
 
 	    /* Make the window's context current */
 	    glfwMakeContextCurrent(window);
+
+
+		/* назначить ввод */
+		glfwSetKeyCallback(window, key_callback);
+		glfwSetMouseButtonCallback(window, mouse_button_callback);
+		glfwSetCursorPosCallback(window, mouse_callback);
 }
