@@ -7,7 +7,6 @@
 
 #include "Glew.h"
 
-void InitGlew(void)
-{
+void InitGlew(void) {
 	if (glewInit() != GLEW_OK) msg::error(L"glewInit");
 }
