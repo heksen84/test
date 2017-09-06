@@ -11,7 +11,7 @@ FT_Library 		ft;
 FT_Face     	face;
 FT_GlyphSlot  	slot;
 
-int result;
+int result = 0;
 
 void InitFreeType(void)
 {
