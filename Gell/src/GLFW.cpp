@@ -16,12 +16,10 @@ void InitGLFW(void)
 		if (!glfwInit()) msg::error(L"glfwInit error");
 
 		monitor = glfwGetPrimaryMonitor();
-		if (!monitor)
-			msg::error(L"glfwGetPrimaryMonitor problem");
+		if (!monitor) msg::error(L"glfwGetPrimaryMonitor problem");
 
 		mode = glfwGetVideoMode(monitor);
-		if (!mode)
-			msg::error(L"glfwGetVideoMode problem");
+		if (!mode) msg::error(L"glfwGetVideoMode problem");
 
 		glfwWindowHint(GLFW_RED_BITS, 		mode->redBits);
 		glfwWindowHint(GLFW_GREEN_BITS,		mode->greenBits);
@@ -30,8 +28,7 @@ void InitGLFW(void)
 
 		window = glfwCreateWindow(mode->width, mode->height, "[ Strategy ]", monitor, NULL);
 
-		if (!window)
-			msg::error(L"glfwCreateWindow: problem");
+		if (!window) msg::error(L"glfwCreateWindow: problem");
 
 	    /* Make the window's context current */
 	    glfwMakeContextCurrent(window);

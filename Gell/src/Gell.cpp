@@ -85,8 +85,7 @@ int main(void)
 	 glAttachShader(shader_programm, vs);
 	 glLinkProgram(shader_programm);
 
-	 while (g_AppRun)
-	 {
+	 while (g_AppRun) {
 		  glClearColor (0.0, 0.0, 0.2, 0.0);
 		 // wipe the drawing surface clear
 		  glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
