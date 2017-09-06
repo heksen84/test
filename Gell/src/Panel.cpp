@@ -6,6 +6,6 @@
 #include "Panel.h"
 #include "Common.h"
 
-void Panel::Render()
+void Panel::Render(void)
 {
 }

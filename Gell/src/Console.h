@@ -7,7 +7,7 @@ class Console
 		Console();
 		virtual ~Console();
 		
-		void Render();
+		void Render(void);
 };
 
 

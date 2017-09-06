@@ -6,7 +6,7 @@ class Panel
 	public:	
 		Panel();
 		virtual ~Panel();
-		void Render();
+		void Render(void);
 };
 
 #endif

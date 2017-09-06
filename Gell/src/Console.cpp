@@ -6,6 +6,6 @@
 #include "Console.h"
 #include "Common.h"
 
-void Console::Render(){
+void Console::Render(void){
 	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 }

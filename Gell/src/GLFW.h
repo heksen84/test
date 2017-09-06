@@ -7,12 +7,12 @@
 
 #ifndef GLFW_H_
 #define GLFW_H_
+#include "Common.h"
 
-class GLFW {
-public:
-	GLFW();
-	virtual ~GLFW();
-	static void init();
-};
+extern GLFWwindow* 		window;
+extern GLFWmonitor* 	monitor;
+extern const GLFWvidmode* 	mode;
+
+extern void InitGLFW(void);
 
 #endif /* GLFW_H_ */
