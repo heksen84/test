@@ -7,7 +7,7 @@
 #include "Imglib.h"
 #include "Util.h"
 #include "Texture.h"
-#include "Obj.h"
+#include "ObjMesh.h"
 #include "Input.h"
 #include "GLFW.h"
 #include "FreeType.h"
@@ -46,7 +46,7 @@ int main(void)
 			msg::error(L"glewInit");
 	}
 	
-	Obj mesh;
+	ObjMesh mesh;
 	mesh.loadFromFile("D:/projects/Steppe/data/meshes/box.obj");
 
 	 glEnable(GL_DEPTH_TEST);

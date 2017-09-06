@@ -1,16 +1,16 @@
 /*
- * Obj.cpp
+ * ObjMesh.cpp
  *
  *  Created on: 01 сент. 2017 г.
  *      Author: Соня
  */
 
-#include "Obj.h"
+#include "ObjMesh.h"
 
-Obj::Obj() {
+ObjMesh::ObjMesh() {
 }
 
-Obj::~Obj() {
+ObjMesh::~ObjMesh() {
 	//msg::info(L"Шешек атып алма ағаштары\nБозғылт тұман өзен үстінде!\n聖尼柯拉﹒喀瓦西拉斯　著");
 }
 
@@ -23,7 +23,7 @@ Obj::~Obj() {
  * f  - индекс поверхности
  * ------------------------------------------
  */
-void Obj::loadFromFile(const String &filename)
+void ObjMesh::loadFromFile(const String &filename)
 {
 
 	std::ifstream file(filename, std::ios::in);
@@ -64,14 +64,14 @@ void Obj::loadFromFile(const String &filename)
 }
 
 // вернуть вершины
-std::vector< glm::vec4 > &Obj::getVertices() {
+std::vector< glm::vec4 > &ObjMesh::getVertices() {
 	return vertices;
 }
 // вернуть нормали
-std::vector< glm::vec3 > &Obj::getNormals() {
+std::vector< glm::vec3 > &ObjMesh::getNormals() {
 	return normals;
 }
 // вернуть элементы
-std::vector<GLushort> &Obj::getElements(){
+std::vector<GLushort> &ObjMesh::getElements(){
 	return elements;
 }

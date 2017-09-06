@@ -1,19 +1,19 @@
 /*
- * Obj.h
+ * ObjMesh.h
  *
  *  Created on: 01 09. 2017 �.
  *      Author: Ilya
  */
 
-#ifndef OBJ_H_
-#define OBJ_H_
+#ifndef OBJMESH_H_
+#define OBJMESH_H_
 #include "Common.h"
 
-class Obj {
+class ObjMesh {
 
 public:
-	Obj();
-	virtual ~Obj();
+	ObjMesh();
+	virtual ~ObjMesh();
 	void loadFromFile(const String &filename);
 	std::vector< glm::vec4 > 	&getVertices();
 	std::vector< glm::vec3 > 	&getNormals();
