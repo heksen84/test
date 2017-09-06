@@ -9,8 +9,8 @@
 #define GLFW_H_
 #include "Common.h"
 
-extern GLFWwindow* 		window;
-extern GLFWmonitor* 	monitor;
+extern GLFWwindow* 			window;
+extern GLFWmonitor* 		monitor;
 extern const GLFWvidmode* 	mode;
 
 extern void InitGLFW(void);
