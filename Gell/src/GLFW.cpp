@@ -34,7 +34,6 @@ void InitGLFW(void)
 	    /* Make the window's context current */
 	    glfwMakeContextCurrent(window);
 
-
 		/* назначить ввод */
 		glfwSetKeyCallback(window, key_callback);
 		glfwSetMouseButtonCallback(window, mouse_button_callback);
