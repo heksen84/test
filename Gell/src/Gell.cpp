@@ -10,11 +10,9 @@
 #include "Obj.h"
 #include "Input.h"
 #include "GLFW.h"
+#include "FreeType.h"
 
 bool g_AppRun = true;
-
-FT_Face     	face;
-FT_GlyphSlot  	slot;
 
 const char* vertex_shader =
 	 "#version 400\n"
@@ -36,25 +34,8 @@ const char* vertex_shader =
 --------------------------------*/	
 int main(void)
 {
-	FT_Library ft;
-	int result;
-
-	// --- Инициализация FreeType
-	if (FT_Init_FreeType(&ft))
-		msg::error(L"FT_Init_FreeType");
-
-	// --- Инициализация FreeType
-	result = FT_New_Face( ft, "D:/projects/Steppe/data/arial.ttf", 0, &face );
-
-	if ( result == FT_Err_Unknown_File_Format )
-		msg::error(L"FreeType: file format error");
-	else
-		if ( result )
-			msg::error(L"FreeType: font not found");
-
-	FT_Set_Pixel_Sizes(face, 0, 48);
-
 	InitGLFW();
+	InitFreeType();
 
 	/* назначить ввод */
     glfwSetKeyCallback(window, key_callback);
@@ -62,7 +43,7 @@ int main(void)
 	glfwSetCursorPosCallback(window, mouse_callback);
 
 	if (glewInit() != GLEW_OK) {
-		msg::error(L"glewInit");
+			msg::error(L"glewInit");
 	}
 	
 	Obj mesh;
