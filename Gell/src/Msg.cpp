@@ -19,7 +19,7 @@ void Msg::Error(const wchar_t *msg, ... ) {
 }
 
 /* предупреждение */
-void Msg::Warning(const wchar_t *msg, ... ){
+void Msg::Warning(const wchar_t *msg, ... ) {
 	va_start( argptr, msg );
 	vswprintf( text, msg, argptr );
 	va_end( argptr);	
@@ -27,7 +27,7 @@ void Msg::Warning(const wchar_t *msg, ... ){
 }
 
 /* инфобокс */
-void Msg::Info(const wchar_t *msg, ... ){
+void Msg::Info(const wchar_t *msg, ... ) {
 	va_start( argptr, msg );
 	vswprintf( text, msg, argptr );
 	va_end( argptr);	
