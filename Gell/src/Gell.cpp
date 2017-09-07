@@ -1,5 +1,5 @@
 // --------------------------
-// gell.cpp
+// Gell.cpp
 // Ilya Bobkov KZ 2017 (c)
 // Тёмные земли
 // --------------------------
@@ -76,18 +76,15 @@ int main(void)
 	glAttachShader(shader_programm, vs);
 	glLinkProgram(shader_programm);
 
-	while (g_AppRun) {
-		  glClearColor (0.0, 0.0, 0.2, 0.0);
-		 // wipe the drawing surface clear
-		  glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-		  glUseProgram(shader_programm);
-		  glBindVertexArray(vao);
-		  // draw points 0-3 from the currently bound VAO with current in-use shader
-		  glDrawArrays(GL_TRIANGLES, 0, 3);
-		  // update other events like input handling
-		  glfwPollEvents();
-		  // put the stuff we've been drawing onto the display
-		  glfwSwapBuffers(window);
+	while (g_AppRun)
+	{
+	  glClearColor (0.0, 0.0, 0.2, 0.0);
+	  glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	  glUseProgram(shader_programm);
+	  glBindVertexArray(vao);
+	  glDrawArrays(GL_TRIANGLES, 0, 3);
+	  glfwPollEvents();
+	  glfwSwapBuffers(window);
     }
 
     glfwTerminate();
