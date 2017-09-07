@@ -10,10 +10,10 @@ typedef struct
 	byte *pixels;	
 } Img;
 
-class imglib
+class ImgLib
 {
 	public:	
-	static void loadPng(const String &filename, GLFWimage *image);
+	static void LoadPng(const String &filename, GLFWimage *image);
 };
 
 #endif

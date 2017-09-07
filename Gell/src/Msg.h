@@ -1,12 +1,12 @@
 #ifndef MSG_H_
 #define MSG_H_
 
-class msg
+class Msg
 {
 	public:	
-	static void error(const wchar_t *msg, ... );
-	static void warning(const wchar_t *msg, ... );
-	static void info(const wchar_t *msg, ... );
+	static void Error(const wchar_t *msg, ... );
+	static void Warning(const wchar_t *msg, ... );
+	static void Info(const wchar_t *msg, ... );
 };
 
 #endif

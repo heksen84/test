@@ -14,12 +14,12 @@ Texture::Texture(const String &filename)
 	pixeldepth 	= 0;
 	data 		= nullptr;
 	
-	if( util::getFileExtension(filename) == "png" )	msg::info(L"loadPng");
+	if( Util::GetFileExtension(filename) == "png" )	Msg::Info(L"loadPng");
 	else	
-		if( util::getFileExtension(filename) == "jpg" || util::getFileExtension(filename) == "jpeg")
-			msg::info(L"loadJpeg");
+		if( Util::GetFileExtension(filename) == "jpg" || Util::GetFileExtension(filename) == "jpeg")
+			Msg::Info(L"loadJpeg");
 			else
-				msg::error(L"Texture %s error", filename.c_str());
+				Msg::Error(L"Texture %s error", filename.c_str());
 }
 
 Texture::~Texture()

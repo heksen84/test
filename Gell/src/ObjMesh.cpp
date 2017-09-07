@@ -23,13 +23,13 @@ ObjMesh::~ObjMesh() {
  * f  - индекс поверхности
  * ------------------------------------------
  */
-void ObjMesh::loadFromFile(const String &filename)
+void ObjMesh::LoadFromFile(const String &filename)
 {
 
 	std::ifstream file(filename, std::ios::in);
 
 		if (!file)
-			msg::error(L"Obj::loadFromFle: Cannot open file %s");
+			Msg::Error(L"Obj::loadFromFle: Cannot open file %s");
 
 		String line;
 	    while (getline(file, line))

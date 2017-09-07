@@ -46,7 +46,7 @@ int main(void)
 	InitGlew();
 	
 	ObjMesh mesh;
-	mesh.loadFromFile("D:/projects/Steppe/data/meshes/box.obj");
+	mesh.LoadFromFile("D:/projects/Steppe/data/meshes/box.obj");
 
 	glEnable(GL_DEPTH_TEST);
 	glDepthFunc(GL_LESS);

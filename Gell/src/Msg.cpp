@@ -10,7 +10,7 @@ va_list	argptr;
 wchar_t text[512];
 	
 /* ошибка */
-void msg::error(const wchar_t *msg, ... ) {
+void Msg::Error(const wchar_t *msg, ... ) {
 	va_start( argptr, msg );
 	vswprintf( text, msg, argptr );
 	va_end( argptr);	
@@ -19,7 +19,7 @@ void msg::error(const wchar_t *msg, ... ) {
 }
 
 /* предупреждение */
-void msg::warning(const wchar_t *msg, ... ){
+void Msg::Warning(const wchar_t *msg, ... ){
 	va_start( argptr, msg );
 	vswprintf( text, msg, argptr );
 	va_end( argptr);	
@@ -27,7 +27,7 @@ void msg::warning(const wchar_t *msg, ... ){
 }
 
 /* инфобокс */
-void msg::info(const wchar_t *msg, ... ){
+void Msg::Info(const wchar_t *msg, ... ){
 	va_start( argptr, msg );
 	vswprintf( text, msg, argptr );
 	va_end( argptr);	

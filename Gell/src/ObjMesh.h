@@ -14,7 +14,7 @@ class ObjMesh {
 public:
 	ObjMesh();
 	virtual ~ObjMesh();
-	void loadFromFile(const String &filename);
+	void LoadFromFile(const String &filename);
 	std::vector< glm::vec4 > 	&getVertices();
 	std::vector< glm::vec3 > 	&getNormals();
 	std::vector<GLushort> 		&getElements();
