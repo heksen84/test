@@ -152,7 +152,6 @@ GLuint png_texture_load(const char * file_name, int * width, int * height)
 --------------------------*/
 void ImgLib::LoadPng(const String &filename, GLFWimage *image)
 {	
-
 	FILE *fp = fopen(filename.c_str(), "rb");
 
 	if (!fp)

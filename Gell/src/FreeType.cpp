@@ -15,7 +15,6 @@ int result = 0;
 
 void InitFreeType(void)
 {
-
 	// --- Инициализация FreeType
 	if (FT_Init_FreeType(&ft))
 		Msg::Error(L"FT_Init_FreeType");

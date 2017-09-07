@@ -25,8 +25,7 @@ ObjMesh::~ObjMesh() {
  */
 void ObjMesh::LoadFromFile(const String &filename)
 {
-
-	std::ifstream file(filename, std::ios::in);
+		std::ifstream file(filename, std::ios::in);
 
 		if (!file)
 			Msg::Error(L"Obj::loadFromFle: Cannot open file %s");
