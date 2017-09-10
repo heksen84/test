@@ -11,20 +11,14 @@
 #include "GLFW.h"
 #include "FreeType.h"
 #include "Glew.h"
+#include "Landscape.h"
 
 bool g_AppRun = true;
 
-void InitLib(void) {
+void InitLibs(void) {
 	InitGLFW();
 	InitGLEW();
 	InitFreeType();
-}
-
-void CreateTexturedPlane(void){
-
-}
-void DrawTexturedPlane(void){
-	glDrawArrays(GL_TRIANGLES, 0, 3);
 }
 
 /* 
@@ -33,17 +27,20 @@ void DrawTexturedPlane(void){
 --------------------------------*/	
 int main(void){
 
-	InitLib();
-	CreateTexturedPlane();
+	InitLibs();
+
+	Landscape *land = new Landscape("landscape.obj");
 
 	while (g_AppRun) {
 	  glClearColor(0.0, 0.0, 0.2, 0.0);
 	  glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	  DrawTexturedPlane();
 	  glfwPollEvents();
 	  glfwSwapBuffers(window);
     }
 
+	SAFE_DELETE(land);
+
     glfwTerminate();
+
     return 0;
 }

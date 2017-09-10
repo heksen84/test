@@ -1,1 +1,2 @@
-<h2><ins>This is description</ins></h2>
+<li>отрисовать ландшафт</li>
+<li>отрисовать скайбокс</li>
