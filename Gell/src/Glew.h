@@ -9,6 +9,6 @@
 #define GLEW_H_
 #include "Common.h"
 
-extern void InitGlew(void);
+extern void InitGLEW(void);
 
 #endif /* GLEW_H_ */

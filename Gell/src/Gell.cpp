@@ -43,7 +43,7 @@ int main(void)
 {
 	InitGLFW();
 	InitFreeType();
-	InitGlew();
+	InitGLEW();
 	
 	ObjMesh mesh;
 	mesh.LoadFromFile("D:/projects/Steppe/data/meshes/box.obj");
