@@ -9,6 +9,6 @@
 
 void InitGLEW() {
 	if (glewInit() != GLEW_OK) Msg::Error("GlewInit error");
-	if (!GLEW_VERSION_3_3)
-		Msg::Error("OpenGL 3.3 not avaiable!\nUpgrade your hardware or check drivers.");
+	if (!GLEW_VERSION_3_0)
+		Msg::Error("OpenGL 3.0 not avaiable!\nUpgrade your hardware or check drivers.");
 }
