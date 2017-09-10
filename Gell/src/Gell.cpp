@@ -14,75 +14,31 @@
 
 bool g_AppRun = true;
 
-const char* vertex_shader =
-	 "#version 400\n"
-	 "in vec3 vp;"
-	 "void main() {"
-	 "  gl_Position = vec4(vp, 1.0);"
-	 "}";
+void InitLib(void) {
+	InitGLFW();
+	InitFreeType();
+	InitGLEW();
+}
 
-	 const char* fragment_shader =
-	 "#version 400\n"
-	 "out vec4 frag_colour;"
-	 "void main() {"
-	 "  frag_colour = vec4(0.9, 0.5, 0.5, 1.0);"
-	 "}";
+void CreateTexturedPlane(void){
 
-	 float points[] =
-	 {
-		    0.0f,  0.5f,  0.0f,
-		    0.5f, -0.5f,  0.0f,
-		   -0.5f, -0.5f,  0.0f
-	 };
+}
+void DrawTexturedPlane(void){
+	glDrawArrays(GL_TRIANGLES, 0, 3);
+}
 
 /* 
 --------------------------------
 точка входа
 --------------------------------*/	
-int main(void)
-{
-	InitGLFW();
-	InitFreeType();
-	InitGLEW();
-	
-	ObjMesh mesh;
-	mesh.LoadFromFile("D:/projects/Steppe/data/meshes/box.obj");
+int main(void){
+	InitLib();
+	CreateTexturedPlane();
 
-	glEnable(GL_DEPTH_TEST);
-	glDepthFunc(GL_LESS);
-
-	/* генерирую буфер */
-	GLuint vbo = 0;
-	glGenBuffers(1, &vbo);
-	glBindBuffer(GL_ARRAY_BUFFER, vbo);
-	glBufferData(GL_ARRAY_BUFFER, 9 * sizeof(float), points, GL_STATIC_DRAW);
-
-	GLuint vao = 0;
-	glGenVertexArrays(1, &vao);
-	glBindVertexArray(vao);
-	glEnableVertexAttribArray(0);
-	glBindBuffer(GL_ARRAY_BUFFER, vbo);
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, NULL);
-
-	GLuint vs = glCreateShader(GL_VERTEX_SHADER);
-	glShaderSource(vs, 1, &vertex_shader, NULL);
-	glCompileShader(vs);
-	GLuint fs = glCreateShader(GL_FRAGMENT_SHADER);
-	glShaderSource(fs, 1, &fragment_shader, NULL);
-	glCompileShader(fs);
-
-	GLuint shader_programm = glCreateProgram();
-	glAttachShader(shader_programm, fs);
-	glAttachShader(shader_programm, vs);
-	glLinkProgram(shader_programm);
-
-	while (g_AppRun)
-	{
-	  glClearColor (0.0, 0.0, 0.2, 0.0);
+	while (g_AppRun) {
+	  glClearColor(0.0, 0.0, 0.2, 0.0);
 	  glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	  glUseProgram(shader_programm);
-	  glBindVertexArray(vao);
-	  glDrawArrays(GL_TRIANGLES, 0, 3);
+	  DrawTexturedPlane();
 	  glfwPollEvents();
 	  glfwSwapBuffers(window);
     }
