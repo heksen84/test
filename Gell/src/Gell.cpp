@@ -12,6 +12,7 @@
 #include "FreeType.h"
 #include "Glew.h"
 #include "Landscape.h"
+#include "Singleton.h"
 
 bool g_AppRun = true;
 
@@ -98,6 +99,8 @@ int main(void) {
 
 	glEnable(GL_DEPTH_TEST);
 	glDepthFunc(GL_LESS);
+
+	//Renderer::instance()->DrawObject();
 
 	CreatePanel();
 
