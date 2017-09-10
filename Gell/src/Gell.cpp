@@ -45,8 +45,7 @@ const char* vertex_shader =
  // ------------------
  // x,y,z
  // ------------------
- float points[] =
- {
+ float points[] = {
    1.0f,  1.0f,  0.0f,
    0.5f, -1.0f,  0.0f,
    1.0f, -1.0f,  0.0f
@@ -56,8 +55,7 @@ GLuint vbo=0, vao=0;
 GLuint vs, fs;
 GLuint shader_programm;
 
-void CreatePanel()
-{
+void CreatePanel() {
 	/* генерирую буфер */
 		glGenBuffers(1, &vbo);
 		glBindBuffer(GL_ARRAY_BUFFER, vbo);
@@ -82,8 +80,7 @@ void CreatePanel()
 		glLinkProgram(shader_programm);
 }
 
-void DrawPanel()
-{
+void DrawPanel() {
 	glUseProgram(shader_programm);
 	glBindVertexArray(vao);
 	glDrawArrays(GL_TRIANGLES, 0, 3);
