@@ -16,8 +16,8 @@ bool g_AppRun = true;
 
 void InitLib(void) {
 	InitGLFW();
-	InitFreeType();
 	InitGLEW();
+	InitFreeType();
 }
 
 void CreateTexturedPlane(void){
@@ -32,6 +32,7 @@ void DrawTexturedPlane(void){
 точка входа
 --------------------------------*/	
 int main(void){
+
 	InitLib();
 	CreateTexturedPlane();
 
