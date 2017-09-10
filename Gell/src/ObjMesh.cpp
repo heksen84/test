@@ -6,6 +6,7 @@
  */
 
 #include "ObjMesh.h"
+#include "Msg.h"
 
 ObjMesh::ObjMesh() {
 }
@@ -25,10 +26,11 @@ ObjMesh::~ObjMesh() {
  */
 void ObjMesh::LoadFromFile(const String &filename)
 {
-		std::ifstream file(filename, std::ios::in);
+		std::ifstream file(filename.c_str(), std::ios::in);
 
-		if (!file)
-			Msg::Error(L"Obj::loadFromFle: Cannot open file %s");
+		if (!file.is_open())
+			Msg::Error("Obj::loadFromFle: Cannot open file %s", filename.c_str());
+
 
 		String line;
 	    while (getline(file, line))

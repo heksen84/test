@@ -8,6 +8,6 @@
 String Util::GetFileExtension(const String &filename)
 {	
 	 if(filename.find_last_of(".") != std::string::npos)
-        return filename.substr(filename.find_last_of(".")+1);
+        return filename.substr(filename.find_last_of(".") + 1);
     return "";
 }

@@ -19,8 +19,10 @@
 #include <stdio.h>
 #include <stdarg.h>
 #include <wchar.h>
+#include <tchar.h>
 
 typedef std::string 	String;
+typedef std::wstring 	UnicodeString;
 typedef unsigned int  	uint;
 typedef unsigned char 	byte;
 

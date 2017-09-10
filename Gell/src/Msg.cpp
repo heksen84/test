@@ -7,29 +7,30 @@
 #include "Common.h"
 
 va_list	argptr;
-wchar_t text[512];
-	
+char text[1024];
+
+
 /* ошибка */
-void Msg::Error(const wchar_t *msg, ... ) {
+void Msg::Error(const char *msg, ... ) {
 	va_start( argptr, msg );
-	vswprintf( text, msg, argptr );
+	vsprintf( text, msg, argptr );
 	va_end( argptr);	
-	MessageBoxW(0, text, L"ERROR", MB_ICONERROR);
+	MessageBox(0, text, "ERROR", MB_ICONERROR);
 	exit(1);
 }
 
 /* предупреждение */
-void Msg::Warning(const wchar_t *msg, ... ) {
+void Msg::Warning(const char *msg, ...) {
 	va_start( argptr, msg );
-	vswprintf( text, msg, argptr );
+	vsprintf( text, msg, argptr );
 	va_end( argptr);	
-	MessageBoxW(0, text, L"WARNING", MB_ICONWARNING);
+	MessageBox(0, text, "WARNING", MB_ICONWARNING);
 }
 
 /* инфобокс */
-void Msg::Info(const wchar_t *msg, ... ) {
+void Msg::Info(const char *msg, ...) {
 	va_start( argptr, msg );
-	vswprintf( text, msg, argptr );
+	vsprintf( text, msg, argptr );
 	va_end( argptr);	
-	MessageBoxW(0, text, L"INFO", MB_ICONINFORMATION);
+	MessageBox(0, text, "INFO", MB_ICONINFORMATION);
 }

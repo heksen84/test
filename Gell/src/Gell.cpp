@@ -17,15 +17,15 @@ bool g_AppRun = true;
 
 void InitLibs(void) {
 	InitGLFW();
-	InitGLEW();
 	InitFreeType();
+	InitGLEW();
 }
 
 /* 
 --------------------------------
 точка входа
 --------------------------------*/	
-int main(void){
+int main(void) {
 
 	InitLibs();
 

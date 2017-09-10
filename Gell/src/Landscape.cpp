@@ -8,8 +8,8 @@
 #include "Landscape.h"
 
 Landscape::Landscape(const String &filename) {
-	// TODO Auto-generated constructor stub
-
+	//Msg::Error(L"%s", filename.c_str());
+	mesh.LoadFromFile(filename);
 }
 
 Landscape::~Landscape() {
