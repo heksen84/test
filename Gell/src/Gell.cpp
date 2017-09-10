@@ -35,7 +35,16 @@ const char* vertex_shader =
  "  frag_colour = vec4(1.0, 1.5, 0.5, 1.0);"
  "}";
 
+ /*
+	glVertex2f(-0.75, 0.75);
+	glVertex2f(-0.75, -0.75);
+	glVertex2f(0.75, -0.75);
+	glVertex2f(0.75, 0.75);
+*/
+
+ // ------------------
  // x,y,z
+ // ------------------
  float points[] =
  {
    1.0f,  1.0f,  0.0f,
