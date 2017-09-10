@@ -29,7 +29,7 @@ int main(void) {
 
 	InitLibs();
 
-	Landscape *land = new Landscape("landscape.obj");
+	Landscape *land = new Landscape("D:/projects/Steppe/data/meshes/landscape.obj");
 
 	while (g_AppRun) {
 	  glClearColor(0.0, 0.0, 0.2, 0.0);
