@@ -8,13 +8,18 @@
 #include "Renderer.h"
 #include "Common.h"
 
+template<> Renderer* Singleton<Renderer>::msSingleton = 0;
+Renderer* Renderer::getSingletonPtr(void) {
+  return msSingleton;
+}
+Renderer& Renderer::getSingleton(void) {
+  assert( msSingleton );
+  return ( *msSingleton );
+}
 Renderer::Renderer() {
-	// TODO Auto-generated constructor stub
-
 }
 
 Renderer::~Renderer() {
-	// TODO Auto-generated destructor stub
 }
 
 void Renderer::DrawObject(){

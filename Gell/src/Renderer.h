@@ -10,10 +10,12 @@
 
 #include "Singleton.h"
 
-class Renderer {
+class Renderer: public Singleton<Renderer> {
 public:
 	Renderer();
 	virtual ~Renderer();
+	static Renderer& getSingleton(void);
+	static Renderer* getSingletonPtr(void);
 	void DrawObject();
 };
 

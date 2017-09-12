@@ -7,16 +7,28 @@
 
 #ifndef SINGLETON_H_
 #define SINGLETON_H_
+#include "Common.h"
 
-class Singleton
+template <typename T> class Singleton
 {
-public:
-   static Singleton* instance() {
-      static Singleton inst;
-      return &inst;
-   }
-private:
-  Singleton() {}
+	private:
+		Singleton(const Singleton<T> &);
+		Singleton& operator=(const Singleton<T> &);
+
+	protected:
+        static T* msSingleton;
+
+    public:
+        Singleton( void )
+    	{
+            assert( !msSingleton );
+        }
+        ~Singleton( void )
+        {  assert( msSingleton );  msSingleton = 0;  }
+        static T& getSingleton( void )
+		{	assert( msSingleton );  return ( *msSingleton ); }
+        static T* getSingletonPtr( void )
+		{ return msSingleton; }
 };
 
 #endif /* SINGLETON_H_ */

@@ -20,6 +20,7 @@
 #include <stdarg.h>
 #include <wchar.h>
 #include <tchar.h>
+#include <assert.h>
 
 typedef std::string 	String;		// анси строка		(char*)
 typedef std::wstring 	Unicode; 	// уникод строка	(wchar_t*)
