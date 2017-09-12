@@ -102,7 +102,6 @@ int main(void) {
 	glEnable(GL_DEPTH_TEST);
 	glDepthFunc(GL_LESS);
 
-
 	CreatePanel();
 
 	while (g_AppRun) {
