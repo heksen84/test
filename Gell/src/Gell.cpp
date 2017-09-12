@@ -12,7 +12,7 @@
 #include "FreeType.h"
 #include "Glew.h"
 #include "Landscape.h"
-#include "Singleton.h"
+#include "Renderer.h"
 
 bool g_AppRun = true;
 
@@ -95,12 +95,13 @@ int main(void) {
 
 	InitLibs();
 
+	Renderer::getSingletonPtr()->DrawObject();
+
 	Landscape *land = new Landscape("D:/projects/Steppe/data/meshes/landscape.obj");
 
 	glEnable(GL_DEPTH_TEST);
 	glDepthFunc(GL_LESS);
 
-	//Renderer::instance()->DrawObject();
 
 	CreatePanel();
 
@@ -110,7 +111,6 @@ int main(void) {
 		  DrawPanel();
 		  glfwPollEvents();
 		  glfwSwapBuffers(window);
-
     }
 
 	SAFE_DELETE(land);
