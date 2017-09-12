@@ -22,7 +22,7 @@ Renderer::Renderer() {
 Renderer::~Renderer() {
 }
 
-void Renderer::DrawObject(){
-	Msg::Warning("Hello from renderer!");
+void Renderer::DrawObject() {
+	Msg::Info("Hello from renderer!");
 }
 
