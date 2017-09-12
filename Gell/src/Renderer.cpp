@@ -2,7 +2,7 @@
  * Renderer.cpp
  *
  *  Created on: 10 сент. 2017 г.
- *      Author: Соня
+ *      Author: Илья
  */
 
 #include "Renderer.h"
@@ -23,6 +23,6 @@ Renderer::~Renderer() {
 }
 
 void Renderer::DrawObject(){
-	Msg::Info("Hello from renderer!");
+	Msg::Warning("Hello from renderer!");
 }
 

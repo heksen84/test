@@ -2,7 +2,7 @@
  * Gui.cpp
  *
  *  Created on: 06 сент. 2017 г.
- *      Author: Соня
+ *      Author: Илья
  */
 
 #include "Gui.h"

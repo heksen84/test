@@ -2,7 +2,7 @@
  * GLFW.cpp
  *
  *  Created on: 05 сент. 2017 г.
- *      Author: Соня
+ *      Author: Илья
  */
 
 #include "GLFW.h"
