@@ -23,6 +23,5 @@ Renderer::~Renderer() {
 }
 
 void Renderer::DrawObject() {
-	Msg::Info("Hello from renderer!");
 }
 

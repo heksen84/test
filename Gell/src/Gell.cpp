@@ -1,7 +1,6 @@
 // --------------------------
 // Gell.cpp
-// Ilya Bobkov KZ 2017 (c)
-// Тёмные земли
+// Ilya Bobkov
 // --------------------------
 #include "Common.h"
 #include "Imglib.h"
@@ -30,7 +29,7 @@ const char* vertex_shader =
  "  frag_colour = vec4(1.0, 1.5, 0.5, 1.0);"
  "}";
 
-// x,y,z
+// x, y, z
 float points[] = {
    1.0f,  1.0f,  0.0f,
    0.5f, -1.0f,  0.0f,
@@ -41,7 +40,6 @@ GLuint vbo=0, vao=0;
 GLuint vs, fs;
 GLuint shader_programm;
 
-
 void InitLibs(void)
 {
 	InitGLFW();
@@ -51,7 +49,6 @@ void InitLibs(void)
 
 void CreatePanel()
 {
-	/* генерирую буфер */
 	glGenBuffers(1, &vbo);
 	glBindBuffer(GL_ARRAY_BUFFER, vbo);
 	glBufferData(GL_ARRAY_BUFFER, 9 * sizeof(float), points, GL_STATIC_DRAW);
@@ -75,7 +72,8 @@ void CreatePanel()
 	glLinkProgram(shader_programm);
 }
 
-void DrawPanel() {
+void DrawPanel()
+{
 	glUseProgram(shader_programm);
 	glBindVertexArray(vao);
 	glDrawArrays(GL_TRIANGLES, 0, 3);
