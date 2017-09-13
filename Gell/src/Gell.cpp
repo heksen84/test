@@ -56,29 +56,30 @@ GLuint vbo=0, vao=0;
 GLuint vs, fs;
 GLuint shader_programm;
 
-void CreatePanel() {
+void CreatePanel()
+{
 	/* генерирую буфер */
-		glGenBuffers(1, &vbo);
-		glBindBuffer(GL_ARRAY_BUFFER, vbo);
-		glBufferData(GL_ARRAY_BUFFER, 9 * sizeof(float), points, GL_STATIC_DRAW);
+	glGenBuffers(1, &vbo);
+	glBindBuffer(GL_ARRAY_BUFFER, vbo);
+	glBufferData(GL_ARRAY_BUFFER, 9 * sizeof(float), points, GL_STATIC_DRAW);
 
-		glGenVertexArrays(1, &vao);
-		glBindVertexArray(vao);
-		glEnableVertexAttribArray(0);
-		glBindBuffer(GL_ARRAY_BUFFER, vbo);
-		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, NULL);
+	glGenVertexArrays(1, &vao);
+	glBindVertexArray(vao);
+	glEnableVertexAttribArray(0);
+	glBindBuffer(GL_ARRAY_BUFFER, vbo);
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, NULL);
 
-		vs = glCreateShader(GL_VERTEX_SHADER);
-		glShaderSource(vs, 1, &vertex_shader, NULL);
-		glCompileShader(vs);
-		fs = glCreateShader(GL_FRAGMENT_SHADER);
-		glShaderSource(fs, 1, &fragment_shader, NULL);
-		glCompileShader(fs);
+	vs = glCreateShader(GL_VERTEX_SHADER);
+	glShaderSource(vs, 1, &vertex_shader, NULL);
+	glCompileShader(vs);
+	fs = glCreateShader(GL_FRAGMENT_SHADER);
+	glShaderSource(fs, 1, &fragment_shader, NULL);
+	glCompileShader(fs);
 
-		shader_programm = glCreateProgram();
-		glAttachShader(shader_programm, fs);
-		glAttachShader(shader_programm, vs);
-		glLinkProgram(shader_programm);
+	shader_programm = glCreateProgram();
+	glAttachShader(shader_programm, fs);
+	glAttachShader(shader_programm, vs);
+	glLinkProgram(shader_programm);
 }
 
 void DrawPanel() {
@@ -94,9 +95,7 @@ void DrawPanel() {
 int main(void) {
 
 	InitLibs();
-
 	Renderer::getSingletonPtr()->DrawObject();
-
 	Landscape *land = new Landscape("D:/projects/Steppe/data/meshes/landscape.obj");
 
 	glEnable(GL_DEPTH_TEST);
@@ -104,16 +103,16 @@ int main(void) {
 
 	CreatePanel();
 
-	while (g_AppRun) {
-		  glClearColor (0.0, 0.0, 0.2, 0.0);
-		  glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-		  DrawPanel();
-		  glfwPollEvents();
-		  glfwSwapBuffers(window);
+	while (g_AppRun)
+	{
+		glClearColor (0.0, 0.0, 0.2, 0.0);
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+		DrawPanel();
+		glfwPollEvents();
+		glfwSwapBuffers(window);
     }
 
 	SAFE_DELETE(land);
-
     glfwTerminate();
 
     return 0;
