@@ -16,12 +16,6 @@
 
 bool g_AppRun = true;
 
-void InitLibs(void) {
-	InitGLFW();
-	InitFreeType();
-	InitGLEW();
-}
-
 const char* vertex_shader =
  "#version 400\n"
  "in vec3 vp;"
@@ -36,25 +30,24 @@ const char* vertex_shader =
  "  frag_colour = vec4(1.0, 1.5, 0.5, 1.0);"
  "}";
 
- /*
-	glVertex2f(-0.75, 0.75);
-	glVertex2f(-0.75, -0.75);
-	glVertex2f(0.75, -0.75);
-	glVertex2f(0.75, 0.75);
-*/
-
- // ------------------
- // x,y,z
- // ------------------
- float points[] = {
+// x,y,z
+float points[] = {
    1.0f,  1.0f,  0.0f,
    0.5f, -1.0f,  0.0f,
    1.0f, -1.0f,  0.0f
- };
+};
 
 GLuint vbo=0, vao=0;
 GLuint vs, fs;
 GLuint shader_programm;
+
+
+void InitLibs(void)
+{
+	InitGLFW();
+	InitFreeType();
+	InitGLEW();
+}
 
 void CreatePanel()
 {
@@ -95,6 +88,7 @@ void DrawPanel() {
 int main(void) {
 
 	InitLibs();
+
 	Renderer::getSingletonPtr()->DrawObject();
 	Landscape *land = new Landscape("D:/projects/Steppe/data/meshes/landscape.obj");
 
