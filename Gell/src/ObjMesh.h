@@ -19,9 +19,9 @@ public:
 	std::vector< glm::vec3 > 	&getNormals();
 	std::vector<GLushort> 		&getElements();
 private:
-	std::vector< glm::vec4 > vertices;
-	std::vector< glm::vec3 > normals;
-	std::vector<GLushort>	 elements;
+	std::vector< glm::vec4 > 	vertices;
+	std::vector< glm::vec3 > 	normals;
+	std::vector<GLushort> 		elements;
 };
 
 #endif /* OBJ_H_ */
