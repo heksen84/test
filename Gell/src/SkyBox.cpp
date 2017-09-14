@@ -7,12 +7,9 @@
 
 #include "SkyBox.h"
 
-SkyBox::SkyBox() {
-	// TODO Auto-generated constructor stub
-
+SkyBox::SkyBox(String frontImage, String backImage, String leftImage, String rightImage, String topImage, String bottomImage) {
 }
 
 SkyBox::~SkyBox() {
-	// TODO Auto-generated destructor stub
 }
 

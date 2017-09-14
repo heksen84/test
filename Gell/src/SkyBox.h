@@ -8,9 +8,11 @@
 #ifndef SKYBOX_H_
 #define SKYBOX_H_
 
+#include "Common.h"
+
 class SkyBox {
 public:
-	SkyBox();
+	SkyBox(String frontImage, String backImage, String leftImage, String rightImage, String topImage, String bottomImage);
 	virtual ~SkyBox();
 };
 
