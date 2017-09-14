@@ -9,17 +9,23 @@
 
 Texture::Texture(const String &filename)
 {
+
 	width 		= 0;
 	height 		= 0;
 	pixeldepth 	= 0;
 	data 		= nullptr;
 	
-	if( Util::GetFileExtension(filename) == "png" )	Msg::Info("loadPng");
-	else	
-		if( Util::GetFileExtension(filename) == "jpg" || Util::GetFileExtension(filename) == "jpeg")
-			Msg::Info("loadJpeg");
-			else
-				Msg::Error("Texture %s error", filename.c_str());
+	if( Util::GetFileExtension(filename) == "png" )
+	{
+	}
+	else
+	if( Util::GetFileExtension(filename) == "jpg" || Util::GetFileExtension(filename) == "jpeg")
+	{
+	}
+	else
+	{
+	  Msg::Error("Texture %s error", filename.c_str());
+	}
 }
 
 Texture::~Texture(){
