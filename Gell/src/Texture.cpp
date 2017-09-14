@@ -22,7 +22,6 @@ Texture::Texture(const String &filename)
 				Msg::Error("Texture %s error", filename.c_str());
 }
 
-Texture::~Texture()
-{
+Texture::~Texture(){
 	SAFE_DELETE(data);
 }

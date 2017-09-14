@@ -31,10 +31,12 @@ const char* vertex_shader =
 
 // x, y, z
 float points[] = {
-   1.0f,  1.0f,  0.0f,
-   0.5f, -1.0f,  0.0f,
-   1.0f, -1.0f,  0.0f
+   -0.5f,  0.5f,  0.0f,
+   -0.5f, -0.5f,  0.0f,
+    0.5f, -0.5f,  0.0f,
+    0.5f,  0.5f,  0.0f
 };
+
 
 GLuint vbo=0, vao=0;
 GLuint vs, fs;
@@ -51,13 +53,13 @@ void CreatePanel()
 {
 	glGenBuffers(1, &vbo);
 	glBindBuffer(GL_ARRAY_BUFFER, vbo);
-	glBufferData(GL_ARRAY_BUFFER, 9 * sizeof(float), points, GL_STATIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(points), points, GL_STATIC_DRAW);
 
 	glGenVertexArrays(1, &vao);
 	glBindVertexArray(vao);
 	glEnableVertexAttribArray(0);
 	glBindBuffer(GL_ARRAY_BUFFER, vbo);
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, NULL);
+	glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, 0, NULL);
 
 	vs = glCreateShader(GL_VERTEX_SHADER);
 	glShaderSource(vs, 1, &vertex_shader, NULL);
@@ -76,7 +78,7 @@ void DrawPanel()
 {
 	glUseProgram(shader_programm);
 	glBindVertexArray(vao);
-	glDrawArrays(GL_TRIANGLES, 0, 3);
+	glDrawArrays(GL_QUADS, 0, 4);
 }
 
 /* 
@@ -87,11 +89,11 @@ int main(void) {
 
 	InitLibs();
 
-	Renderer::getSingletonPtr()->DrawObject();
-	Landscape *land = new Landscape("D:/projects/Steppe/data/meshes/landscape.obj");
+	//Renderer::getSingletonPtr()->DrawObject();
+	//Landscape *land = new Landscape("D:/projects/Steppe/data/meshes/landscape.obj");
 
-	glEnable(GL_DEPTH_TEST);
-	glDepthFunc(GL_LESS);
+	//glEnable(GL_DEPTH_TEST);
+	//glDepthFunc(GL_LESS);
 
 	CreatePanel();
 
@@ -104,7 +106,7 @@ int main(void) {
 		glfwSwapBuffers(window);
     }
 
-	SAFE_DELETE(land);
+	//SAFE_DELETE(land);
     glfwTerminate();
 
     return 0;
