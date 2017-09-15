@@ -9,7 +9,6 @@
 
 Texture::Texture(const String &filename)
 {
-
 	width 		= 0;
 	height 		= 0;
 	pixeldepth 	= 0;

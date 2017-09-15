@@ -8,7 +8,9 @@
 #ifndef URTA_H_
 #define URTA_H_
 
-class Urta {
+#include "GameObject.h"
+
+class Urta: public GameObject {
 public:
 	Urta();
 	virtual ~Urta();
