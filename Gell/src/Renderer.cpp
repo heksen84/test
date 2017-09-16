@@ -9,10 +9,10 @@
 #include "Common.h"
 
 template<> Renderer* Singleton<Renderer>::msSingleton = 0;
-Renderer* Renderer::getSingletonPtr(void) {
+Renderer* Renderer::GetSingletonPtr(void) {
   return msSingleton;
 }
-Renderer& Renderer::getSingleton(void) {
+Renderer& Renderer::GetSingleton(void) {
   assert( msSingleton );
   return ( *msSingleton );
 }

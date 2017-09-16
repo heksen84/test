@@ -14,8 +14,8 @@ class Renderer: public Singleton<Renderer> {
 public:
 	Renderer();
 	virtual ~Renderer();
-	static Renderer& getSingleton(void);
-	static Renderer* getSingletonPtr(void);
+	static Renderer& GetSingleton(void);
+	static Renderer* GetSingletonPtr(void);
 	void DrawObject();
 };
 

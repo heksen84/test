@@ -25,9 +25,9 @@ template <typename T> class Singleton
         }
         ~Singleton( void )
         {  assert( msSingleton );  msSingleton = 0;  }
-        static T& getSingleton( void )
+        static T& GetSingleton( void )
 		{	assert( msSingleton );  return ( *msSingleton ); }
-        static T* getSingletonPtr( void )
+        static T* GetSingletonPtr( void )
 		{ return msSingleton; }
 };
 

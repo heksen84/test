@@ -11,7 +11,6 @@ GLFWwindow*  window;
 GLFWmonitor* monitor;
 const GLFWvidmode* 	mode;
 
-
 /*
 ------------------------------------
 обработка ввода
@@ -41,41 +40,38 @@ void mouse_callback(GLFWwindow* window, double xpos, double ypos)
 {
 }
 
-
 /*
- * -----------------------------
- * InitGLFW
- *
- * -----------------------------
- */
-
+* -----------------------------
+* InitGLFW
+* -----------------------------
+*/
 void InitGLFW(void)
 {
-		if (!glfwInit())
-			Msg::Error("glfwInit error");
+	if (!glfwInit())
+		Msg::Error("glfwInit error");
 
-		monitor = glfwGetPrimaryMonitor();
-		if (!monitor)
-			Msg::Error("glfwGetPrimaryMonitor problem");
+	monitor = glfwGetPrimaryMonitor();
+	if (!monitor)
+		Msg::Error("glfwGetPrimaryMonitor problem");
 
-		mode = glfwGetVideoMode(monitor);
-		if (!mode)
-			Msg::Error("glfwGetVideoMode problem");
+	mode = glfwGetVideoMode(monitor);
+	if (!mode)
+		Msg::Error("glfwGetVideoMode problem");
 
-		glfwWindowHint(GLFW_RED_BITS, 		mode->redBits);
-		glfwWindowHint(GLFW_GREEN_BITS,		mode->greenBits);
-		glfwWindowHint(GLFW_BLUE_BITS, 		mode->blueBits);
-		glfwWindowHint(GLFW_REFRESH_RATE, 	mode->refreshRate);
+	glfwWindowHint(GLFW_RED_BITS, 		mode->redBits);
+	glfwWindowHint(GLFW_GREEN_BITS,		mode->greenBits);
+	glfwWindowHint(GLFW_BLUE_BITS, 		mode->blueBits);
+	glfwWindowHint(GLFW_REFRESH_RATE, 	mode->refreshRate);
 
-		window = glfwCreateWindow(mode->width, mode->height, "[ Strategy ]", monitor, NULL);
+	window = glfwCreateWindow(mode->width, mode->height, "[ Strategy ]", monitor, NULL);
 
-		if (!window) Msg::Error("glfwCreateWindow: problem");
+	if (!window) Msg::Error("glfwCreateWindow: problem");
 
-	    /* Make the window's context current */
-	    glfwMakeContextCurrent(window);
+    /* Make the window's context current */
+    glfwMakeContextCurrent(window);
 
-		/* назначить ввод */
-		glfwSetKeyCallback(window, key_callback);
-		glfwSetMouseButtonCallback(window, mouse_button_callback);
-		glfwSetCursorPosCallback(window, mouse_callback);
+	/* назначить ввод */
+	glfwSetKeyCallback(window, key_callback);
+	glfwSetMouseButtonCallback(window, mouse_button_callback);
+	glfwSetCursorPosCallback(window, mouse_callback);
 }

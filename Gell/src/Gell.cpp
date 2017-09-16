@@ -89,7 +89,7 @@ int main(void) {
 
 	InitLibs();
 
-	//Renderer::getSingletonPtr()->DrawObject();
+	//Renderer::GetSingletonPtr()->DrawObject();
 	//Landscape *land = new Landscape("D:/projects/Steppe/data/meshes/landscape.obj");
 
 	//glEnable(GL_DEPTH_TEST);
