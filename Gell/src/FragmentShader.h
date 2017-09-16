@@ -8,9 +8,11 @@
 #ifndef FRAGMENTSHADER_H_
 #define FRAGMENTSHADER_H_
 
+#include "Common.h"
+
 class FragmentShader {
 public:
-	FragmentShader();
+	FragmentShader(const String &fileName);
 	virtual ~FragmentShader();
 };
 

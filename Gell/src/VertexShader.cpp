@@ -7,7 +7,7 @@
 
 #include "VertexShader.h"
 
-VertexShader::VertexShader() {
+VertexShader::VertexShader(const String &fileName) {
 	// TODO Auto-generated constructor stub
 
 }

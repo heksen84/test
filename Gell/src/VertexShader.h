@@ -8,9 +8,11 @@
 #ifndef VERTEXSHADER_H_
 #define VERTEXSHADER_H_
 
+#include "Common.h"
+
 class VertexShader {
 public:
-	VertexShader();
+	VertexShader(const String &fileName);
 	virtual ~VertexShader();
 };
 

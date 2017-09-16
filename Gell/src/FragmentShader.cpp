@@ -7,7 +7,7 @@
 
 #include "FragmentShader.h"
 
-FragmentShader::FragmentShader() {
+FragmentShader::FragmentShader(const String &fileName) {
 	// TODO Auto-generated constructor stub
 
 }
