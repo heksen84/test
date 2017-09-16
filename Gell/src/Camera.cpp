@@ -8,9 +8,10 @@
 #include "Camera.h"
 
 Camera::Camera() {
-	pos 		= glm::vec3(0.0f, 0.0f, 3.0f);
-	target 		= glm::vec3(0.0f, 0.0f, 0.0f);
-	direction 	= glm::normalize(pos - target);
+
+	pos 		= glm::vec3(0.0f, 0.0f, 3.0f);	// положение
+	target 		= glm::vec3(0.0f, 0.0f, 0.0f);  // цель
+	direction 	= glm::normalize(pos - target); // нормализация
 
 }
 

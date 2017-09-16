@@ -17,7 +17,7 @@ public:
 private:
 	glm::vec3 pos;			// позиция камера
 	glm::vec3 target;		// цель камеры
-	glm::vec3 direction;	// направление камеры  cameraDirection = glm::normalize(cameraPos - cameraTarget);
+	glm::vec3 direction;	// направление камеры
 
 };
 
