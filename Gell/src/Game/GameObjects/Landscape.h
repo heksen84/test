@@ -8,10 +8,9 @@
 #ifndef LANDSCAPE_H_
 #define LANDSCAPE_H_
 
-#include "Common.h"
-#include "ObjMesh.h"
+#include "../GameObject.h"
 
-class Landscape {
+class Landscape: public GameObject {
 public:
 	Landscape(const String &filename);
 	virtual ~Landscape();

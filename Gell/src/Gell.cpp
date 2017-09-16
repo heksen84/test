@@ -10,7 +10,6 @@
 #include "GLFW.h"
 #include "FreeType.h"
 #include "Glew.h"
-#include "Landscape.h"
 #include "Renderer.h"
 
 bool g_AppRun = true;
@@ -87,13 +86,6 @@ void DrawPanel()
 int main(void) {
 
 	InitLibs();
-
-	//Renderer::GetSingletonPtr()->DrawObject();
-	//Landscape *land = new Landscape("D:/projects/Steppe/data/meshes/landscape.obj");
-
-	//glEnable(GL_DEPTH_TEST);
-	//glDepthFunc(GL_LESS);
-
 	CreatePanel();
 
 	while (g_AppRun)
