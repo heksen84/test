@@ -86,8 +86,9 @@ void CreatePanel()
 
 	    // первая верхняя вершина (Top-left) и последняя нижняя (Bottom-left) имеют общую вершину
 	    GLuint elements[] = {
-	        0, 1, 2,
-	        2, 3, 0
+	    	// как-бы 2 треугольника
+	        0, 1, 2, // 1
+	        2, 3, 0  // 2
 	    };
 
 	    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebo);
