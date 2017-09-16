@@ -7,7 +7,7 @@
 
 #include "Sound.h"
 
-Sound::Sound() {
+Sound::Sound(const String &fileName) {
 	// TODO Auto-generated constructor stub
 
 }

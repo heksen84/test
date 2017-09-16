@@ -7,10 +7,11 @@
 
 #ifndef SOUND_H_
 #define SOUND_H_
+#include "Common.h"
 
 class Sound {
 public:
-	Sound();
+	Sound(const String &fileName);
 	virtual ~Sound();
 };
 
