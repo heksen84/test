@@ -8,7 +8,7 @@
 #ifndef URTA_H_
 #define URTA_H_
 
-#include "GameObject.h"
+#include "../GameObject.h"
 
 class Urta: public GameObject {
 public:
