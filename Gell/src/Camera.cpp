@@ -8,7 +8,9 @@
 #include "Camera.h"
 
 Camera::Camera() {
-	// TODO Auto-generated constructor stub
+	pos 		= glm::vec3(0.0f, 0.0f, 3.0f);
+	target 		= glm::vec3(0.0f, 0.0f, 0.0f);
+	direction 	= glm::normalize(pos - target);
 
 }
 

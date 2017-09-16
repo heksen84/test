@@ -6,11 +6,48 @@
  */
 
 #include "GLFW.h"
-#include "Input.h"
 
 GLFWwindow*  window;
 GLFWmonitor* monitor;
 const GLFWvidmode* 	mode;
+
+
+/*
+------------------------------------
+обработка ввода
+------------------------------------*/
+void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods){
+    switch(key) {
+		case GLFW_KEY_ESCAPE:
+
+			/* switch(Screen->getActiveElement())
+			 * {
+			 * 	case "menu": ... break;
+			 * 	case "main_screen": ... break;
+			 * }
+			*/
+			g_AppRun=false;
+			break;
+	}
+}
+
+void mouse_button_callback(GLFWwindow* window, int button, int action, int mods){
+    if (button == GLFW_MOUSE_BUTTON_RIGHT && action == GLFW_PRESS){
+    	g_AppRun=false;
+    }
+}
+
+void mouse_callback(GLFWwindow* window, double xpos, double ypos)
+{
+}
+
+
+/*
+ * -----------------------------
+ * InitGLFW
+ *
+ * -----------------------------
+ */
 
 void InitGLFW(void)
 {
