@@ -14,10 +14,6 @@
 
 bool g_AppRun = true;
 
-GLuint vbo=0, vao=0;
-GLuint vs, fs;
-GLuint shader_programm;
-
 // Shader sources
 const GLchar* vertexSource = R"glsl(
     #version 330 core
@@ -52,6 +48,11 @@ const GLchar* fragmentSource = R"glsl(
      0, 1, 2,
      2, 3, 0
  };
+
+GLuint vbo, vao, ebo;
+GLuint vertexShader, fragmentShader;
+GLuint shaderProgram;
+
 void InitLibs(void)
 {
 	InitGLFW();
@@ -62,12 +63,11 @@ void InitLibs(void)
 void CreatePanel()
 {
 	// Create Vertex Array Object
-	    GLuint vao;
 	    glGenVertexArrays(1, &vao);
 	    glBindVertexArray(vao);
 
 	    // Create a Vertex Buffer Object and copy the vertex data to it
-	    GLuint vbo;
+
 	    glGenBuffers(1, &vbo);
 
 	    GLfloat vertices[] = {
@@ -82,7 +82,6 @@ void CreatePanel()
 	    glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 
 	    // Create an element array
-	    GLuint ebo;
 	    glGenBuffers(1, &ebo);
 
 	    // первая верхняя вершина (Top-left) и последняя нижняя (Bottom-left) имеют общую вершину
@@ -95,17 +94,17 @@ void CreatePanel()
 	    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(elements), elements, GL_STATIC_DRAW);
 
 	    // Create and compile the vertex shader
-	    GLuint vertexShader = glCreateShader(GL_VERTEX_SHADER);
+	    vertexShader = glCreateShader(GL_VERTEX_SHADER);
 	    glShaderSource(vertexShader, 1, &vertexSource, NULL);
 	    glCompileShader(vertexShader);
 
 	    // Create and compile the fragment shader
-	    GLuint fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
+	    fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
 	    glShaderSource(fragmentShader, 1, &fragmentSource, NULL);
 	    glCompileShader(fragmentShader);
 
 	    // Link the vertex and fragment shader into a shader program
-	    GLuint shaderProgram = glCreateProgram();
+	    shaderProgram = glCreateProgram();
 	    glAttachShader(shaderProgram, vertexShader);
 	    glAttachShader(shaderProgram, fragmentShader);
 	    glBindFragDataLocation(shaderProgram, 0, "outColor");
@@ -150,7 +149,15 @@ int main(void) {
 		glfwSwapBuffers(window);
     }
 
-	//SAFE_DELETE(land);
+
+	glDeleteProgram(shaderProgram);
+	glDeleteShader(fragmentShader);
+	glDeleteShader(vertexShader);
+
+	glDeleteBuffers(1, &ebo);
+	glDeleteBuffers(1, &vbo);
+	glDeleteVertexArrays(1, &vao);
+
     glfwTerminate();
 
     return 0;
