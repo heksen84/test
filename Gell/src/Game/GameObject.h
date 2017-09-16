@@ -8,8 +8,8 @@
 #ifndef GAMEOBJECT_H_
 #define GAMEOBJECT_H_
 
-#include "../Common.h"
-#include "../ObjMesh.h"
+#include "..//Common.h"
+#include "..//ObjMesh.h"
 
 class GameObject {
 public:
