@@ -15,6 +15,10 @@
 
 bool g_AppRun = true;
 
+GLuint vbo=0, vao=0;
+GLuint vs, fs;
+GLuint shader_programm;
+
 const char* vertex_shader =
  "#version 400\n"
  "in vec3 vp;"
@@ -36,11 +40,6 @@ float points[] = {
     0.5f, -0.5f,  0.0f,
     0.5f,  0.5f,  0.0f
 };
-
-
-GLuint vbo=0, vao=0;
-GLuint vs, fs;
-GLuint shader_programm;
 
 void InitLibs(void)
 {
