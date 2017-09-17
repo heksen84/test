@@ -38,6 +38,7 @@ typedef unsigned char 	byte;
 #include <glew/glew.h>
 #include <glfw3/glfw3.h>
 #include <libpng/png.h>
+#include <soil/soil.h>
 #include <freetype/ft2build.h>
 #include FT_FREETYPE_H
 

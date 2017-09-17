@@ -100,6 +100,7 @@
 								<option id="gnu.cpp.link.option.flags.706886722" name="Linker flags" superClass="gnu.cpp.link.option.flags" value="-Wl,--subsystem,windows  ..\\src\\app.res" valueType="string"/>
 								<option id="gnu.cpp.link.option.libs.764857770" name="Libraries (-l)" superClass="gnu.cpp.link.option.libs" valueType="libs">
 									<listOptionValue builtIn="false" value="glfw3"/>
+									<listOptionValue builtIn="false" value="soil"/>
 									<listOptionValue builtIn="false" value="png.dll"/>
 									<listOptionValue builtIn="false" value="glew32"/>
 									<listOptionValue builtIn="false" value="freetype"/>

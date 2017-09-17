@@ -126,6 +126,11 @@ int main(void) {
 	InitLibs();
 	CreatePanel();
 
+	int width, height;
+	unsigned char* image = SOIL_load_image("D:/projects/steppe/data/gui/menu/mainmenu.jpg", &width, &height, 0, SOIL_LOAD_RGB);
+	if (!image) Msg::Error("image not found");
+	SOIL_free_image_data(image);
+
 	while (g_AppRun)
 	{
 		glClearColor (0.0, 0.0, 0.2, 0.0);
