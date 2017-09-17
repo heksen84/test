@@ -48,7 +48,7 @@ void InitLibs(void)
 	InitGLEW();
 }
 
-void CreatePanel()
+void CreatePlane()
 {
 		// Create Vertex Array Object
 	    glGenVertexArrays(1, &vao);
@@ -111,8 +111,8 @@ void CreatePanel()
 	    glVertexAttribPointer(colAttrib, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(GLfloat), (void*)(2 * sizeof(GLfloat)));
 }
 
-void DrawPanel() {
-	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+void DrawPlane() {
+	glClearColor(0.0f, 0.0f, 0.2f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT);
 	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 }
@@ -124,10 +124,10 @@ void DrawPanel() {
 int main(void) {
 
 	InitLibs();
-	CreatePanel();
+	CreatePlane();
 
 	int width, height;
-	unsigned char* image = SOIL_load_image("D:/projects/steppe/data/gui/menu/mainmenu.jpg", &width, &height, 0, SOIL_LOAD_RGB);
+	byte* image = SOIL_load_image("D:/projects/steppe/data/gui/menu/mainmenu.jpg", &width, &height, 0, SOIL_LOAD_RGB);
 	if (!image) Msg::Error("image not found");
 	SOIL_free_image_data(image);
 
@@ -135,7 +135,7 @@ int main(void) {
 	{
 		glClearColor (0.0, 0.0, 0.2, 0.0);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-		DrawPanel();
+		DrawPlane();
 		glfwPollEvents();
 		glfwSwapBuffers(window);
     }
