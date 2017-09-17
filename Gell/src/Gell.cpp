@@ -48,14 +48,13 @@ void InitLibs(void)
 	InitGLEW();
 }
 
-void CreatePlane()
-{
+void CreatePlane() {
+
 		// Create Vertex Array Object
 	    glGenVertexArrays(1, &vao);
 	    glBindVertexArray(vao);
 
 	    // Create a Vertex Buffer Object and copy the vertex data to it
-
 	    glGenBuffers(1, &vbo);
 
 	    GLfloat vertices[] = {
@@ -78,6 +77,7 @@ void CreatePlane()
 	        0, 1, 2, // 1 (первый)
 	        2, 3, 0  // 2 (второй)
 	    };
+
 
 	    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebo);
 	    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(elements), elements, GL_STATIC_DRAW);
@@ -109,6 +109,23 @@ void CreatePlane()
 	    GLint colAttrib = glGetAttribLocation(shaderProgram, "color");
 	    glEnableVertexAttribArray(colAttrib);
 	    glVertexAttribPointer(colAttrib, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(GLfloat), (void*)(2 * sizeof(GLfloat)));
+
+	    // Load texture
+	    GLuint tex;
+	    glGenTextures(1, &tex);
+	    glBindTexture(GL_TEXTURE_2D, tex);
+
+	    // Загрузка текстуры
+	   	int width, height;
+	   	byte* image = SOIL_load_image("D:/projects/steppe/data/gui/menu/mainmenu.jpg", &width, &height, 0, SOIL_LOAD_RGB);
+	   	if (!image) Msg::Error("image not found");
+	   	SOIL_free_image_data(image);
+
+	   	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+	   	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+	   	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	   	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
 }
 
 void DrawPlane() {
@@ -125,11 +142,6 @@ int main(void) {
 
 	InitLibs();
 	CreatePlane();
-
-	int width, height;
-	byte* image = SOIL_load_image("D:/projects/steppe/data/gui/menu/mainmenu.jpg", &width, &height, 0, SOIL_LOAD_RGB);
-	if (!image) Msg::Error("image not found");
-	SOIL_free_image_data(image);
 
 	while (g_AppRun)
 	{
