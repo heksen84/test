@@ -36,18 +36,6 @@ const GLchar* fragmentSource = R"glsl(
     }
 )glsl";
 
-// x, y, z
- float points[] = {
-     -0.5f,  0.5f, 1.0f, 0.0f, 0.0f, // Top-left
-      0.5f,  0.5f, 0.0f, 1.0f, 0.0f, // Top-right
-      0.5f, -0.5f, 0.0f, 0.0f, 1.0f, // Bottom-right
-     -0.5f, -0.5f, 1.0f, 1.0f, 1.0f  // Bottom-left
- };
-
- GLuint elements[] = {
-     0, 1, 2,
-     2, 3, 0
- };
 
 GLuint vbo, vao, ebo;
 GLuint vertexShader, fragmentShader;
@@ -62,7 +50,7 @@ void InitLibs(void)
 
 void CreatePanel()
 {
-	// Create Vertex Array Object
+		// Create Vertex Array Object
 	    glGenVertexArrays(1, &vao);
 	    glBindVertexArray(vao);
 
@@ -85,10 +73,10 @@ void CreatePanel()
 	    glGenBuffers(1, &ebo);
 
 	    // первая верхняя вершина (Top-left) и последняя нижняя (Bottom-left) имеют общую вершину
-	    GLuint elements[] = {
-	    	// как-бы 2 треугольника
-	        0, 1, 2, // 1
-	        2, 3, 0  // 2
+
+	    GLuint elements[] = { // как-бы 2 треугольника
+	        0, 1, 2, // 1 (первый)
+	        2, 3, 0  // 2 (второй)
 	    };
 
 	    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebo);
@@ -123,12 +111,9 @@ void CreatePanel()
 	    glVertexAttribPointer(colAttrib, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(GLfloat), (void*)(2 * sizeof(GLfloat)));
 }
 
-void DrawPanel()
-{
-	 // Clear the screen to black
+void DrawPanel() {
 	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT);
-	// Draw a rectangle from the 2 triangles using 6 indices
 	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 }
 
