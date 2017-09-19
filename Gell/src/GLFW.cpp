@@ -58,9 +58,13 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
 }
 
 void mouse_button_callback(GLFWwindow* window, int button, int action, int mods) {
+
     if (button == GLFW_MOUSE_BUTTON_RIGHT && action == GLFW_PRESS){
     	glfwSetCursor(window, cursor_loading);
-    	//g_AppRun=false;
+    }
+
+    if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS){
+       	glfwSetCursor(window, cursor_default);
     }
 }
 
@@ -94,11 +98,13 @@ void InitGLFW(void)
 	glfwWindowHint(GLFW_BLUE_BITS, 		mode->blueBits);
 	glfwWindowHint(GLFW_REFRESH_RATE, 	mode->refreshRate);
 
-	window = glfwCreateWindow(mode->width, mode->height, "[ Strategy ]", monitor, NULL);
 
+	window = glfwCreateWindow(mode->width, mode->height, "[ Strategy ]", monitor, NULL);
 	if (!window) Msg::Error("glfwCreateWindow: problem");
 
-    /* Make the window's context current */
+	SetCursors();
+
+	/* Make the window's context current */
     glfwMakeContextCurrent(window);
 
 	/* назначить ввод */
@@ -106,5 +112,4 @@ void InitGLFW(void)
 	glfwSetMouseButtonCallback(window, mouse_button_callback);
 	glfwSetCursorPosCallback(window, mouse_callback);
 
-	SetCursors();
 }
