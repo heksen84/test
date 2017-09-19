@@ -7,10 +7,34 @@
 
 #include "GLFW.h"
 
-GLFWwindow*  		window;
-GLFWmonitor* 		monitor;
-GLFWcursor* 		cursor;
+GLFWwindow*  window;
+GLFWmonitor* monitor;
+GLFWcursor*  cursor_default;
+GLFWcursor*  cursor_loading;
 const GLFWvidmode* 	mode;
+
+void SetCursors(){
+
+	int width, height;
+	GLFWimage image_default, image_loading;
+
+	byte* pixels_cursor_default = SOIL_load_image("D:/projects/steppe/data/icons/topor.png", &width, &height, 0, SOIL_LOAD_RGBA);
+
+	image_default.width 	= width;
+	image_default.height 	= height;
+	image_default.pixels 	= pixels_cursor_default;
+
+	byte* pixels_cursor_loading = SOIL_load_image("D:/projects/steppe/data/icons/shield_loading.png", &width, &height, 0, SOIL_LOAD_RGBA);
+
+	image_loading.width 	= width;
+	image_loading.height 	= height;
+	image_loading.pixels 	= pixels_cursor_loading;
+
+	cursor_default = glfwCreateCursor(&image_default, 0, 0);
+	cursor_loading = glfwCreateCursor(&image_loading, 0, 0);
+
+	glfwSetCursor(window, cursor_default);
+}
 /*
 ------------------------------------
 обработка ввода
@@ -26,7 +50,8 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
 			 * 	case "main_screen": ... break;
 			 * }
 			*/
-			glfwDestroyCursor(cursor);
+			glfwDestroyCursor(cursor_default);
+			glfwDestroyCursor(cursor_loading);
 			g_AppRun=false;
 			break;
 	}
@@ -34,7 +59,8 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
 
 void mouse_button_callback(GLFWwindow* window, int button, int action, int mods) {
     if (button == GLFW_MOUSE_BUTTON_RIGHT && action == GLFW_PRESS){
-    	g_AppRun=false;
+    	glfwSetCursor(window, cursor_loading);
+    	//g_AppRun=false;
     }
 }
 
@@ -80,15 +106,5 @@ void InitGLFW(void)
 	glfwSetMouseButtonCallback(window, mouse_button_callback);
 	glfwSetCursorPosCallback(window, mouse_callback);
 
-	int width, height;
-	byte* pixels = SOIL_load_image("D:/projects/steppe/data/icons/topor.png", &width, &height, 0, SOIL_LOAD_RGBA);
-
-	GLFWimage image;
-
-	image.width 	= width;
-	image.height 	= height;
-	image.pixels 	= pixels;
-
-	cursor = glfwCreateCursor(&image, 0, 0);
-	glfwSetCursor(window, cursor);
+	SetCursors();
 }
