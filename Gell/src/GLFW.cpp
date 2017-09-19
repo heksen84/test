@@ -20,15 +20,15 @@ void SetCursors(){
 
 	byte* pixels_cursor_default = SOIL_load_image("D:/projects/steppe/data/icons/topor.png", &width, &height, 0, SOIL_LOAD_RGBA);
 
-	image_default.width 	= width;
-	image_default.height 	= height;
-	image_default.pixels 	= pixels_cursor_default;
+	image_default.width  = width;
+	image_default.height = height;
+	image_default.pixels = pixels_cursor_default;
 
 	byte* pixels_cursor_loading = SOIL_load_image("D:/projects/steppe/data/icons/shield_loading.png", &width, &height, 0, SOIL_LOAD_RGBA);
 
-	image_loading.width 	= width;
-	image_loading.height 	= height;
-	image_loading.pixels 	= pixels_cursor_loading;
+	image_loading.width  = width;
+	image_loading.height = height;
+	image_loading.pixels = pixels_cursor_loading;
 
 	cursor_default = glfwCreateCursor(&image_default, 0, 0);
 	cursor_loading = glfwCreateCursor(&image_loading, 0, 0);
