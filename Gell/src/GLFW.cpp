@@ -7,10 +7,10 @@
 
 #include "GLFW.h"
 
-GLFWwindow*  window;
-GLFWmonitor* monitor;
+GLFWwindow*  		window;
+GLFWmonitor* 		monitor;
+GLFWcursor* 		cursor;
 const GLFWvidmode* 	mode;
-
 /*
 ------------------------------------
 обработка ввода
@@ -25,6 +25,7 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
 			 * 	case "main_screen": ... break;
 			 * }
 			*/
+			glfwDestroyCursor(cursor);
 			g_AppRun=false;
 			break;
 	}
@@ -47,14 +48,17 @@ void mouse_callback(GLFWwindow* window, double xpos, double ypos)
 */
 void InitGLFW(void)
 {
+
 	if (!glfwInit())
 		Msg::Error("glfwInit error");
 
 	monitor = glfwGetPrimaryMonitor();
+
 	if (!monitor)
 		Msg::Error("glfwGetPrimaryMonitor problem");
 
 	mode = glfwGetVideoMode(monitor);
+
 	if (!mode)
 		Msg::Error("glfwGetVideoMode problem");
 
@@ -74,4 +78,16 @@ void InitGLFW(void)
 	glfwSetKeyCallback(window, key_callback);
 	glfwSetMouseButtonCallback(window, mouse_button_callback);
 	glfwSetCursorPosCallback(window, mouse_callback);
+
+	int width, height;
+	byte* pixels = SOIL_load_image("D:/projects/steppe/data/icons/topor.png", &width, &height, 0, SOIL_LOAD_RGBA);
+
+	GLFWimage image;
+
+	image.width 	= width;
+	image.height 	= height;
+	image.pixels 	= pixels;
+
+	cursor = glfwCreateCursor(&image, 0, 0);
+	glfwSetCursor(window, cursor);
 }

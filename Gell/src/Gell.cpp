@@ -35,7 +35,7 @@ const GLchar* fragmentSource = R"glsl(
     out vec4 outColor;
     uniform sampler2D tex;
     void main() {
-        outColor = texture(tex, Texcoord);
+        outColor = texture(tex, Texcoord)*1.7;
     }
 )glsl";
 
@@ -43,6 +43,7 @@ const GLchar* fragmentSource = R"glsl(
 GLuint vbo, vao, ebo;
 GLuint vertexShader, fragmentShader;
 GLuint shaderProgram;
+GLuint tex;
 
 void InitLibs(void)
 {
@@ -76,11 +77,10 @@ void CreatePlane() {
 
 	    // первая верхняя вершина (Top-left) и последняя нижняя (Bottom-left) имеют общую вершину
 
-	    GLuint elements[] = { // как-бы 2 треугольника
-	        0, 1, 2, // 1 (первый)
-	        2, 3, 0  // 2 (второй)
+	    GLuint elements[] = { 	// как-бы 2 треугольника
+	        0, 1, 2, 			// 1 (первый)
+	        2, 3, 0 			// 2 (второй)
 	    };
-
 
 	    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebo);
 	    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(elements), elements, GL_STATIC_DRAW);
@@ -117,12 +117,13 @@ void CreatePlane() {
 	    glVertexAttribPointer(texAttrib, 2, GL_FLOAT, GL_FALSE, 7 * sizeof(GLfloat), (void*)(5 * sizeof(GLfloat)));
 
 	    // Load texture
-	    GLuint tex;
 	    glGenTextures(1, &tex);
 	    glBindTexture(GL_TEXTURE_2D, tex);
 
 	    // Загрузка текстуры
 	   	int width, height;
+	    //byte* image = SOIL_load_image("D:/projects/steppe/data/gui/menu/shield.png", &width, &height, 0, SOIL_LOAD_RGBA);
+	   	//glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, image);
 	   	byte* image = SOIL_load_image("D:/projects/steppe/data/gui/menu/mainmenu.jpg", &width, &height, 0, SOIL_LOAD_RGB);
 	   	if (!image) Msg::Error("image not found");
 	    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, image);
@@ -157,13 +158,16 @@ int main(void) {
 		glfwSwapBuffers(window);
     }
 
+	glDeleteTextures(1, &tex);
+
 	glDeleteProgram(shaderProgram);
 	glDeleteShader(fragmentShader);
 	glDeleteShader(vertexShader);
 
 	glDeleteBuffers(1, &ebo);
-	glDeleteBuffers(1, &vbo);
-	glDeleteVertexArrays(1, &vao);
+	 glDeleteBuffers(1, &vbo);
+
+	    glDeleteVertexArrays(1, &vao);
 
     glfwTerminate();
 
