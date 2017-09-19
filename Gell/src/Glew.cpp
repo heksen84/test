@@ -9,6 +9,8 @@
 
 void InitGLEW() {
 
+	glewExperimental = GL_TRUE;
+
 	if (glewInit() != GLEW_OK)
 		Msg::Error("GlewInit error");
 

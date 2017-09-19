@@ -16,23 +16,26 @@ bool g_AppRun = true;
 
 // Shader sources
 const GLchar* vertexSource = R"glsl(
-    #version 330 core
+    #version 150 core
     in vec2 position;
     in vec3 color;
+    in vec2 texcoord;
     out vec3 Color;
-    void main()
-    {
+    out vec2 Texcoord;
+    void main() {
         Color = color;
+        Texcoord = texcoord;
         gl_Position = vec4(position, 0.0, 1.0);
     }
 )glsl";
 const GLchar* fragmentSource = R"glsl(
-    #version 330 core
+    #version 150 core
     in vec3 Color;
+    in vec2 Texcoord;
     out vec4 outColor;
-    void main()
-    {
-        outColor = vec4(Color, 1.0);
+    uniform sampler2D tex;
+    void main() {
+        outColor = texture(tex, Texcoord);
     }
 )glsl";
 
@@ -83,32 +86,35 @@ void CreatePlane() {
 	    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(elements), elements, GL_STATIC_DRAW);
 
 	    // Create and compile the vertex shader
-	    vertexShader = glCreateShader(GL_VERTEX_SHADER);
+	    GLuint vertexShader = glCreateShader(GL_VERTEX_SHADER);
 	    glShaderSource(vertexShader, 1, &vertexSource, NULL);
 	    glCompileShader(vertexShader);
 
 	    // Create and compile the fragment shader
-	    fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
+	    GLuint fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
 	    glShaderSource(fragmentShader, 1, &fragmentSource, NULL);
 	    glCompileShader(fragmentShader);
 
 	    // Link the vertex and fragment shader into a shader program
-	    shaderProgram = glCreateProgram();
+	    GLuint shaderProgram = glCreateProgram();
 	    glAttachShader(shaderProgram, vertexShader);
 	    glAttachShader(shaderProgram, fragmentShader);
 	    glBindFragDataLocation(shaderProgram, 0, "outColor");
 	    glLinkProgram(shaderProgram);
 	    glUseProgram(shaderProgram);
 
-	    // установить позицию из шейдера
+	    // Specify the layout of the vertex data
 	    GLint posAttrib = glGetAttribLocation(shaderProgram, "position");
 	    glEnableVertexAttribArray(posAttrib);
-	    glVertexAttribPointer(posAttrib, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(GLfloat), 0);
+	    glVertexAttribPointer(posAttrib, 2, GL_FLOAT, GL_FALSE, 7 * sizeof(GLfloat), 0);
 
-	    // установить цвета из шейдера
 	    GLint colAttrib = glGetAttribLocation(shaderProgram, "color");
 	    glEnableVertexAttribArray(colAttrib);
-	    glVertexAttribPointer(colAttrib, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(GLfloat), (void*)(2 * sizeof(GLfloat)));
+	    glVertexAttribPointer(colAttrib, 3, GL_FLOAT, GL_FALSE, 7 * sizeof(GLfloat), (void*)(2 * sizeof(GLfloat)));
+
+	    GLint texAttrib = glGetAttribLocation(shaderProgram, "texcoord");
+	    glEnableVertexAttribArray(texAttrib);
+	    glVertexAttribPointer(texAttrib, 2, GL_FLOAT, GL_FALSE, 7 * sizeof(GLfloat), (void*)(5 * sizeof(GLfloat)));
 
 	    // Load texture
 	    GLuint tex;
@@ -119,6 +125,8 @@ void CreatePlane() {
 	   	int width, height;
 	   	byte* image = SOIL_load_image("D:/projects/steppe/data/gui/menu/mainmenu.jpg", &width, &height, 0, SOIL_LOAD_RGB);
 	   	if (!image) Msg::Error("image not found");
+	    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, image);
+
 	   	SOIL_free_image_data(image);
 
 	   	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
@@ -128,8 +136,8 @@ void CreatePlane() {
 }
 
 void DrawPlane() {
-	glClearColor(0.0f, 0.0f, 0.2f, 1.0f);
-	glClear(GL_COLOR_BUFFER_BIT);
+	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 }
 
@@ -144,8 +152,6 @@ int main(void) {
 
 	while (g_AppRun)
 	{
-		glClearColor (0.0, 0.0, 0.2, 0.0);
-		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		DrawPlane();
 		glfwPollEvents();
 		glfwSwapBuffers(window);
