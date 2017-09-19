@@ -59,10 +59,10 @@ void CreatePlane() {
 
 	    GLfloat vertices[] = {
 	    	 // x     y    	 r     g     b
-	        -0.25f,  0.4f, 	1.0f, 0.0f, 0.0f, // Top-left
-	         0.25f,  0.4f, 	0.0f, 1.0f, 0.0f, // Top-right
-	         0.25f, -0.4f, 	0.0f, 0.0f, 1.0f, // Bottom-right
-	        -0.25f, -0.4f, 	1.0f, 1.0f, 0.0f  // Bottom-left
+	        -0.25f,  0.4f, 	1.0f, 0.0f, 0.0f, 0.0f, 0.0f, // Top-left
+	         0.25f,  0.4f, 	0.0f, 1.0f, 0.0f, 1.0f, 0.0f, // Top-right
+	         0.25f, -0.4f, 	0.0f, 0.0f, 1.0f, 1.0f, 1.0f, // Bottom-right
+	        -0.25f, -0.4f, 	1.0f, 1.0f, 0.0f, 0.0f, 1.0f  // Bottom-left
 	    };
 
 	    glBindBuffer(GL_ARRAY_BUFFER, vbo);
@@ -150,7 +150,6 @@ int main(void) {
 		glfwPollEvents();
 		glfwSwapBuffers(window);
     }
-
 
 	glDeleteProgram(shaderProgram);
 	glDeleteShader(fragmentShader);
