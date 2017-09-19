@@ -15,8 +15,9 @@ const GLFWvidmode* 	mode;
 ------------------------------------
 обработка ввода
 ------------------------------------*/
-void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods){
-    switch(key) {
+void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods) {
+    switch(key)
+    {
 		case GLFW_KEY_ESCAPE:
 
 			/* switch(Screen->getActiveElement())
@@ -31,14 +32,14 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
 	}
 }
 
-void mouse_button_callback(GLFWwindow* window, int button, int action, int mods){
+void mouse_button_callback(GLFWwindow* window, int button, int action, int mods) {
     if (button == GLFW_MOUSE_BUTTON_RIGHT && action == GLFW_PRESS){
     	g_AppRun=false;
     }
 }
 
-void mouse_callback(GLFWwindow* window, double xpos, double ypos)
-{
+void mouse_callback(GLFWwindow* window, double xpos, double ypos) {
+
 }
 
 /*
