@@ -102,8 +102,6 @@ void InitGLFW(void)
 	window = glfwCreateWindow(mode->width, mode->height, "[ Strategy ]", monitor, NULL);
 	if (!window) Msg::Error("glfwCreateWindow: problem");
 
-	SetCursors();
-
 	/* Make the window's context current */
     glfwMakeContextCurrent(window);
 
@@ -112,4 +110,5 @@ void InitGLFW(void)
 	glfwSetMouseButtonCallback(window, mouse_button_callback);
 	glfwSetCursorPosCallback(window, mouse_callback);
 
+	SetCursors();
 }
