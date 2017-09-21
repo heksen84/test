@@ -25,6 +25,7 @@
 typedef std::string 	String;		// анси строка		(char*)
 typedef std::wstring 	Unicode; 	// уникод строка	(wchar_t*)
 typedef unsigned int  	uint;
+typedef unsigned long  	ulong;
 typedef unsigned char 	byte;
 
 #define SAFE_DELETE(a) if( (a) != nullptr ) delete (a); (a) = nullptr;

@@ -15,7 +15,6 @@ gl_Position = vec4(coord.xy, 0, 1);
 texcoord = coord.zw;
 )glsl";
 
-
 struct Character
 {
     GLuint TextureID;
@@ -27,11 +26,11 @@ struct Character
 std::map<GLchar, Character> Characters;
 GLuint VAO, VBO;
 
+int result=0;
+
 //"D:/projects/Steppe/data/Fonts/Diablo/diablo-font-1.ttf"
 Font::Font(const String &fontName)
 {
-	int result=0;
-
 	result = FT_New_Face( ft, fontName.c_str(), 0, &face );
 
 	if ( result == FT_Err_Unknown_File_Format ) Msg::Error("FreeType: file format error");
@@ -72,12 +71,10 @@ Font::Font(const String &fontName)
 		        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
 		        // Now store character for later use
-		        Character character =
-		        {
-		            texture,
+		        Character character = { texture,
 		            glm::ivec2(face->glyph->bitmap.width, face->glyph->bitmap.rows),
 		            glm::ivec2(face->glyph->bitmap_left,  face->glyph->bitmap_top),
-		            (GLuint)face->glyph->advance.x
+		            (ulong)face->glyph->advance.x // FIXIT
 		        };
 
 		        Characters.insert(std::pair<GLchar, Character>(c, character));
@@ -87,8 +84,6 @@ Font::Font(const String &fontName)
 		    FT_Done_Face(face);
 		    FT_Done_FreeType(ft);
 
-
-		    // Configure VAO/VBO for texture quads
 		    glGenVertexArrays(1, &VAO);
 		    glGenBuffers(1, &VBO);
 		    glBindVertexArray(VAO);
