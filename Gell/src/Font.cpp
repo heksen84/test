@@ -44,9 +44,9 @@ Font::Font(const String &fontName)
 
 		for (GLubyte c = 0; c < 128; c++)
 		{
-		        // Load character glyph
-		        if (FT_Load_Char(face, c, FT_LOAD_RENDER))
-		            Msg::Error("Невозможно загрузить глиф");
+			// Load character glyph
+		    if (FT_Load_Char(face, c, FT_LOAD_RENDER))
+		    	Msg::Error("Font: glyph loading error!");
 
 		        // Generate texture
 		        GLuint texture;
