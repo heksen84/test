@@ -47,9 +47,7 @@ Font::Font(const String &fontName)
 		{
 		        // Load character glyph
 		        if (FT_Load_Char(face, c, FT_LOAD_RENDER))
-		        {
 		            Msg::Error("Невозможно загрузить глиф");
-		        }
 
 		        // Generate texture
 		        GLuint texture;
@@ -78,7 +76,7 @@ Font::Font(const String &fontName)
 		        {
 		            texture,
 		            glm::ivec2(face->glyph->bitmap.width, face->glyph->bitmap.rows),
-		            glm::ivec2(face->glyph->bitmap_left, face->glyph->bitmap_top),
+		            glm::ivec2(face->glyph->bitmap_left,  face->glyph->bitmap_top),
 		            (GLuint)face->glyph->advance.x
 		        };
 
@@ -86,7 +84,6 @@ Font::Font(const String &fontName)
 		    }
 
 		  	glBindTexture(GL_TEXTURE_2D, 0);
-		    // Destroy FreeType once we're finished
 		    FT_Done_Face(face);
 		    FT_Done_FreeType(ft);
 
