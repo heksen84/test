@@ -7,7 +7,7 @@
 
 #include "Shader.h"
 
-Shader::Shader() {
+Shader::Shader(ShaderType type) {
 	// TODO Auto-generated constructor stub
 
 }

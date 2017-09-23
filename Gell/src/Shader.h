@@ -8,9 +8,14 @@
 #ifndef SHADER_H_
 #define SHADER_H_
 
+enum ShaderType{
+	VERTEX_SHADER,
+	FRAGMENT_SHADER
+};
+
 class Shader {
 public:
-	Shader();
+	Shader(ShaderType type);
 	virtual ~Shader();
 };
 
