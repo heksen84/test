@@ -37,17 +37,12 @@ Font::Font(const String &fontName)
 			if ( result ) Msg::Error("FreeType: font not found");
 
 		FT_Set_Pixel_Sizes(face, 0, 48);
-
-		// Disable byte-alignment restriction
 		glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
 
-
-		for (GLubyte c = 0; c < 128; c++)
-		{
+		for (GLubyte c = 0; c < 128; c++) {
 			if(FT_Load_Char(face, c, FT_LOAD_RENDER))
 		    	Msg::Error("Font: Glyph loading symbol %d error!", c);
 
-		        // Generate texture
 		        GLuint texture;
 		        glGenTextures(1, &texture);
 		        glBindTexture(GL_TEXTURE_2D, texture);
@@ -69,7 +64,6 @@ Font::Font(const String &fontName)
 		        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 		        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
-		        // Now store character for later use
 		        Character character = { texture,
 		            glm::ivec2(face->glyph->bitmap.width, face->glyph->bitmap.rows),
 		            glm::ivec2(face->glyph->bitmap_left,  face->glyph->bitmap_top),
@@ -119,7 +113,6 @@ void Font::RenderText(String text, GLfloat x, GLfloat y, GLfloat scale, glm::vec
 
         GLfloat w = ch.Size.x * scale;
         GLfloat h = ch.Size.y * scale;
-        // Update VBO for each character
         GLfloat vertices[6][4] = {
             { xpos,     ypos + h,   0.0, 0.0 },
             { xpos,     ypos,       0.0, 1.0 },
