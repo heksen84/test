@@ -11,6 +11,7 @@
 #include "FreeType.h"
 #include "Glew.h"
 #include "Renderer.h"
+#include "Font.h"
 
 bool g_AppRun = true;
 
@@ -150,6 +151,9 @@ int main(void) {
 
 	InitLibs();
 	CreatePlane();
+
+	//Font arial("D:/projects/Steppe/data/arial.ttf");
+	//arial.RenderText("232323",10,20,10, glm::vec3(100,100,100));
 
 	while (g_AppRun)
 	{

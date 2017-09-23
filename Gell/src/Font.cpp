@@ -5,6 +5,8 @@
 --------------------------*/
 #include "Font.h"
 
+int result = 0;
+
 // Shader sources
 const GLchar* shader = R"glsl(
 #version 120
@@ -26,9 +28,6 @@ struct Character
 std::map<GLchar, Character> Characters;
 GLuint VAO, VBO;
 
-int result = 0;
-
-//"D:/projects/Steppe/data/Fonts/Diablo/diablo-font-1.ttf"
 Font::Font(const String &fontName)
 {
 	result = FT_New_Face( ft, fontName.c_str(), 0, &face );
@@ -45,9 +44,8 @@ Font::Font(const String &fontName)
 
 		for (GLubyte c = 0; c < 128; c++)
 		{
-			result = FT_Load_Char(face, c, FT_LOAD_RENDER);
-		    if (!result)
-		    	Msg::Error("Font: glyph loading error!");
+			if(FT_Load_Char(face, c, FT_LOAD_RENDER))
+		    	Msg::Error("Font: Glyph loading symbol %d error!", c);
 
 		        // Generate texture
 		        GLuint texture;
@@ -81,9 +79,10 @@ Font::Font(const String &fontName)
 		        Characters.insert(std::pair<GLchar, Character>(c, character));
 		    }
 
-		  	glBindTexture(GL_TEXTURE_2D, 0);
 		    FT_Done_Face(face);
 		    FT_Done_FreeType(ft);
+
+			glBindTexture(GL_TEXTURE_2D, 0);
 
 		    glGenVertexArrays(1, &VAO);
 		    glGenBuffers(1, &VBO);
@@ -99,11 +98,13 @@ Font::Font(const String &fontName)
 Font::~Font(){
 }
 
-/*void RenderText(Shader &shader, std::string text, GLfloat x, GLfloat y, GLfloat scale, glm::vec3 color)
+//void Font::RenderText(Shader &shader, std::string text, GLfloat x, GLfloat y, GLfloat scale, glm::vec3 color)
+void Font::RenderText(String text, GLfloat x, GLfloat y, GLfloat scale, glm::vec3 color)
 {
+	Msg::Warning("ok!");
     // Activate corresponding render state
-    shader.Use();
-    glUniform3f(glGetUniformLocation(shader.Program, "textColor"), color.x, color.y, color.z);
+    //shader.Use();
+    //glUniform3f(glGetUniformLocation(shader.Program, "textColor"), color.x, color.y, color.z);
     glActiveTexture(GL_TEXTURE0);
     glBindVertexArray(VAO);
 
@@ -142,4 +143,4 @@ Font::~Font(){
     }
     glBindVertexArray(0);
     glBindTexture(GL_TEXTURE_2D, 0);
-}*/
+}
