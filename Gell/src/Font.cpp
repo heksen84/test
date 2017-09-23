@@ -5,22 +5,28 @@
 --------------------------*/
 #include "Font.h"
 
-const GLchar* VertexShader = R"glsl(
-#version 120
-attribute vec4 coord;
-varying vec2 texcoord;
-void main(void) {
-gl_Position = vec4(coord.xy, 0, 1);
-texcoord = coord.zw; 
-}
+const GLchar* _VertexSource = R"glsl(
+#version 330 core
+layout (location = 0) in vec4 vertex; // <vec2 pos, vec2 tex>
+out vec2 TexCoords;
+uniform mat4 projection;
+void main()
+{
+    gl_Position = projection * vec4(vertex.xy, 0.0, 1.0);
+    TexCoords = vertex.zw;
+}  
 )glsl";
 
-const GLchar* FragmentShader = R"glsl(
-varying vec2 texcoord;
-uniform sampler2D tex;
-uniform vec4 color;
-void main(void) {
-gl_FragColor = vec4(1, 1, 1, texture2D(tex, texcoord).r) * color; 
+const GLchar* _FragmentSource = R"glsl(
+#version 330 core
+in vec2 TexCoords;
+out vec4 color;
+uniform sampler2D text;
+uniform vec3 textColor;
+void main()
+{    
+    vec4 sampled = vec4(1.0, 1.0, 1.0, texture(text, TexCoords).r);
+    color = vec4(textColor, 1.0) * sampled;
 }
 )glsl";
 
@@ -37,6 +43,8 @@ GLuint VAO, VBO;
 
 int result = 0;
 
+GLuint _vertexShader, _fragmentShader;
+GLuint _shaderProgram;
 /*
  * ----------------------------------
  *  Конструктор
@@ -45,8 +53,8 @@ int result = 0;
 Font::Font(const String &fontName)
 {
 	// сохраняю состояния
-	glPushAttrib(GL_ALL_ATTRIB_BITS);
-	glPushClientAttrib(GL_CLIENT_VERTEX_ARRAY_BIT);
+	//glPushAttrib(GL_ALL_ATTRIB_BITS);
+	//glPushClientAttrib(GL_CLIENT_VERTEX_ARRAY_BIT);
 
 	result = FT_New_Face( ft, fontName.c_str(), 0, &face );
 
@@ -82,8 +90,7 @@ Font::Font(const String &fontName)
 		    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 		    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
-		    Character character =
-		    {
+		    Character character = {
 		    	texture,
 		        glm::ivec2(face->glyph->bitmap.width, face->glyph->bitmap.rows),
 		        glm::ivec2(face->glyph->bitmap_left,  face->glyph->bitmap_top),
@@ -108,13 +115,35 @@ Font::Font(const String &fontName)
 		    glBindBuffer(GL_ARRAY_BUFFER, 0);
 		    glBindVertexArray(0);
 
+		    _vertexShader = glCreateShader(GL_VERTEX_SHADER);
+		    glShaderSource(_vertexShader, 1, &_VertexSource, NULL);
+		    glCompileShader(_vertexShader);
+
+		    _fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
+		    glShaderSource(_fragmentShader, 1, &_FragmentSource, NULL);
+		   	glCompileShader(_fragmentShader);
+
+		    // Link the vertex and fragment shader into a shader program
+		    _shaderProgram = glCreateProgram();
+		    glAttachShader(_shaderProgram, _vertexShader);
+		    glAttachShader(_shaderProgram, _fragmentShader);
+		    glBindFragDataLocation(_shaderProgram, 0, "outColor");
+		    glLinkProgram(_shaderProgram);
+
+
 		    // восстанавливаю состояния
-		    glPopClientAttrib();
-		    glPopAttrib();
+		   // glPopClientAttrib();
+		    //glPopAttrib();
+
+		    glm::mat4 projection = glm::ortho(0.0f, static_cast<GLfloat>(1024), 0.0f, static_cast<GLfloat>(768));
+		    glUseProgram(_shaderProgram);
+		    glUniformMatrix4fv(glGetUniformLocation(_shaderProgram, "projection"), 1, GL_FALSE, glm::value_ptr(projection));
+
+		    glEnable(GL_BLEND);
+		    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 }
 
-Font::~Font()
-{
+Font::~Font(){
 }
 
 void Font::RenderText(String text, GLfloat x, GLfloat y, GLfloat scale, glm::vec3 color)
@@ -123,9 +152,13 @@ void Font::RenderText(String text, GLfloat x, GLfloat y, GLfloat scale, glm::vec
 	glPushAttrib(GL_ALL_ATTRIB_BITS);
 	glPushClientAttrib(GL_CLIENT_VERTEX_ARRAY_BIT);
 
+	// Create and compile the vertex shader
+
+
+
     //загрузить сюда шейдер и передать его параметры дальше
-    //shader.Use();
-    //glUniform3f(glGetUniformLocation(shader.Program, "textColor"), color.x, color.y, color.z);
+	glUseProgram(_shaderProgram);
+    glUniform3f(glGetUniformLocation(_shaderProgram, "textColor"), color.x, color.y, color.z);
     glActiveTexture(GL_TEXTURE0);
     glBindVertexArray(VAO);
 

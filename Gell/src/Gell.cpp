@@ -47,8 +47,7 @@ GLuint fragmentShader;
 GLuint shaderProgram;
 GLuint tex;
 
-void InitLibs(void)
-{
+void InitLibs(void){
 	InitGLFW();
 	InitFreeType();
 	InitGLEW();
@@ -132,6 +131,9 @@ void CreatePlane() {
 	   	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 	   	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 	   	SOIL_free_image_data(image);
+
+	    glEnable(GL_BLEND);
+	    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 }
 
 void DrawPlane() {
@@ -146,16 +148,15 @@ void DrawPlane() {
 --------------------------------*/	
 int main(void)
 {
-
 	InitLibs();
 	CreatePlane();
 
-	Font arial("D:/projects/Steppe/data/arial.ttf");
+	Font arial("D:/projects/Steppe/data/fonts/diablo/diablo-font-1.ttf");
 
 	while (g_AppRun)
 	{
-		DrawPlane();
-		arial.RenderText("This is sample text", 25.0f, 25.0f, 1.0f, glm::vec3(0.5, 0.8f, 0.2f));
+		//DrawPlane();
+		arial.RenderText("Diablo never die", 250, 600, 1.0f, glm::vec3(255, 155, 155));
 		glfwPollEvents();
 		glfwSwapBuffers(window);
     }
