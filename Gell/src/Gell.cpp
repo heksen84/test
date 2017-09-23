@@ -54,7 +54,7 @@ void InitLibs(void){
 	InitGLEW();
 }
 
-void CreatePlane() {
+void CreatePlane(){
 
 		// Create Vertex Array Object
 	    glGenVertexArrays(1, &vao);
@@ -140,39 +140,17 @@ void CreatePlane() {
 	    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 }
 
-void DrawPlane() {
-
+void DrawPlane(){
 	glBindTexture(GL_TEXTURE_2D, tex);
 	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 }
-
-/*void ShowFps(GLFWwindow *pWindow)
-{
-    // Measure speed
-     double currentTime = glfwGetTime();
-     double delta = currentTime - lastTime;
-     nbFrames++;
-     if ( delta >= 1.0 ){ // If last cout was more than 1 sec ago
-         cout << 1000.0/double(nbFrames) << endl;
-
-         double fps = double(nbFrames) / delta;
-
-         std::stringstream ss;
-         ss << GAME_NAME << " " << VERSION << " [" << fps << " FPS]";
-
-         glfwSetWindowTitle(pWindow, ss.str().c_str());
-
-         nbFrames = 0;
-         lastTime = currentTime;
-     }
-}*/
 
 /* 
 --------------------------------
 точка входа
 --------------------------------*/	
-int main(void)
-{
+int main(void){
+
 	InitLibs();
 	CreatePlane();
 
@@ -186,7 +164,7 @@ int main(void)
 		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-		arial.RenderText("Diablo never die", 420, 600, 1.0f, glm::vec3(255, 155, 155));
+		arial.RenderText("Diablo never die привет! 1984", 330, 600, 1.0f, glm::vec3(255, 155, 155));
 
 		gui.DrawText("small_font", 10, 20, 1, "This is demo!", glm::vec3(200,200,200) );
 

@@ -39,7 +39,7 @@ struct Character {
     GLuint Advance;
 };
 
-std::map<GLchar, Character> Characters;
+std::map<uint, Character> Characters;
 GLuint VAO, VBO;
 
 int result = 0;
@@ -53,10 +53,11 @@ GLuint _shaderProgram;
  */
 Font::Font(const String &fontName)
 {
-
 	// сохраняю состояния
 	glPushAttrib(GL_ALL_ATTRIB_BITS);
 	glPushClientAttrib(GL_CLIENT_VERTEX_ARRAY_BIT);
+
+	FT_Select_Charmap(face, FT_ENCODING_UNICODE);
 
 	result = FT_New_Face( ft, fontName.c_str(), 0, &face );
 
@@ -66,12 +67,15 @@ Font::Font(const String &fontName)
 	FT_Set_Pixel_Sizes(face, 0, 48);
 	glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
 
+
 	GLuint texture;
 
-	for (GLubyte c = 0; c < 128; c++) {
+	for (uint c = 0; c < 512; c++) {
+
 		if(FT_Load_Char(face, c, FT_LOAD_RENDER))
-	    	Msg::Error("Font: Glyph loading symbol %d error!", c);
-		    glGenTextures(1, &texture);
+			Msg::Error("Font: Glyph loading symbol %d error!", c);
+
+			glGenTextures(1, &texture);
 		    glBindTexture(GL_TEXTURE_2D, texture);
 		    glTexImage2D
 		    (
@@ -99,7 +103,7 @@ Font::Font(const String &fontName)
 		        (ulong)face->glyph->advance.x // FIXIT
 		    };
 
-		    Characters.insert(std::pair<GLchar, Character>(c, character));
+		    Characters.insert(std::pair<uint, Character>(c, character));
 		}
 
 		    FT_Done_Face(face);
