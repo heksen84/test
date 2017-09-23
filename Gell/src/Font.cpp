@@ -28,26 +28,32 @@ struct Character
 std::map<GLchar, Character> Characters;
 GLuint VAO, VBO;
 
+/*
+ * ----------------------------------
+ *  Конструктор
+ * ----------------------------------
+ */
 Font::Font(const String &fontName)
 {
 	result = FT_New_Face( ft, fontName.c_str(), 0, &face );
 
-	if ( result == FT_Err_Unknown_File_Format ) Msg::Error("FreeType: file format error");
-		else
-			if ( result ) Msg::Error("FreeType: font not found");
+	if ( result == FT_Err_Unknown_File_Format )
+		Msg::Error("FreeType: file format error");
+	else
+	if ( result )
+		Msg::Error("FreeType: font not found");
 
-		FT_Set_Pixel_Sizes(face, 0, 48);
-		glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
+	FT_Set_Pixel_Sizes(face, 0, 48);
+	glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
 
-		for (GLubyte c = 0; c < 128; c++)
-		{
-			if(FT_Load_Char(face, c, FT_LOAD_RENDER))
-		    	Msg::Error("Font: Glyph loading symbol %d error!", c);
-
-		        GLuint texture;
-		        //glGenTextures(1, &texture);
-		        //glBindTexture(GL_TEXTURE_2D, texture);
-		        /*glTexImage2D(
+	for (GLubyte c = 0; c < 128; c++)
+	{
+		if(FT_Load_Char(face, c, FT_LOAD_RENDER))
+	    	Msg::Error("Font: Glyph loading symbol %d error!", c);
+			GLuint texture;
+		    //glGenTextures(1, &texture);
+		    //glBindTexture(GL_TEXTURE_2D, texture);
+		    /*glTexImage2D(
 		            GL_TEXTURE_2D,
 		            0,
 		            GL_RED,
@@ -103,7 +109,6 @@ void Font::RenderText(String text, GLfloat x, GLfloat y, GLfloat scale, glm::vec
     glActiveTexture(GL_TEXTURE0);
     glBindVertexArray(VAO);
 
-    // Iterate through all characters
     std::string::const_iterator c;
     for (c = text.begin(); c != text.end(); c++)
     {
@@ -111,10 +116,11 @@ void Font::RenderText(String text, GLfloat x, GLfloat y, GLfloat scale, glm::vec
 
         GLfloat xpos = x + ch.Bearing.x * scale;
         GLfloat ypos = y - (ch.Size.y - ch.Bearing.y) * scale;
-
         GLfloat w = ch.Size.x * scale;
         GLfloat h = ch.Size.y * scale;
-        GLfloat vertices[6][4] = {
+
+        GLfloat vertices[6][4] =
+        {
             { xpos,     ypos + h,   0.0, 0.0 },
             { xpos,     ypos,       0.0, 1.0 },
             { xpos + w, ypos,       1.0, 1.0 },
@@ -123,18 +129,15 @@ void Font::RenderText(String text, GLfloat x, GLfloat y, GLfloat scale, glm::vec
             { xpos + w, ypos,       1.0, 1.0 },
             { xpos + w, ypos + h,   1.0, 0.0 }
         };
-        // Render glyph texture over quad
+
         glBindTexture(GL_TEXTURE_2D, ch.TextureID);
-        // Update content of VBO memory
         glBindBuffer(GL_ARRAY_BUFFER, VBO);
         glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(vertices), vertices); // Be sure to use glBufferSubData and not glBufferData
-
         glBindBuffer(GL_ARRAY_BUFFER, 0);
-        // Render quad
         glDrawArrays(GL_TRIANGLES, 0, 6);
-        // Now advance cursors for next glyph (note that advance is number of 1/64 pixels)
-        x += (ch.Advance >> 6) * scale; // Bitshift by 6 to get value in pixels (2^6 = 64 (divide amount of 1/64th pixels by 64 to get amount of pixels))
+        x += (ch.Advance >> 6) * scale;
     }
+
     glBindVertexArray(0);
     glBindTexture(GL_TEXTURE_2D, 0);
 }
