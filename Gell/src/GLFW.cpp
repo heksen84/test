@@ -102,8 +102,12 @@ void InitGLFW(void)
 	window = glfwCreateWindow(mode->width, mode->height, "[ Strategy ]", monitor, NULL);
 	if (!window) Msg::Error("glfwCreateWindow: problem");
 
-	//Screen::Width = 5;
-	//glfwGetWindowSize(window, &Screen::Width, &Screen::Height);
+	int width, height;
+	glfwGetWindowSize(window, &width, &height);
+
+	//Msg::Error("%dx%d", width, height);
+
+	//Screen::GetSingletonPtr()->SetSize(width, height);
 
 	/* Make the window's context current */
     glfwMakeContextCurrent(window);

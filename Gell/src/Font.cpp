@@ -4,6 +4,7 @@
  Ilya Bobkov KZ 2017 (c)
 --------------------------*/
 #include "Font.h"
+#include "Screen.h"
 
 const GLchar* _VertexSource = R"glsl(
 #version 330 core
@@ -129,6 +130,9 @@ Font::Font(const String &fontName)
 		    glAttachShader(_shaderProgram, _fragmentShader);
 		    glBindFragDataLocation(_shaderProgram, 0, "outColor");
 		    glLinkProgram(_shaderProgram);
+
+		    //ScreenSize sz = Screen::GetSingletonPtr()->GetSize();
+		    //Msg::Warning("%dx%d", sz.width, sz.height);
 
 		    glm::mat4 projection = glm::ortho(0.0f, static_cast<GLfloat>(1024), 0.0f, static_cast<GLfloat>(768));
 		    glUseProgram(_shaderProgram);
