@@ -42,7 +42,8 @@ const GLchar* fragmentSource = R"glsl(
 
 
 GLuint vbo, vao, ebo;
-GLuint vertexShader, fragmentShader;
+GLuint vertexShader;
+GLuint fragmentShader;
 GLuint shaderProgram;
 GLuint tex;
 
@@ -123,18 +124,14 @@ void CreatePlane() {
 
 	    // Загрузка текстуры
 	   	int width, height;
-	    //byte* image = SOIL_load_image("D:/projects/steppe/data/gui/menu/shield.png", &width, &height, 0, SOIL_LOAD_RGBA);
-	   	//glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, image);
 	   	byte* image = SOIL_load_image("D:/projects/steppe/data/gui/menu/mainmenu.jpg", &width, &height, 0, SOIL_LOAD_RGB);
 	   	if (!image) Msg::Error("image not found");
 	    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, image);
-
-	   	SOIL_free_image_data(image);
-
 	   	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
 	   	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 	   	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 	   	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	   	SOIL_free_image_data(image);
 }
 
 void DrawPlane() {
@@ -151,13 +148,12 @@ int main(void) {
 
 	InitLibs();
 	CreatePlane();
-
-	//Font arial("D:/projects/Steppe/data/arial.ttf");
-	//arial.RenderText("232323",10,20,10, glm::vec3(100,100,100));
+	Font arial("D:/projects/Steppe/data/arial.ttf");
 
 	while (g_AppRun)
 	{
 		DrawPlane();
+		//arial.RenderText("232323",10,20,10, glm::vec3(100,100,100));
 		glfwPollEvents();
 		glfwSwapBuffers(window);
     }
@@ -169,9 +165,9 @@ int main(void) {
 	glDeleteShader(vertexShader);
 
 	glDeleteBuffers(1, &ebo);
-	 glDeleteBuffers(1, &vbo);
+	glDeleteBuffers(1, &vbo);
 
-	    glDeleteVertexArrays(1, &vao);
+	glDeleteVertexArrays(1, &vao);
 
     glfwTerminate();
 
