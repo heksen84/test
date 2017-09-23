@@ -6,6 +6,7 @@
  */
 
 #include "GLFW.h"
+#include "Screen.h"
 
 GLFWwindow*  window;
 GLFWmonitor* monitor;
@@ -98,9 +99,11 @@ void InitGLFW(void)
 	glfwWindowHint(GLFW_BLUE_BITS, 		mode->blueBits);
 	glfwWindowHint(GLFW_REFRESH_RATE, 	mode->refreshRate);
 
-
 	window = glfwCreateWindow(mode->width, mode->height, "[ Strategy ]", monitor, NULL);
 	if (!window) Msg::Error("glfwCreateWindow: problem");
+
+	//Screen::Width = 5;
+	//glfwGetWindowSize(window, &Screen::Width, &Screen::Height);
 
 	/* Make the window's context current */
     glfwMakeContextCurrent(window);

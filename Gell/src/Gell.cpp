@@ -137,8 +137,8 @@ void CreatePlane() {
 }
 
 void DrawPlane() {
-	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+	glBindTexture(GL_TEXTURE_2D, tex);
 	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 }
 
@@ -149,14 +149,19 @@ void DrawPlane() {
 int main(void)
 {
 	InitLibs();
-	CreatePlane();
 
+	CreatePlane();
 	Font arial("D:/projects/Steppe/data/fonts/diablo/diablo-font-1.ttf");
 
 	while (g_AppRun)
 	{
-		//DrawPlane();
+		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
 		arial.RenderText("Diablo never die", 250, 600, 1.0f, glm::vec3(255, 155, 155));
+
+		DrawPlane();
+
 		glfwPollEvents();
 		glfwSwapBuffers(window);
     }

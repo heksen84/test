@@ -53,8 +53,8 @@ GLuint _shaderProgram;
 Font::Font(const String &fontName)
 {
 	// сохраняю состояния
-	//glPushAttrib(GL_ALL_ATTRIB_BITS);
-	//glPushClientAttrib(GL_CLIENT_VERTEX_ARRAY_BIT);
+	glPushAttrib(GL_ALL_ATTRIB_BITS);
+	glPushClientAttrib(GL_CLIENT_VERTEX_ARRAY_BIT);
 
 	result = FT_New_Face( ft, fontName.c_str(), 0, &face );
 
@@ -130,17 +130,16 @@ Font::Font(const String &fontName)
 		    glBindFragDataLocation(_shaderProgram, 0, "outColor");
 		    glLinkProgram(_shaderProgram);
 
-
-		    // восстанавливаю состояния
-		   // glPopClientAttrib();
-		    //glPopAttrib();
-
 		    glm::mat4 projection = glm::ortho(0.0f, static_cast<GLfloat>(1024), 0.0f, static_cast<GLfloat>(768));
 		    glUseProgram(_shaderProgram);
 		    glUniformMatrix4fv(glGetUniformLocation(_shaderProgram, "projection"), 1, GL_FALSE, glm::value_ptr(projection));
 
 		    glEnable(GL_BLEND);
 		    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+		    // восстанавливаю состояния
+		    glPopClientAttrib();
+		    glPopAttrib();
 }
 
 Font::~Font(){
@@ -151,9 +150,6 @@ void Font::RenderText(String text, GLfloat x, GLfloat y, GLfloat scale, glm::vec
 	// сохраняю состояния
 	glPushAttrib(GL_ALL_ATTRIB_BITS);
 	glPushClientAttrib(GL_CLIENT_VERTEX_ARRAY_BIT);
-
-	// Create and compile the vertex shader
-
 
 
     //загрузить сюда шейдер и передать его параметры дальше
