@@ -32,8 +32,7 @@ void main()
 }
 )glsl";
 
-struct Character
-{
+struct Character {
     GLuint TextureID;
     glm::ivec2 Size;
     glm::ivec2 Bearing;
