@@ -17,7 +17,7 @@ bool g_AppRun = true;
 
 // Shader sources
 const GLchar* vertexSource = R"glsl(
-    #version 150 core
+    #version 330
     in vec2 position;
     in vec3 color;
     in vec2 texcoord;
@@ -29,8 +29,9 @@ const GLchar* vertexSource = R"glsl(
         gl_Position = vec4(position, 0.0, 1.0);
     }
 )glsl";
+
 const GLchar* fragmentSource = R"glsl(
-    #version 150 core
+    #version 330
     in vec3 Color;
     in vec2 Texcoord;
     out vec4 outColor;
@@ -39,7 +40,6 @@ const GLchar* fragmentSource = R"glsl(
         outColor = texture(tex, Texcoord)*1.7;
     }
 )glsl";
-
 
 GLuint vbo, vao, ebo;
 GLuint vertexShader;
@@ -64,7 +64,7 @@ void CreatePlane() {
 	    glGenBuffers(1, &vbo);
 
 	    GLfloat vertices[] = {
-	    	 // x     y    	 r     g     b
+	    	 // x     y    	 r     g     b     u     w
 	        -0.25f,  0.4f, 	1.0f, 0.0f, 0.0f, 0.0f, 0.0f, // Top-left
 	         0.25f,  0.4f, 	0.0f, 1.0f, 0.0f, 1.0f, 0.0f, // Top-right
 	         0.25f, -0.4f, 	0.0f, 0.0f, 1.0f, 1.0f, 1.0f, // Bottom-right
@@ -144,29 +144,28 @@ void DrawPlane() {
 --------------------------------
 точка входа
 --------------------------------*/	
-int main(void) {
+int main(void)
+{
 
 	InitLibs();
 	CreatePlane();
+
 	Font arial("D:/projects/Steppe/data/arial.ttf");
 
 	while (g_AppRun)
 	{
 		DrawPlane();
-		//arial.RenderText("232323",10,20,10, glm::vec3(100,100,100));
+		arial.RenderText("This is sample text", 25.0f, 25.0f, 1.0f, glm::vec3(0.5, 0.8f, 0.2f));
 		glfwPollEvents();
 		glfwSwapBuffers(window);
     }
 
 	glDeleteTextures(1, &tex);
-
 	glDeleteProgram(shaderProgram);
 	glDeleteShader(fragmentShader);
 	glDeleteShader(vertexShader);
-
 	glDeleteBuffers(1, &ebo);
 	glDeleteBuffers(1, &vbo);
-
 	glDeleteVertexArrays(1, &vao);
 
     glfwTerminate();

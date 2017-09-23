@@ -5,16 +5,23 @@
 --------------------------*/
 #include "Font.h"
 
-int result = 0;
-
-// Shader sources
-const GLchar* shader = R"glsl(
+const GLchar* VertexShader = R"glsl(
 #version 120
 attribute vec4 coord;
 varying vec2 texcoord;
 void main(void) {
 gl_Position = vec4(coord.xy, 0, 1);
-texcoord = coord.zw;
+texcoord = coord.zw; 
+}
+)glsl";
+
+const GLchar* FragmentShader = R"glsl(
+varying vec2 texcoord;
+uniform sampler2D tex;
+uniform vec4 color;
+void main(void) {
+gl_FragColor = vec4(1, 1, 1, texture2D(tex, texcoord).r) * color; 
+}
 )glsl";
 
 struct Character
@@ -27,6 +34,8 @@ struct Character
 
 std::map<GLchar, Character> Characters;
 GLuint VAO, VBO;
+
+int result = 0;
 
 /*
  * ----------------------------------
@@ -41,11 +50,8 @@ Font::Font(const String &fontName)
 
 	result = FT_New_Face( ft, fontName.c_str(), 0, &face );
 
-	if ( result == FT_Err_Unknown_File_Format )
-		Msg::Error("FreeType: file format error");
-	else
-	if ( result )
-		Msg::Error("FreeType: font not found");
+	if ( result == FT_Err_Unknown_File_Format ) Msg::Error("FreeType: file format error");
+	else if ( result ) Msg::Error("FreeType: font not found");
 
 	FT_Set_Pixel_Sizes(face, 0, 48);
 	glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
@@ -70,21 +76,22 @@ Font::Font(const String &fontName)
 		      face->glyph->bitmap.buffer
 		    );
 
-		        // Set texture options
-		        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-		        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-		        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-		        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+		    // Set texture options
+		    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+		    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+		    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+		    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
-		        Character character =
-		        { 	texture,
-		            glm::ivec2(face->glyph->bitmap.width, face->glyph->bitmap.rows),
-		            glm::ivec2(face->glyph->bitmap_left,  face->glyph->bitmap_top),
-		            (ulong)face->glyph->advance.x // FIXIT
-		        };
+		    Character character =
+		    {
+		    	texture,
+		        glm::ivec2(face->glyph->bitmap.width, face->glyph->bitmap.rows),
+		        glm::ivec2(face->glyph->bitmap_left,  face->glyph->bitmap_top),
+		        (ulong)face->glyph->advance.x // FIXIT
+		    };
 
-		        Characters.insert(std::pair<GLchar, Character>(c, character));
-		    }
+		    Characters.insert(std::pair<GLchar, Character>(c, character));
+		}
 
 		    FT_Done_Face(face);
 		    FT_Done_FreeType(ft);
@@ -106,13 +113,17 @@ Font::Font(const String &fontName)
 		    glPopAttrib();
 }
 
-Font::~Font(){
+Font::~Font()
+{
 }
 
-//void Font::RenderText(Shader &shader, std::string text, GLfloat x, GLfloat y, GLfloat scale, glm::vec3 color)
 void Font::RenderText(String text, GLfloat x, GLfloat y, GLfloat scale, glm::vec3 color)
 {
-    // Activate corresponding render state
+	// сохраняю состояния
+	glPushAttrib(GL_ALL_ATTRIB_BITS);
+	glPushClientAttrib(GL_CLIENT_VERTEX_ARRAY_BIT);
+
+    //загрузить сюда шейдер и передать его параметры дальше
     //shader.Use();
     //glUniform3f(glGetUniformLocation(shader.Program, "textColor"), color.x, color.y, color.z);
     glActiveTexture(GL_TEXTURE0);
@@ -122,7 +133,6 @@ void Font::RenderText(String text, GLfloat x, GLfloat y, GLfloat scale, glm::vec
     for (c = text.begin(); c != text.end(); c++)
     {
         Character ch = Characters[*c];
-
         GLfloat xpos = x + ch.Bearing.x * scale;
         GLfloat ypos = y - (ch.Size.y - ch.Bearing.y) * scale;
         GLfloat w = ch.Size.x * scale;
@@ -149,4 +159,8 @@ void Font::RenderText(String text, GLfloat x, GLfloat y, GLfloat scale, glm::vec
 
     glBindVertexArray(0);
     glBindTexture(GL_TEXTURE_2D, 0);
+
+    // восстанавливаю состояния
+    glPopClientAttrib();
+    glPopAttrib();
 }
