@@ -158,7 +158,7 @@ int main(void)
 		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-		arial.RenderText("Diablo never die", 250, 600, 1.0f, glm::vec3(255, 155, 155));
+		arial.RenderText("Diablo never die", 420, 600, 1.0f, glm::vec3(255, 155, 155));
 
 		DrawPlane();
 

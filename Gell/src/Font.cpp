@@ -5,6 +5,7 @@
 --------------------------*/
 #include "Font.h"
 #include "Screen.h"
+#include "GLFW.h"
 
 const GLchar* _VertexSource = R"glsl(
 #version 330 core
@@ -53,6 +54,7 @@ GLuint _shaderProgram;
  */
 Font::Font(const String &fontName)
 {
+
 	// сохраняю состояния
 	glPushAttrib(GL_ALL_ATTRIB_BITS);
 	glPushClientAttrib(GL_CLIENT_VERTEX_ARRAY_BIT);
@@ -131,10 +133,10 @@ Font::Font(const String &fontName)
 		    glBindFragDataLocation(_shaderProgram, 0, "outColor");
 		    glLinkProgram(_shaderProgram);
 
-		    //ScreenSize sz = Screen::GetSingletonPtr()->GetSize();
-		    //Msg::Warning("%dx%d", sz.width, sz.height);
+		    int width, height;
+		    glfwGetWindowSize(window, &width, &height);
 
-		    glm::mat4 projection = glm::ortho(0.0f, static_cast<GLfloat>(1024), 0.0f, static_cast<GLfloat>(768));
+		    glm::mat4 projection = glm::ortho(0.0f, static_cast<GLfloat>(width), 0.0f, static_cast<GLfloat>(height));
 		    glUseProgram(_shaderProgram);
 		    glUniformMatrix4fv(glGetUniformLocation(_shaderProgram, "projection"), 1, GL_FALSE, glm::value_ptr(projection));
 
@@ -154,7 +156,6 @@ void Font::RenderText(String text, GLfloat x, GLfloat y, GLfloat scale, glm::vec
 	// сохраняю состояния
 	glPushAttrib(GL_ALL_ATTRIB_BITS);
 	glPushClientAttrib(GL_CLIENT_VERTEX_ARRAY_BIT);
-
 
     //загрузить сюда шейдер и передать его параметры дальше
 	glUseProgram(_shaderProgram);
