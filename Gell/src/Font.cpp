@@ -26,7 +26,7 @@ struct Character
 std::map<GLchar, Character> Characters;
 GLuint VAO, VBO;
 
-int result=0;
+int result = 0;
 
 //"D:/projects/Steppe/data/Fonts/Diablo/diablo-font-1.ttf"
 Font::Font(const String &fontName)
@@ -42,10 +42,11 @@ Font::Font(const String &fontName)
 		// Disable byte-alignment restriction
 		glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
 
+
 		for (GLubyte c = 0; c < 128; c++)
 		{
-			// Load character glyph
-		    if (FT_Load_Char(face, c, FT_LOAD_RENDER))
+			result = FT_Load_Char(face, c, FT_LOAD_RENDER);
+		    if (!result)
 		    	Msg::Error("Font: glyph loading error!");
 
 		        // Generate texture
