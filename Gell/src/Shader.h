@@ -16,6 +16,7 @@ enum ShaderType{
 class Shader {
 public:
 	Shader(ShaderType type);
+	void Bind();
 	virtual ~Shader();
 };
 

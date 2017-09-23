@@ -207,6 +207,5 @@ int main(void)
 	glDeleteVertexArrays(1, &vao);
 
     glfwTerminate();
-
     return 0;
 }
