@@ -12,6 +12,7 @@
 #include "Glew.h"
 #include "Renderer.h"
 #include "Font.h"
+#include "Gui.h"
 
 bool g_AppRun = true;
 
@@ -125,12 +126,15 @@ void CreatePlane() {
 	   	int width, height;
 	   	byte* image = SOIL_load_image("D:/projects/steppe/data/gui/menu/mainmenu.jpg", &width, &height, 0, SOIL_LOAD_RGB);
 	   	if (!image) Msg::Error("image not found");
+
 	    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, image);
+	    SOIL_free_image_data(image);
+
 	   	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
 	   	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 	   	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 	   	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-	   	SOIL_free_image_data(image);
+
 
 	    glEnable(GL_BLEND);
 	    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -142,6 +146,27 @@ void DrawPlane() {
 	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 }
 
+/*void ShowFps(GLFWwindow *pWindow)
+{
+    // Measure speed
+     double currentTime = glfwGetTime();
+     double delta = currentTime - lastTime;
+     nbFrames++;
+     if ( delta >= 1.0 ){ // If last cout was more than 1 sec ago
+         cout << 1000.0/double(nbFrames) << endl;
+
+         double fps = double(nbFrames) / delta;
+
+         std::stringstream ss;
+         ss << GAME_NAME << " " << VERSION << " [" << fps << " FPS]";
+
+         glfwSetWindowTitle(pWindow, ss.str().c_str());
+
+         nbFrames = 0;
+         lastTime = currentTime;
+     }
+}*/
+
 /* 
 --------------------------------
 точка входа
@@ -149,8 +174,11 @@ void DrawPlane() {
 int main(void)
 {
 	InitLibs();
-
 	CreatePlane();
+
+	Gui gui;
+	gui.CreateFontA("arial.ttf", "arial");
+
 	Font arial("D:/projects/Steppe/data/fonts/diablo/diablo-font-1.ttf");
 
 	while (g_AppRun)
@@ -160,10 +188,14 @@ int main(void)
 
 		arial.RenderText("Diablo never die", 420, 600, 1.0f, glm::vec3(255, 155, 155));
 
+		gui.DrawText("small_font", 10, 20, 1, "This is demo!", glm::vec3(200,200,200) );
+
 		DrawPlane();
 
 		glfwPollEvents();
 		glfwSwapBuffers(window);
+
+		//ShowFps(window);
     }
 
 	glDeleteTextures(1, &tex);

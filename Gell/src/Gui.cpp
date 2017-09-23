@@ -8,14 +8,15 @@
 #include "Gui.h"
 
 Gui::Gui() {
-	// TODO Auto-generated constructor stub
-
 }
 
 Gui::~Gui() {
-	// TODO Auto-generated destructor stub
 }
 
-void DrawText(const Font &font, float x, float y, const String &text ) {
+void Gui::CreateFont(const String &filename, const String &name){
+	//Msg::Info(text.c_str());
+}
 
+void Gui::DrawText(const String &fontName, float x, float y, float scale, const String &text, glm::vec3 color ) {
+	//Msg::Info(text.c_str());
 }

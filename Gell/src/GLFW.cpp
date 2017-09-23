@@ -14,7 +14,7 @@ GLFWcursor*  cursor_default;
 GLFWcursor*  cursor_loading;
 const GLFWvidmode* 	mode;
 
-void SetCursors(){
+void SetSystemCursors(){
 
 	int width, height;
 	GLFWimage image_default, image_loading;
@@ -110,5 +110,5 @@ void InitGLFW(void)
 	glfwSetMouseButtonCallback(window, mouse_button_callback);
 	glfwSetCursorPosCallback(window, mouse_callback);
 
-	SetCursors();
+	SetSystemCursors();
 }

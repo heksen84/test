@@ -15,7 +15,9 @@ class Gui {
 public:
 	Gui();
 	virtual ~Gui();
-	void DrawText(const Font &font, float x, float y, const String &text );
+	void CreateFont(const String &filename, const String &name);
+	void DrawText(const String &fontName, float x, float y, float scale, const String &text, glm::vec3 color );
+	std::map<String, Font> fonts;
 };
 
 #endif /* GUI_H_ */
