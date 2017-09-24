@@ -22,7 +22,6 @@ GLuint fragmentShader;
 GLuint shaderProgram;
 GLuint tex;
 
-
 // Shader sources
 const GLchar* vertexSource = R"glsl(
     #version 330
@@ -126,7 +125,7 @@ void CreatePlane(){
 	    // Загрузка текстуры
 	   	int width, height;
 	   	byte* image = SOIL_load_image("D:/projects/steppe/data/gui/menu/mainmenu.jpg", &width, &height, 0, SOIL_LOAD_RGB);
-	   	if (!image) Msg::Error(L"image not found");
+	   	if (!image) Msg::Error(L"SOIL_load_image: image not found");
 
 	    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, image);
 	    SOIL_free_image_data(image);
