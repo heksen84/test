@@ -29,7 +29,7 @@ Shader::Shader(String vertex_filename, String fragment_filename) {
    VertexData 	= vShaderStream.str();
    FragmentData = fShaderStream.str();
 
-   const char* v_VertexData = VertexData.c_str();
+   const char* v_VertexData   = VertexData.c_str();
    const char* f_FragmentData = FragmentData.c_str();
 
    // vertex
