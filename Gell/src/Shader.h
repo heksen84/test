@@ -18,7 +18,7 @@ public:
 private:
 	file v_file;
 	file f_file;
-	uint program;
+	uint program_id;
 };
 
 #endif /* SHADER_H_ */

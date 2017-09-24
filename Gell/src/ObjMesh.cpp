@@ -30,7 +30,7 @@ void ObjMesh::LoadFromFile(const String &filename)
 	std::ifstream file(filename.c_str(), std::ios::in);
 
 		if (!file.is_open())
-			Msg::Error("Obj::loadFromFle Cannot open file: %s", filename.c_str());
+			Msg::Error(L"Obj::loadFromFle Cannot open file: %s", filename.c_str());
 
 
 		String line;

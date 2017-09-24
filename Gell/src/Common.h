@@ -1,6 +1,10 @@
 #ifndef COMMON_H_
 #define COMMON_H_
 
+#define _UNICODE
+#define UNICODE
+
+
 #define DATA_PATH "D:/projects/Gell/Gell/Release/data"
 
 // windows

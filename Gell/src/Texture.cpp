@@ -23,7 +23,7 @@ Texture::Texture(const String &filename)
 	}
 	else
 	{
-	  Msg::Error("Texture %s error", filename.c_str());
+	  Msg::Error(L"Texture %s error", filename.c_str());
 	}
 }
 

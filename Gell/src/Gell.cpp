@@ -13,6 +13,7 @@
 #include "Renderer.h"
 #include "Font.h"
 #include "Gui.h"
+#include "Shader.h"
 
 bool g_AppRun = true;
 
@@ -125,7 +126,7 @@ void CreatePlane(){
 	    // Загрузка текстуры
 	   	int width, height;
 	   	byte* image = SOIL_load_image("D:/projects/steppe/data/gui/menu/mainmenu.jpg", &width, &height, 0, SOIL_LOAD_RGB);
-	   	if (!image) Msg::Error("image not found");
+	   	if (!image) Msg::Error(L"image not found");
 
 	    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, image);
 	    SOIL_free_image_data(image);
@@ -153,10 +154,13 @@ int main(void){
 	InitLibs();
 	CreatePlane();
 
-	Gui gui;
-	gui.CreateFontA("arial.ttf", "arial");
+
+	//Gui gui;
+	//gui.CreateFontW("arial.ttf", "arial");
 
 	Font arial("D:/projects/Steppe/data/fonts/diablo/diablo-font-1.ttf");
+
+	Shader shader("2","");
 
 	while (g_AppRun)
 	{
@@ -165,7 +169,7 @@ int main(void){
 
 		arial.RenderText("Diablo never die привет! 1984", 330, 600, 1.0f, glm::vec3(255, 155, 155));
 
-		gui.DrawText("small_font", 10, 20, 1, "This is demo!", glm::vec3(200,200,200) );
+//		gui.DrawText("small_font", 10, 20, 1, "This is demo!", glm::vec3(200,200,200) );
 
 		DrawPlane();
 

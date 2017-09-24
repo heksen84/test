@@ -54,7 +54,6 @@ GLuint _shaderProgram;
  */
 Font::Font(const String &fontName)
 {
-
 	// сохраняю состояния
 	glPushAttrib(GL_ALL_ATTRIB_BITS);
 	glPushClientAttrib(GL_CLIENT_VERTEX_ARRAY_BIT);
@@ -62,12 +61,11 @@ Font::Font(const String &fontName)
 	result = FT_New_Face( ft, fontName.c_str(), 0, &face );
 	FT_Select_Charmap(face, FT_ENCODING_UNICODE);
 
-	if ( result == FT_Err_Unknown_File_Format ) Msg::Error("FreeType: file format error");
-	else if ( result ) Msg::Error("FreeType: font not found");
+	if ( result == FT_Err_Unknown_File_Format ) Msg::Error(L"FreeType: file format error");
+	else if ( result ) Msg::Error(L"FreeType: font not found");
 
 	FT_Set_Pixel_Sizes(face, 0, 48);
 	glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
-
 
 	GLuint texture;
 
@@ -75,7 +73,7 @@ Font::Font(const String &fontName)
 
 		// FT_Load_Glyph???
 		if(FT_Load_Char(face, c, FT_LOAD_RENDER))
-			Msg::Error("Font: Glyph loading symbol %d error!", c);
+			Msg::Error(L"Font: Glyph loading symbol %d error!", c);
 
 			glGenTextures(1, &texture);
 		    glBindTexture(GL_TEXTURE_2D, texture);

@@ -7,9 +7,9 @@
 class Msg
 {
 	public:	
-	static void Error(const char *msg, ... );
-	static void Warning(const char *msg, ... );
-	static void Info(const char *msg, ... );
+	static void Error(const wchar_t *msg, ... );
+	static void Warning(const wchar_t *msg, ... );
+	static void Info(const wchar_t *msg, ... );
 };
 
 #endif
