@@ -4,7 +4,6 @@
  Ilya Bobkov KZ 2017 (c)
 --------------------------*/
 #include "Texture.h"
-#include "Imglib.h"
 #include "Util.h"
 
 Texture::Texture(const String &filename)

@@ -3,7 +3,6 @@
 // Ilya Bobkov
 // --------------------------
 #include "Common.h"
-#include "Imglib.h"
 #include "Util.h"
 #include "Texture.h"
 #include "ObjMesh.h"

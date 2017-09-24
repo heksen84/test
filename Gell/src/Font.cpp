@@ -53,7 +53,6 @@ int result = 0;
  */
 Font::Font(const String &fontName)
 {
-
 	// сохраняю состояния
 	glPushAttrib(GL_ALL_ATTRIB_BITS);
 	glPushClientAttrib(GL_CLIENT_VERTEX_ARRAY_BIT);
