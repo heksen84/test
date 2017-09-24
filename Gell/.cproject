@@ -101,10 +101,10 @@
 							<tool id="cdt.managedbuild.tool.gnu.cpp.linker.mingw.exe.release.202435400" name="MinGW C++ Linker" superClass="cdt.managedbuild.tool.gnu.cpp.linker.mingw.exe.release">
 								<option id="gnu.cpp.link.option.flags.706886722" name="Linker flags" superClass="gnu.cpp.link.option.flags" value="-Wl,--subsystem,windows  ..\\src\\app.res" valueType="string"/>
 								<option id="gnu.cpp.link.option.libs.764857770" name="Libraries (-l)" superClass="gnu.cpp.link.option.libs" valueType="libs">
+									<listOptionValue builtIn="false" value="glew"/>
 									<listOptionValue builtIn="false" value="glfw3"/>
 									<listOptionValue builtIn="false" value="sqlite3"/>
 									<listOptionValue builtIn="false" value="soil"/>
-									<listOptionValue builtIn="false" value="glew32"/>
 									<listOptionValue builtIn="false" value="freetype"/>
 									<listOptionValue builtIn="false" value="gdi32"/>
 									<listOptionValue builtIn="false" value="opengl32"/>
