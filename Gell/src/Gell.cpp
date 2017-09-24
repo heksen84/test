@@ -16,6 +16,13 @@
 
 bool g_AppRun = true;
 
+GLuint vbo, vao, ebo;
+GLuint vertexShader;
+GLuint fragmentShader;
+GLuint shaderProgram;
+GLuint tex;
+
+
 // Shader sources
 const GLchar* vertexSource = R"glsl(
     #version 330
@@ -41,12 +48,6 @@ const GLchar* fragmentSource = R"glsl(
         outColor = texture(tex, Texcoord)*1.7;
     }
 )glsl";
-
-GLuint vbo, vao, ebo;
-GLuint vertexShader;
-GLuint fragmentShader;
-GLuint shaderProgram;
-GLuint tex;
 
 void InitLibs(void){
 	InitGLFW();
@@ -144,11 +145,29 @@ void DrawPlane(){
 	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 }
 
+LRESULT CALLBACK DlgProc(HWND hWndDlg, UINT Msg, WPARAM wParam, LPARAM lParam) {
+switch(Msg) {
+	case WM_INITDIALOG:
+	return TRUE;
+	/*case WM_COMMAND:
+		switch(wParam){
+			case IDOK: EndDialog(hWndDlg, 0); return TRUE;
+		}
+		break;*/
+		case WM_CLOSE: EndDialog(hWndDlg, 0); break;
+	}
+	return FALSE;
+}
+
+
 /* 
 --------------------------------
 точка входа
 --------------------------------*/	
 int main(void){
+
+	//Msg::Info(L"Терезе алды құлпырды\nҚызыл, сары, көкала,\nШешек атты гүл түрлі,\nҮйір болды көп ара.\nҚызыға қарап тұрғанда\nШағып алды басымнан\nЕңбекшіні қуам ба\nБалын бізге тасыған!");
+	//Msg::Info(L"Die Vögelein schweigen im Walde.");
 
 	InitLibs();
 	CreatePlane();
@@ -158,8 +177,6 @@ int main(void){
 
 	Font arial("D:/projects/Steppe/data/fonts/diablo/diablo-font-1.ttf");
 	Shader shader("2","2");
-
-	//Msg::Info(L"Терезе алды құлпырды\nҚызыл, сары, көкала,\nШешек атты гүл түрлі,\nҮйір болды көп ара.\nҚызыға қарап тұрғанда\nШағып алды басымнан\nЕңбекшіні қуам ба\nБалын бізге тасыған!");
 
 	while (g_AppRun)
 	{
@@ -185,5 +202,10 @@ int main(void){
 	glDeleteVertexArrays(1, &vao);
 
     glfwTerminate();
+
+    //Msg::Info(L"Приобрести полную версию\nwww.steppegame.com");
+
+    //DialogBox(GetModuleHandle(0), MAKEINTRESOURCE(100), 0, reinterpret_cast<DLGPROC>(DlgProc));
+
     return 0;
 }

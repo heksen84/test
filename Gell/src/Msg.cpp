@@ -14,7 +14,7 @@ void Msg::Error(const wchar_t *msg, ... ) {
 	va_start( argptr, msg );
 	vswprintf( text, msg, argptr );
 	va_end( argptr);	
-	MessageBoxW(0, text, L"ERROR", MB_ICONERROR);
+	MessageBoxW(0, text, L"error", MB_ICONERROR);
 	exit(1);
 }
 
@@ -23,7 +23,7 @@ void Msg::Warning(const wchar_t *msg, ...) {
 	va_start( argptr, msg );
 	vswprintf( text, msg, argptr );
 	va_end( argptr);
-	MessageBoxW(0, text, L"WARNING", MB_ICONWARNING);
+	MessageBoxW(0, text, L"warning", MB_ICONWARNING);
 }
 
 /* инфобокс */
@@ -31,5 +31,5 @@ void Msg::Info(const wchar_t *msg, ...) {
 	va_start( argptr, msg );
 	vswprintf( text, msg, argptr );
 	va_end( argptr);	
-	MessageBoxW(0, text, L"INFO", MB_ICONINFORMATION);
+	MessageBoxW(0, text, L"info", MB_ICONINFORMATION);
 }
