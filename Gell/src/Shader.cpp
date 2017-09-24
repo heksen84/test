@@ -10,36 +10,37 @@
 
 Shader::Shader(String vertex_filename, String fragment_filename) {
 
-	if (vertex_filename.size() == 0 || vertex_filename.size() == 0)
+   if (vertex_filename.size() == 0 || vertex_filename.size() == 0)
 		Msg::Error("Shader: не указан один из шейдеров");
 
-	String vertexData, fragmentData;
+   String VertexData, FragmentData;
 
-	v_file.open(vertex_filename);
-	f_file.open(fragment_filename);
+   v_file.open(vertex_filename);
+   f_file.open(fragment_filename);
 
-	StringStream vShaderStream, fShaderStream;
+   StringStream vShaderStream, fShaderStream;
 
-	vShaderStream << v_file.rdbuf();
-	fShaderStream << f_file.rdbuf();
+   vShaderStream << v_file.rdbuf();
+   fShaderStream << f_file.rdbuf();
 
-	v_file.close();
-	f_file.close();
+   v_file.close();
+   f_file.close();
 
-   // const char* vertexData 	 	= vShaderStream.str();
-   // const char* fragmentData 	= fShaderStream.str();
+   VertexData 	= vShaderStream.str();
+   FragmentData = fShaderStream.str();
 
-    uint vertex, fragment;
+   const char* v_VertexData = VertexData.c_str();
+   const char* f_FragmentData = FragmentData.c_str();
 
-    // vertex
-   /* vertex = glCreateShader(GL_VERTEX_SHADER);
-    glShaderSource(vertex, 1, &vertexData, NULL);
-    glCompileShader(vertex);
+   // vertex
+   uint vertex = glCreateShader(GL_VERTEX_SHADER);
+   glShaderSource(vertex, 1, &v_VertexData, NULL);
+   glCompileShader(vertex);
 
-    // fragment
-    fragment = glCreateShader(GL_FRAGMENT_SHADER);
-    glShaderSource(fragment, 1, &fragmentData, NULL);
-    glCompileShader(fragment);*/
+   // fragment
+   uint fragment = glCreateShader(GL_FRAGMENT_SHADER);
+   glShaderSource(fragment, 1, &f_FragmentData, NULL);
+   glCompileShader(fragment);
 
 
 	/*
@@ -61,6 +62,10 @@ Shader::Shader(String vertex_filename, String fragment_filename) {
 		glLinkProgram(shaderProgram);
 		glUseProgram(shaderProgram);
 		*/
+
+   glDeleteShader(vertex);
+   glDeleteShader(fragment);
+
 }
 
 Shader::~Shader() {
