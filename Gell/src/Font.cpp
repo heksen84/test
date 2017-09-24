@@ -41,11 +41,10 @@ struct Character {
 
 std::map<uint, Character> Characters;
 GLuint VAO, VBO;
-
-int result = 0;
-
 GLuint _vertexShader, _fragmentShader;
 GLuint _shaderProgram;
+
+int result = 0;
 
 /*
  * ----------------------------------
@@ -54,6 +53,7 @@ GLuint _shaderProgram;
  */
 Font::Font(const String &fontName)
 {
+
 	// сохраняю состояния
 	glPushAttrib(GL_ALL_ATTRIB_BITS);
 	glPushClientAttrib(GL_CLIENT_VERTEX_ARRAY_BIT);
@@ -68,13 +68,10 @@ Font::Font(const String &fontName)
 	glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
 
 	GLuint texture;
-
 	for (uint c = 0; c < 512; c++) {
 
 		// FT_Load_Glyph???
-		if(FT_Load_Char(face, c, FT_LOAD_RENDER))
-			Msg::Error(L"Font: Glyph loading symbol %d error!", c);
-
+		if ( FT_Load_Char(face, c, FT_LOAD_RENDER) ) Msg::Error(L"Font: Glyph loading symbol %d error!", c);
 			glGenTextures(1, &texture);
 		    glBindTexture(GL_TEXTURE_2D, texture);
 		    glTexImage2D
@@ -155,8 +152,10 @@ Font::~Font(){
 }
 
 
-void Font::RenderText(String text, GLfloat x, GLfloat y, GLfloat scale, glm::vec3 color)
+void Font::RenderText(Unicode text, GLfloat x, GLfloat y, GLfloat scale, glm::vec3 color)
 {
+	//Msg::Error(text.c_str());
+
 	// сохраняю состояния
 	glPushAttrib(GL_ALL_ATTRIB_BITS);
 	glPushClientAttrib(GL_CLIENT_VERTEX_ARRAY_BIT);
@@ -167,7 +166,7 @@ void Font::RenderText(String text, GLfloat x, GLfloat y, GLfloat scale, glm::vec
     glActiveTexture(GL_TEXTURE0);
     glBindVertexArray(VAO);
 
-    std::string::const_iterator c;
+    Unicode::const_iterator c;
     for (c = text.begin(); c != text.end(); c++)
     {
         Character ch = Characters[*c];

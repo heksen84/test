@@ -160,14 +160,14 @@ int main(void){
 
 	Font arial("D:/projects/Steppe/data/fonts/diablo/diablo-font-1.ttf");
 
-	Shader shader("2","");
+	Shader shader("2","2");
 
 	while (g_AppRun)
 	{
 		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-		arial.RenderText("Diablo never die привет! 1984", 330, 600, 1.0f, glm::vec3(255, 155, 155));
+		arial.RenderText(L"Diablo never die привет! 1984", 330, 600, 1.0f, glm::vec3(255, 155, 155));
 
 //		gui.DrawText("small_font", 10, 20, 1, "This is demo!", glm::vec3(200,200,200) );
 

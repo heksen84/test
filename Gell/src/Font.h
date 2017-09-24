@@ -8,7 +8,7 @@ class Font
 {
 	public:	
 		Font(const String &fontName);
-		void RenderText(String text, GLfloat x, GLfloat y, GLfloat scale, glm::vec3 color);
+		void RenderText(Unicode text, GLfloat x, GLfloat y, GLfloat scale, glm::vec3 color);
 		virtual ~Font();
 };
 
