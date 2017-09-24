@@ -13,7 +13,6 @@
 #include "Font.h"
 #include "Gui.h"
 #include "Shader.h"
-#include "sqlite3/sqlite3.h"
 
 bool g_AppRun = true;
 
@@ -187,7 +186,7 @@ int main(void){
     sqlite3_close(db);
 
 	//Msg::Info(L"Терезе алды құлпырды\nҚызыл, сары, көкала,\nШешек атты гүл түрлі,\nҮйір болды көп ара.\nҚызыға қарап тұрғанда\nШағып алды басымнан\nЕңбекшіні қуам ба\nБалын бізге тасыған!");
-	//Msg::Info(L"Die Vögelein schweigen im Walde.");
+	Msg::Info(L"Die Vögelein schweigen im Walde.");
 
 	InitLibs();
 	CreatePlane();

@@ -1,10 +1,8 @@
 #ifndef COMMON_H_
 #define COMMON_H_
 
-#define _UNICODE
+//#define _UNICODE
 #define UNICODE
-
-
 #define DATA_PATH "D:/projects/Gell/Gell/Release/data"
 
 // windows
@@ -44,10 +42,10 @@ typedef unsigned char 		byte;
 #define GLEW_STATIC
 #include <glew/glew.h>
 #include <glfw3/glfw3.h>
-#include <libpng/png.h>
 #include <soil/soil.h>
 #include <freetype/ft2build.h>
 #include FT_FREETYPE_H
+#include "sqlite3/sqlite3.h"
 
 #include "Msg.h"
 
