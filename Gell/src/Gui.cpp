@@ -13,10 +13,10 @@ Gui::Gui() {
 Gui::~Gui() {
 }
 
-void Gui::CreateFont(const String &filename, const String &name){
+void Gui::CreateFont(const Unicode &filename, const Unicode &name){
 	//Msg::Info(text.c_str());
 }
 
-void Gui::DrawText(const String &fontName, float x, float y, float scale, const String &text, glm::vec3 color ) {
+void Gui::DrawText(const Unicode &fontName, float x, float y, float scale, const Unicode &text, glm::vec3 color ) {
 	//Msg::Info(text.c_str());
 }

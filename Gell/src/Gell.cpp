@@ -153,13 +153,13 @@ int main(void){
 	InitLibs();
 	CreatePlane();
 
-
-	//Gui gui;
-	//gui.CreateFontW("arial.ttf", "arial");
+	Gui gui;
+	gui.CreateFont(L"arial.ttf", L"arial");
 
 	Font arial("D:/projects/Steppe/data/fonts/diablo/diablo-font-1.ttf");
-
 	Shader shader("2","2");
+
+	//Msg::Info(L"Терезе алды құлпырды\nҚызыл, сары, көкала,\nШешек атты гүл түрлі,\nҮйір болды көп ара.\nҚызыға қарап тұрғанда\nШағып алды басымнан\nЕңбекшіні қуам ба\nБалын бізге тасыған!");
 
 	while (g_AppRun)
 	{
@@ -167,9 +167,7 @@ int main(void){
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 		arial.RenderText(L"Diablo never die привет! 1984", 330, 600, 1.0f, glm::vec3(255, 155, 155));
-
 //		gui.DrawText("small_font", 10, 20, 1, "This is demo!", glm::vec3(200,200,200) );
-
 		DrawPlane();
 
 		glfwPollEvents();

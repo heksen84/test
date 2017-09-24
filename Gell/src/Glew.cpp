@@ -8,12 +8,7 @@
 #include "Glew.h"
 
 void InitGLEW() {
-
 	glewExperimental = GL_TRUE;
-
-	if (glewInit() != GLEW_OK)
-		Msg::Error(L"GlewInit error");
-
-	if (!GLEW_VERSION_3_0)
-		Msg::Error(L"OpenGL 3.0 not avaiable!\nUpgrade your hardware or check drivers.");
+	if (glewInit() != GLEW_OK) Msg::Error(L"GlewInit error");
+	if (!GLEW_VERSION_3_0) Msg::Error(L"OpenGL 3.0 not avaiable!\nUpgrade your hardware or check drivers.");
 }
