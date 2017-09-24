@@ -22,11 +22,13 @@
 #include <tchar.h>
 #include <assert.h>
 
-typedef std::string 	String;		// анси строка		(char*)
-typedef std::wstring 	Unicode; 	// уникод строка	(wchar_t*)
-typedef unsigned int  	uint;
-typedef unsigned long  	ulong;
-typedef unsigned char 	byte;
+typedef std::stringstream 	StringStream;
+typedef std::string 		String;			// анси строка		(char*)
+typedef std::wstring 		Unicode; 		// уникод строка	(wchar_t*)
+typedef std::ifstream 		file;
+typedef unsigned int  		uint;
+typedef unsigned long  		ulong;
+typedef unsigned char 		byte;
 
 #define SAFE_DELETE(a) if( (a) != nullptr ) delete (a); (a) = nullptr;
 #define SAFE_DELETE_ARRAY(ptr) { if(ptr) { delete [](ptr); (ptr)=nullptr; } }

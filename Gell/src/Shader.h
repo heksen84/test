@@ -8,16 +8,16 @@
 #ifndef SHADER_H_
 #define SHADER_H_
 
-enum ShaderType{
-	VERTEX_SHADER,
-	FRAGMENT_SHADER
-};
+#include "Common.h"
 
 class Shader {
 public:
-	Shader(ShaderType type);
+	Shader(String vertex_filename, String fragment_filename);
 	void Bind();
 	virtual ~Shader();
+private:
+	file v_file;
+	file f_file;
 };
 
 #endif /* SHADER_H_ */

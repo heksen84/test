@@ -46,6 +46,7 @@ int result = 0;
 
 GLuint _vertexShader, _fragmentShader;
 GLuint _shaderProgram;
+
 /*
  * ----------------------------------
  *  Конструктор
@@ -53,13 +54,13 @@ GLuint _shaderProgram;
  */
 Font::Font(const String &fontName)
 {
+
 	// сохраняю состояния
 	glPushAttrib(GL_ALL_ATTRIB_BITS);
 	glPushClientAttrib(GL_CLIENT_VERTEX_ARRAY_BIT);
 
-	FT_Select_Charmap(face, FT_ENCODING_UNICODE);
-
 	result = FT_New_Face( ft, fontName.c_str(), 0, &face );
+	FT_Select_Charmap(face, FT_ENCODING_UNICODE);
 
 	if ( result == FT_Err_Unknown_File_Format ) Msg::Error("FreeType: file format error");
 	else if ( result ) Msg::Error("FreeType: font not found");
@@ -72,6 +73,7 @@ Font::Font(const String &fontName)
 
 	for (uint c = 0; c < 512; c++) {
 
+		// FT_Load_Glyph???
 		if(FT_Load_Char(face, c, FT_LOAD_RENDER))
 			Msg::Error("Font: Glyph loading symbol %d error!", c);
 
@@ -100,7 +102,7 @@ Font::Font(const String &fontName)
 		    	texture,
 		        glm::ivec2(face->glyph->bitmap.width, face->glyph->bitmap.rows),
 		        glm::ivec2(face->glyph->bitmap_left,  face->glyph->bitmap_top),
-		        (ulong)face->glyph->advance.x // FIXIT
+		        (ulong)face->glyph->advance.x // FIXIT?
 		    };
 
 		    Characters.insert(std::pair<uint, Character>(c, character));
@@ -153,6 +155,7 @@ Font::Font(const String &fontName)
 
 Font::~Font(){
 }
+
 
 void Font::RenderText(String text, GLfloat x, GLfloat y, GLfloat scale, glm::vec3 color)
 {
