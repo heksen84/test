@@ -13,6 +13,7 @@
 #include "Font.h"
 #include "Gui.h"
 #include "Shader.h"
+#include "sqlite3/sqlite3.h"
 
 bool g_AppRun = true;
 
@@ -48,7 +49,8 @@ const GLchar* fragmentSource = R"glsl(
     }
 )glsl";
 
-void InitLibs(void){
+void InitLibs(void)
+{
 	InitGLFW();
 	InitFreeType();
 	InitGLEW();
@@ -159,11 +161,30 @@ switch(Msg) {
 }
 
 
+static int callback(void *NotUsed, int argc, char **argv, char **azColName) {
+  /* int i;
+   for(i = 0; i<argc; i++) {
+      printf("%s = %s\n", azColName[i], argv[i] ? argv[i] : "NULL");
+   }
+   printf("\n");*/
+   return 0;
+}
+
 /* 
 --------------------------------
 точка входа
 --------------------------------*/	
 int main(void){
+
+	sqlite3 *db;
+
+	char *zErrMsg = 0;
+	const char *sql = "CREATE TABLE COMPANY('ID INT PRIMARY KEY NOT NULL, NAME TEXT NOT NULL, AGE INT NOT NULL, ADDRESS CHAR(50), SALARY REAL')";
+	const char *db_name = "local.db";
+
+	sqlite3_open(db_name, &db);
+    sqlite3_exec(db, sql, callback, 0, &zErrMsg);
+    sqlite3_close(db);
 
 	//Msg::Info(L"Терезе алды құлпырды\nҚызыл, сары, көкала,\nШешек атты гүл түрлі,\nҮйір болды көп ара.\nҚызыға қарап тұрғанда\nШағып алды басымнан\nЕңбекшіні қуам ба\nБалын бізге тасыған!");
 	//Msg::Info(L"Die Vögelein schweigen im Walde.");
@@ -186,7 +207,7 @@ int main(void){
 
 		wchar_t buf[255];
 		swprintf(buf, L"OpenGL version %s", gl_ver);
-		arial.RenderText(buf, 10, 730, 0.4f, glm::vec3(255, 155, 155));
+		arial.RenderText(buf, 10, 740, 0.4f, glm::vec3(255, 155, 155));
 		arial.RenderText(L"Diablo never die привет! 1984", 330, 600, 1.0f, glm::vec3(255, 155, 155));
 //		gui.DrawText("small_font", 10, 20, 1, "This is demo!", glm::vec3(200,200,200) );
 		DrawPlane();
