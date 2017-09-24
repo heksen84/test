@@ -11,7 +11,7 @@
 Shader::Shader(String vertex_filename, String fragment_filename) {
 
    if (vertex_filename.size() == 0 || vertex_filename.size() == 0)
-		Msg::Error("Shader: не указан один из шейдеров");
+	   Msg::Error("Shader: не указан один из шейдеров");
 
    String VertexData, FragmentData;
 
@@ -42,37 +42,20 @@ Shader::Shader(String vertex_filename, String fragment_filename) {
    glShaderSource(fragment, 1, &f_FragmentData, NULL);
    glCompileShader(fragment);
 
-
-	/*
-		// Create and compile the vertex shader
-		GLuint vertexShader = glCreateShader(GL_VERTEX_SHADER);
-		glShaderSource(vertexShader, 1, &vertexSource, NULL);
-		glCompileShader(vertexShader);
-
-		// Create and compile the fragment shader
-		GLuint fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
-		glShaderSource(fragmentShader, 1, &fragmentSource, NULL);
-		glCompileShader(fragmentShader);
-
-		// Link the vertex and fragment shader into a shader program
-		GLuint shaderProgram = glCreateProgram();
-		glAttachShader(shaderProgram, vertexShader);
-		glAttachShader(shaderProgram, fragmentShader);
-		glBindFragDataLocation(shaderProgram, 0, "outColor");
-		glLinkProgram(shaderProgram);
-		glUseProgram(shaderProgram);
-		*/
+   program = glCreateProgram();
+   glAttachShader(program, vertex);
+   glAttachShader(program, fragment);
+   glBindFragDataLocation(program, 0, "outColor");
+   glLinkProgram(program);
+   glUseProgram(program);
 
    glDeleteShader(vertex);
    glDeleteShader(fragment);
-
 }
 
 Shader::~Shader() {
-	// TODO Auto-generated destructor stub
 }
 
-void Shader::Bind(){
-
+void Shader::Bind() {
 }
 
