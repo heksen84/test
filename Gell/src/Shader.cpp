@@ -11,7 +11,7 @@
 Shader::Shader(String vertex_filename, String fragment_filename) {
 
 	if (vertex_filename.size() == 0 || vertex_filename.size() == 0)
-	Msg::Error("Shader: не указан один из шейдеров");
+		Msg::Error("Shader: не указан один из шейдеров");
 
 	String vertexData, fragmentData;
 
@@ -26,8 +26,20 @@ Shader::Shader(String vertex_filename, String fragment_filename) {
 	v_file.close();
 	f_file.close();
 
-    vertexData 	 = vShaderStream.str();
-    fragmentData = fShaderStream.str();
+   // const char* vertexData 	 	= vShaderStream.str();
+   // const char* fragmentData 	= fShaderStream.str();
+
+    uint vertex, fragment;
+
+    // vertex
+   /* vertex = glCreateShader(GL_VERTEX_SHADER);
+    glShaderSource(vertex, 1, &vertexData, NULL);
+    glCompileShader(vertex);
+
+    // fragment
+    fragment = glCreateShader(GL_FRAGMENT_SHADER);
+    glShaderSource(fragment, 1, &fragmentData, NULL);
+    glCompileShader(fragment);*/
 
 
 	/*
