@@ -178,7 +178,7 @@ int main(void){
 
 	sqlite3 *db;
 
-	char *zErrMsg = 0;
+	char *zErrMsg;
 	const char *sql = "CREATE TABLE COMPANY('ID INT PRIMARY KEY NOT NULL, NAME TEXT NOT NULL, AGE INT NOT NULL, ADDRESS CHAR(50), SALARY REAL')";
 	const char *db_name = "local.db";
 
