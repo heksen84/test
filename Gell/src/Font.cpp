@@ -49,8 +49,7 @@ int result = 0;
 /*
  * ----------------------------------
  *  Конструктор
- * ----------------------------------
- */
+ * ----------------------------------*/
 Font::Font(const String &fontName)
 {
 	// сохраняю состояния
@@ -67,12 +66,16 @@ Font::Font(const String &fontName)
 	glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
 
 	GLuint texture;
-	for (uint c = 0; c < 512; c++) {
 
-		// FT_Load_Glyph???
-		if ( FT_Load_Char(face, c, FT_LOAD_RENDER) ) Msg::Error(L"Font: Glyph loading symbol %d error!", c);
+	wchar_t symbols[] = L" ~!@#$%^&*()_+=-~.,/':;{}[]|\0123456789абвгдеёжзbйклмопрстуфхцчшщьъэюяАБВГДЕЁЖЗBЙКЛМОПРСТУФХЦЧШЩЬЪЭЮЯ";
+	for (uint c = 0; c < 255; c++)
+	{
+		// mapka std::map<wchar_t><Glyph> Symbols
+		if ( FT_Load_Glyph(face, FT_Get_Char_Index(face, symbols[40]), FT_LOAD_RENDER) ) Msg::Error(L"Font: Glyph loading symbol %d error!", c);
+
 			glGenTextures(1, &texture);
 		    glBindTexture(GL_TEXTURE_2D, texture);
+
 		    glTexImage2D
 		    (
 		      GL_TEXTURE_2D,
@@ -168,7 +171,7 @@ void Font::RenderText(Unicode text, GLfloat x, GLfloat y, GLfloat scale, glm::ve
     Unicode::const_iterator c;
     for (c = text.begin(); c != text.end(); c++)
     {
-        Character ch = Characters[*c];
+    	Character ch = Characters[*c];
         GLfloat xpos = x + ch.Bearing.x * scale;
         GLfloat ypos = y - (ch.Size.y - ch.Bearing.y) * scale;
         GLfloat w = ch.Size.x * scale;
