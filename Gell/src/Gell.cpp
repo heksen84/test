@@ -173,7 +173,7 @@ static int callback(void *NotUsed, int argc, char **argv, char **azColName) {
 --------------------------------
 точка входа
 --------------------------------*/	
-int main(void){
+int main(void) {
 
 	/*sqlite3 *db;
 
@@ -201,19 +201,12 @@ int main(void){
 	{
 		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
-		//arial.RenderText(L"Привет это я.", 330, 550, 0.5f, glm::vec3(255, 155, 155));
-		//arial.RenderText(L"Batman Forever Again!", 330, 500, 1.0f, glm::vec3(255, 155, 155));
-		//DrawPlane();
-
 		arial.RenderText(L"cataleptycs", 470, 500, 1.0f, glm::vec3(255, 155, 155));
 		arial.RenderText(L"presents", 590, 470, 0.5f, glm::vec3(255, 155, 155));
-		//arial.RenderText(L"представляет", 590, 460, 0.5f, glm::vec3(255, 155, 155));
-
 		glfwPollEvents();
 		glfwSwapBuffers(window);
 
-		//ShowFps(window);
+		//DrawPlane();
     }
 
 	glDeleteTextures(1, &tex);
@@ -227,8 +220,6 @@ int main(void){
     glfwTerminate();
 
     //Msg::Info(L"Приобрести полную версию\nwww.steppegame.com");
-
     //DialogBox(GetModuleHandle(0), MAKEINTRESOURCE(100), 0, reinterpret_cast<DLGPROC>(DlgProc));
-
     return 0;
 }
