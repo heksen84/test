@@ -32,10 +32,6 @@ void main()
 }
 )glsl";
 
-static wchar_t symbols[] = L"0123456789абвгдеёжзийклмопрстуфхцчшщьъэюяАБВГДЕЁЖЗBИЙКЛМОПРСТУФХЦЧШЩЬЪЭЮЯ"
-							"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
-							"!@#$%^&*()_+-={}|:<>?~., ";
-
 struct Glyph {
     GLuint TextureID;
     glm::ivec2 Size;
@@ -51,6 +47,10 @@ GLuint _vertexShader, _fragmentShader;
 GLuint _shaderProgram;
 
 int result = 0;
+
+static wchar_t symbols[] = L"0123456789абвгдеёжзийклмопрстуфхцчшщьъэюяАБВГДЕЁЖЗBИЙКЛМОПРСТУФХЦЧШЩЬЪЭЮЯ"
+							"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+							"!@#$%^&*()_+-={}|:<>?~., ";
 
 Font::Font(const String &fontName)
 {
@@ -191,6 +191,7 @@ void Font::RenderText(Unicode text, GLfloat x, GLfloat y, GLfloat scale, glm::ve
     		glDrawArrays(GL_TRIANGLES, 0, 6);
     		x += (ch.Advance >> 6) * scale;
     	}
+    	else Msg::Error(L"Font::RenderText: Symbol [ %c ] not found in symbols table", text[i]);
     }
 
     glBindVertexArray(0);
