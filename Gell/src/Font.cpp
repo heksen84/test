@@ -39,23 +39,22 @@ struct Glyph {
     GLuint Advance;
 };
 
-std::map<wchar_t, Glyph> Characters;
-std::map<wchar_t, Glyph>::const_iterator item;
-
 GLuint VAO, VBO;
 GLuint _vertexShader, _fragmentShader;
 GLuint _shaderProgram;
 
-int result = 0;
+std::map<wchar_t, Glyph> Characters;
+std::map<wchar_t, Glyph>::const_iterator item;
 
 static wchar_t symbols[] = L"0123456789абвгдеёжзийклмопрстуфхцчшщьъэюяАБВГДЕЁЖЗBИЙКЛМОПРСТУФХЦЧШЩЬЪЭЮЯ"	// кириллица
 							"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"						// латиница
 							"әғқңөұүhӘҒҚҢӨҰҮH"															// арабский
-							"!@#$%^&*()_+-={}|:;'<>?~., ";											// спецсимволы
-
+							"!@#$%^&*()_+-={}|:;'<>?~., ";												// спецсимволы
 
 Font::Font(const String &fontName)
 {
+	int result = 0;
+
 	glPushAttrib(GL_ALL_ATTRIB_BITS);
 	glPushClientAttrib(GL_CLIENT_VERTEX_ARRAY_BIT);
 
