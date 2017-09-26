@@ -46,10 +46,10 @@ GLuint _shaderProgram;
 std::map<wchar_t, Glyph> Characters;
 std::map<wchar_t, Glyph>::const_iterator item;
 
-static wchar_t symbols[] = L"0123456789абвгдеёжзийклмопрстуфхцчшщьыъэюяАБВГДЕЁЖЗBИЙКЛМОПРСТУФХЦЧШЩЬЫЪЭЮЯ"	// кириллица
+static wchar_t symbols[] = L"0123456789абвгдеёжзийклмнопрстуфхцчшщьыъэюяАБВГДЕЁЖЗBИЙКЛМНОПРСТУФХЦЧШЩЬЫЪЭЮЯ"	// кириллица
 							"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"						// латиница
-							"әғқңөұүhӘҒҚҢӨҰҮH"															// арабский
-							"!@#$%^&*()_+-={}|:;'<>?~., ";												// спецсимволы
+							"әғқңөұүhіӘҒҚҢӨҰҮH"															// арабский
+							"!@#$%^&*()_+-={}[]|:;'<>?~.,\n ";												// спецсимволы
 
 Font::Font(const String &fontName)
 {
