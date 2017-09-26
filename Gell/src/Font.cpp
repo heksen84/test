@@ -48,9 +48,11 @@ GLuint _shaderProgram;
 
 int result = 0;
 
-static wchar_t symbols[] = L"0123456789абвгдеёжзийклмопрстуфхцчшщьъэюяАБВГДЕЁЖЗBИЙКЛМОПРСТУФХЦЧШЩЬЪЭЮЯ"
-							"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
-							"!@#$%^&*()_+-={}|:<>?~., ";
+static wchar_t symbols[] = L"0123456789абвгдеёжзийклмопрстуфхцчшщьъэюяАБВГДЕЁЖЗBИЙКЛМОПРСТУФХЦЧШЩЬЪЭЮЯ"	// кириллица
+							"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"						// латиница
+							"әғқңөұүhӘҒҚҢӨҰҮH"															// арабский
+							"!@#$%^&*()_+-={}|:;'<>?~., ";											// спецсимволы
+
 
 Font::Font(const String &fontName)
 {
@@ -58,6 +60,7 @@ Font::Font(const String &fontName)
 	glPushClientAttrib(GL_CLIENT_VERTEX_ARRAY_BIT);
 
 	result = FT_New_Face( ft, fontName.c_str(), 0, &face );
+
 	FT_Select_Charmap(face, FT_ENCODING_UNICODE);
 
 	if ( result == FT_Err_Unknown_File_Format ) Msg::Error(L"FreeType: file format error");
@@ -73,7 +76,6 @@ Font::Font(const String &fontName)
 
 			glGenTextures(1, &texture);
 		    glBindTexture(GL_TEXTURE_2D, texture);
-
 		    glTexImage2D
 		    (
 		      GL_TEXTURE_2D,
@@ -144,9 +146,7 @@ Font::Font(const String &fontName)
 		    glPopAttrib();
 }
 
-
-Font::~Font()
-{
+Font::~Font(){
 }
 
 
@@ -165,7 +165,6 @@ void Font::RenderText(Unicode text, GLfloat x, GLfloat y, GLfloat scale, glm::ve
     for (uint i = 0; i < text.size(); i++) {
 
     	item = Characters.find(text[i]);
-
     	if (item != Characters.end()) {
     		Glyph ch = item->second;
     		GLfloat xpos = x + ch.Bearing.x * scale;
