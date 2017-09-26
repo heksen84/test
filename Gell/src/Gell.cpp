@@ -195,7 +195,8 @@ int main(void) {
 	gui.CreateFont(L"arial.ttf", L"arial");
 
 	Font arial("D:/projects/Steppe/data/fonts/diablo/diablo-font-1.ttf");
-	Shader shader("2","2");
+	//Font arial("D:/projects/Steppe/data/fonts/fonts_kz/baltica kz.ttf");
+	Shader shader("vertex","fragment");
 
 	while (g_AppRun)
 	{
@@ -203,6 +204,7 @@ int main(void) {
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		arial.RenderText(L"cataleptycs", 470, 500, 1.0f, glm::vec3(255, 155, 155));
 		arial.RenderText(L"presents", 590, 470, 0.5f, glm::vec3(255, 155, 155));
+		//arial.RenderText(L"Терезе алды құлпырды Қызыл", 590, 470, 1.0f, glm::vec3(255, 155, 155));
 		glfwPollEvents();
 		glfwSwapBuffers(window);
 
