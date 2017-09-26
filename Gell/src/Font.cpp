@@ -32,27 +32,28 @@ void main()
 }
 )glsl";
 
-struct Character {
+static wchar_t symbols[] = L"0123456789абвгдеёжзийклмопрстуфхцчшщьъэюяАБВГДЕЁЖЗBИЙКЛМОПРСТУФХЦЧШЩЬЪЭЮЯ"
+							"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+							"!@#$%^&*()_+-={}|:<>?~., ";
+
+struct Glyph {
     GLuint TextureID;
     glm::ivec2 Size;
     glm::ivec2 Bearing;
     GLuint Advance;
 };
 
-std::map<uint, Character> Characters;
+std::map<wchar_t, Glyph> Characters;
+std::map<wchar_t, Glyph>::const_iterator item;
+
 GLuint VAO, VBO;
 GLuint _vertexShader, _fragmentShader;
 GLuint _shaderProgram;
 
 int result = 0;
 
-/*
- * ----------------------------------
- *  Конструктор
- * ----------------------------------*/
 Font::Font(const String &fontName)
 {
-	// сохраняю состояния
 	glPushAttrib(GL_ALL_ATTRIB_BITS);
 	glPushClientAttrib(GL_CLIENT_VERTEX_ARRAY_BIT);
 
@@ -67,11 +68,8 @@ Font::Font(const String &fontName)
 
 	GLuint texture;
 
-	wchar_t symbols[] = L" ~!@#$%^&*()_+=-~.,/':;{}[]|\0123456789абвгдеёжзbйклмопрстуфхцчшщьъэюяАБВГДЕЁЖЗBЙКЛМОПРСТУФХЦЧШЩЬЪЭЮЯ";
-	for (uint c = 0; c < 255; c++)
-	{
-		// mapka std::map<wchar_t><Glyph> Symbols
-		if ( FT_Load_Glyph(face, FT_Get_Char_Index(face, symbols[40]), FT_LOAD_RENDER) ) Msg::Error(L"Font: Glyph loading symbol %d error!", c);
+	for (uint c = 0; c < sizeof(symbols); c++) {
+		if ( FT_Load_Char(face, symbols[c], FT_LOAD_RENDER) ) Msg::Error(L"Font: Glyph loading symbol %d error!", c);
 
 			glGenTextures(1, &texture);
 		    glBindTexture(GL_TEXTURE_2D, texture);
@@ -89,20 +87,19 @@ Font::Font(const String &fontName)
 		      face->glyph->bitmap.buffer
 		    );
 
-		    // Set texture options
 		    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
 		    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 		    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 		    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
-		    Character character = {
+		    Glyph character = {
 		    	texture,
 		        glm::ivec2(face->glyph->bitmap.width, face->glyph->bitmap.rows),
 		        glm::ivec2(face->glyph->bitmap_left,  face->glyph->bitmap_top),
-		        (ulong)face->glyph->advance.x // FIXIT?
+		        (ulong)face->glyph->advance.x
 		    };
 
-		    Characters.insert(std::pair<uint, Character>(c, character));
+		    Characters.insert(std::pair<wchar_t, Glyph>(symbols[c], character));
 		}
 
 		    FT_Done_Face(face);
@@ -128,7 +125,6 @@ Font::Font(const String &fontName)
 		    glShaderSource(_fragmentShader, 1, &_FragmentSource, NULL);
 		   	glCompileShader(_fragmentShader);
 
-		    // Link the vertex and fragment shader into a shader program
 		    _shaderProgram = glCreateProgram();
 		    glAttachShader(_shaderProgram, _vertexShader);
 		    glAttachShader(_shaderProgram, _fragmentShader);
@@ -144,19 +140,17 @@ Font::Font(const String &fontName)
 
 		    glEnable(GL_BLEND);
 		    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-
-		    // восстанавливаю состояния
 		    glPopClientAttrib();
 		    glPopAttrib();
 }
 
-Font::~Font(){
+
+Font::~Font()
+{
 }
 
 
-void Font::RenderText(Unicode text, GLfloat x, GLfloat y, GLfloat scale, glm::vec3 color)
-{
-	//Msg::Error(text.c_str());
+void Font::RenderText(Unicode text, GLfloat x, GLfloat y, GLfloat scale, glm::vec3 color) {
 
 	// сохраняю состояния
 	glPushAttrib(GL_ALL_ATTRIB_BITS);
@@ -168,38 +162,39 @@ void Font::RenderText(Unicode text, GLfloat x, GLfloat y, GLfloat scale, glm::ve
     glActiveTexture(GL_TEXTURE0);
     glBindVertexArray(VAO);
 
-    Unicode::const_iterator c;
-    for (c = text.begin(); c != text.end(); c++)
-    {
-    	Character ch = Characters[*c];
-        GLfloat xpos = x + ch.Bearing.x * scale;
-        GLfloat ypos = y - (ch.Size.y - ch.Bearing.y) * scale;
-        GLfloat w = ch.Size.x * scale;
-        GLfloat h = ch.Size.y * scale;
+    for (uint i = 0; i < text.size(); i++) {
 
-        GLfloat vertices[6][4] =
-        {
-            { xpos,     ypos + h,   0.0, 0.0 },
-            { xpos,     ypos,       0.0, 1.0 },
-            { xpos + w, ypos,       1.0, 1.0 },
+    	item = Characters.find(text[i]);
 
-            { xpos,     ypos + h,   0.0, 0.0 },
-            { xpos + w, ypos,       1.0, 1.0 },
-            { xpos + w, ypos + h,   1.0, 0.0 }
-        };
+    	if (item != Characters.end()) {
+    		Glyph ch = item->second;
+    		GLfloat xpos = x + ch.Bearing.x * scale;
+    		GLfloat ypos = y - (ch.Size.y - ch.Bearing.y) * scale;
+    		GLfloat w = ch.Size.x * scale;
+    		GLfloat h = ch.Size.y * scale;
 
-        glBindTexture(GL_TEXTURE_2D, ch.TextureID);
-        glBindBuffer(GL_ARRAY_BUFFER, VBO);
-        glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(vertices), vertices); // Be sure to use glBufferSubData and not glBufferData
-        glBindBuffer(GL_ARRAY_BUFFER, 0);
-        glDrawArrays(GL_TRIANGLES, 0, 6);
-        x += (ch.Advance >> 6) * scale;
+    		GLfloat vertices[6][4] =
+    		{
+    		   { xpos,     ypos + h,   0.0, 0.0 },
+    		   { xpos,     ypos,       0.0, 1.0 },
+    		   { xpos + w, ypos,       1.0, 1.0 },
+
+    		   { xpos,     ypos + h,   0.0, 0.0 },
+    		   { xpos + w, ypos,       1.0, 1.0 },
+    		   { xpos + w, ypos + h,   1.0, 0.0 }
+    		};
+
+    		glBindTexture(GL_TEXTURE_2D, ch.TextureID);
+    		glBindBuffer(GL_ARRAY_BUFFER, VBO);
+    		glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(vertices), vertices); // Be sure to use glBufferSubData and not glBufferData
+    		glBindBuffer(GL_ARRAY_BUFFER, 0);
+    		glDrawArrays(GL_TRIANGLES, 0, 6);
+    		x += (ch.Advance >> 6) * scale;
+    	}
     }
 
     glBindVertexArray(0);
     glBindTexture(GL_TEXTURE_2D, 0);
-
-    // восстанавливаю состояния
     glPopClientAttrib();
     glPopAttrib();
 }

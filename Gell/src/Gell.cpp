@@ -204,12 +204,9 @@ int main(void){
 		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-		wchar_t buf[255];
-		swprintf(buf, L"OpenGL version %s", gl_ver);
-		arial.RenderText(buf, 10, 740, 0.4f, glm::vec3(255, 155, 155));
-		arial.RenderText(L"Diablo never die привет! 1984", 330, 600, 1.0f, glm::vec3(255, 155, 155));
-//		gui.DrawText("small_font", 10, 20, 1, "This is demo!", glm::vec3(200,200,200) );
-		DrawPlane();
+		arial.RenderText(L"Привет это я.", 330, 550, 0.5f, glm::vec3(255, 155, 155));
+		arial.RenderText(L"Batman Forever Again!", 330, 500, 1.0f, glm::vec3(255, 155, 155));
+		//DrawPlane();
 
 		glfwPollEvents();
 		glfwSwapBuffers(window);
