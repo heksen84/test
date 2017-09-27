@@ -162,7 +162,7 @@ Font::~Font(){
 }
 
 /* отрисовка */
-void Font::RenderText(Unicode text, GLfloat x, GLfloat y, GLfloat scale, glm::vec3 color) {
+void Font::RenderText(const Unicode &text, GLfloat x, GLfloat y, GLfloat scale, glm::vec3 color) {
 
 	// сохраняю состояния
 	glPushAttrib(GL_ALL_ATTRIB_BITS);

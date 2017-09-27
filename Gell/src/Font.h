@@ -8,7 +8,7 @@ class Font
 {
 	public:
 		void LoadSymbol(const wchar_t &symbol);
-		void RenderText(Unicode text, GLfloat x, GLfloat y, GLfloat scale, glm::vec3 color);
+		void RenderText(const Unicode &text, GLfloat x, GLfloat y, GLfloat scale, glm::vec3 color);
 		Font(const String &fontName);
 		virtual ~Font();
 	private:
