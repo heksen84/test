@@ -10,8 +10,6 @@
 #include "Common.h"
 
 extern FT_Library 	 ft;
-extern FT_Face     	 face;
-extern FT_GlyphSlot  slot;
-
 extern void InitFreeType(void);
+
 #endif /* FREETYPE_H_ */

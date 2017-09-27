@@ -8,8 +8,6 @@
 #include "FreeType.h"
 
 FT_Library 		ft;
-FT_Face     	face;
-FT_GlyphSlot  	slot;
 
 void InitFreeType(void) {
 	if (FT_Init_FreeType(&ft)) Msg::Error(L"FT_Init_FreeType");
