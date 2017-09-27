@@ -51,7 +51,7 @@ std::map<wchar_t, Glyph>::const_iterator item;
 static wchar_t symbols_table[] = L"0123456789абвгдеёжзийклмнопрстуфхцчшщьыъэюяАБВГДЕЁЖЗBИЙКЛМНОПРСТУФХЦЧШЩЬЫЪЭЮЯ"	// кириллица
 								  "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"							// латиница
 								  "әғқңөұүhіӘҒҚҢӨҰҮH"																// арабский
-								  "!@#$%^&*()_+-={}[]|:;'<>?~., ";													// спецсимволы
+								  "!@#$%^&*()_+-={}[]|:;'<>?~.,\"\\/ ";												// спецсимволы
 
 
 /*
@@ -103,6 +103,7 @@ Font::Font(const String &fontName)
 
 	glPushAttrib(GL_ALL_ATTRIB_BITS);
 	glPushClientAttrib(GL_CLIENT_VERTEX_ARRAY_BIT);
+
 	result = FT_New_Face( ft, fontName.c_str(), 0, &face );
 	FT_Select_Charmap(face, FT_ENCODING_UNICODE);
 
