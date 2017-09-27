@@ -49,9 +49,9 @@ std::map<wchar_t, Glyph> Symbols;
 std::map<wchar_t, Glyph>::const_iterator item;
 
 static wchar_t symbols_table[] = L"0123456789абвгдеёжзийклмнопрстуфхцчшщьыъэюяАБВГДЕЁЖЗBИЙКЛМНОПРСТУФХЦЧШЩЬЫЪЭЮЯ"	// кириллица
-								"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"								// латиница
-								"әғқңөұүhіӘҒҚҢӨҰҮH"																	// арабский
-								"!@#$%^&*()_+-={}[]|:;'<>?~., ";													// спецсимволы
+								  "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"							// латиница
+								  "әғқңөұүhіӘҒҚҢӨҰҮH"																// арабский
+								  "!@#$%^&*()_+-={}[]|:;'<>?~., ";													// спецсимволы
 
 
 /*
