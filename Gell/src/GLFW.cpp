@@ -79,6 +79,7 @@ void mouse_callback(GLFWwindow* window, double xpos, double ypos) {
 * -----------------------------
 */
 void InitGLFW(void) {
+
 	if (!glfwInit())
 		Msg::Error(L"glfwInit error");
 

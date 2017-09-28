@@ -50,7 +50,10 @@ typedef unsigned char 		byte;
 
 // глобально
 extern bool g_AppRun;
+
+extern sqlite3 *db;
 extern FT_Library ft;
+
 extern void COM_InitLibs(void);
 
 #endif
