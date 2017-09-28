@@ -1,7 +1,5 @@
 #ifndef FONT_H_
 #define FONT_H_
-
-#include "Freetype.h" // local
 #include "Common.h"
 
 class Font

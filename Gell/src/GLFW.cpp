@@ -78,9 +78,7 @@ void mouse_callback(GLFWwindow* window, double xpos, double ypos) {
 * InitGLFW
 * -----------------------------
 */
-void InitGLFW(void)
-{
-
+void InitGLFW(void) {
 	if (!glfwInit())
 		Msg::Error(L"glfwInit error");
 
@@ -100,7 +98,9 @@ void InitGLFW(void)
 	glfwWindowHint(GLFW_REFRESH_RATE, 	mode->refreshRate);
 
 	window = glfwCreateWindow(mode->width, mode->height, "[ Strategy ]", monitor, NULL);
-	if (!window) Msg::Error(L"glfwCreateWindow: problem");
+
+	if (!window)
+		Msg::Error(L"glfwCreateWindow: problem");
 
 	/* Make the window's context current */
     glfwMakeContextCurrent(window);

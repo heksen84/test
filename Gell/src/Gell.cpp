@@ -7,8 +7,6 @@
 #include "Texture.h"
 #include "ObjMesh.h"
 #include "GLFW.h"
-#include "FreeType.h"
-#include "Glew.h"
 #include "Renderer.h"
 #include "Font.h"
 #include "Gui.h"
@@ -47,13 +45,6 @@ const GLchar* fragmentSource = R"glsl(
         outColor = texture(tex, Texcoord)*1.7;
     }
 )glsl";
-
-void InitLibs(void)
-{
-	InitGLFW();
-	InitFreeType();
-	InitGLEW();
-}
 
 void CreatePlane(){
 
@@ -188,7 +179,7 @@ int main(void) {
 	//Msg::Info(L"Терезе алды құлпырды\nҚызыл, сары, көкала,\nШешек атты гүл түрлі,\nҮйір болды көп ара.\nҚызыға қарап тұрғанда\nШағып алды басымнан\nЕңбекшіні қуам ба\nБалын бізге тасыған!");
 	//Msg::Info(L"Die Vögelein schweigen im Walde.");
 
-	InitLibs();
+	COM_InitLibs();
 	CreatePlane();
 
 	Gui gui;
