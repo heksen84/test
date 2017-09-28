@@ -53,40 +53,26 @@ static wchar_t symbols_table[] = L"0123456789абвгдеёжзийклмноп�
 								  "әғқңөұүhіӘҒҚҢӨҰҮH"																// арабский
 								  "!@#$%^&*()_+-={}[]|:;'<>?~.,\"\\/ ";												// спецсимволы
 
-
 /*
  * ------------------------------------------------
- * загружаю символ и генерирую для него текстуру
+ * Создаю символ
  * ------------------------------------------------
  */
-void Font::LoadSymbol(const wchar_t &symbol){
+void Font::CreateSymbol(const wchar_t &symbol){
 
-	if ( FT_Load_Char(face, symbol, FT_LOAD_RENDER) )
-		Msg::Error(L"Font: Glyph loading symbol %d error!", symbol);
+	if ( FT_Load_Char(face, symbol, FT_LOAD_RENDER) ) Msg::Error(L"Font: Glyph loading symbol %d error!", symbol);
 
 	glGenTextures(1, &texture);
 	glBindTexture(GL_TEXTURE_2D, texture);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RED, face->glyph->bitmap.width, face->glyph->bitmap.rows, 0, GL_RED, GL_UNSIGNED_BYTE, face->glyph->bitmap.buffer);
 
-	glTexImage2D
-	(
-		GL_TEXTURE_2D,
-		0,
-		GL_RED,
-		face->glyph->bitmap.width,
-		face->glyph->bitmap.rows,
-		0,
-		GL_RED,
-		GL_UNSIGNED_BYTE,
-		face->glyph->bitmap.buffer
-	);
-
+	// параметры текстуры
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
-	Glyph character =
-	{
+	Glyph character = {
 	   	texture,
 	    glm::ivec2(face->glyph->bitmap.width, face->glyph->bitmap.rows),
 	    glm::ivec2(face->glyph->bitmap_left,  face->glyph->bitmap_top),
@@ -116,7 +102,7 @@ Font::Font(const String &fontName)
 	glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
 
 	for (uint i = 0; i < sizeof(symbols_table); i++)
-		LoadSymbol(symbols_table[i]);
+		CreateSymbol(symbols_table[i]);
 
 	FT_Done_Face(face);
 	FT_Done_FreeType(ft);
@@ -169,7 +155,7 @@ void Font::RenderText(const Unicode &text, GLfloat x, GLfloat y, GLfloat scale, 
 	glPushAttrib(GL_ALL_ATTRIB_BITS);
 	glPushClientAttrib(GL_CLIENT_VERTEX_ARRAY_BIT);
 
-    //загрузить сюда шейдер и передать его параметры дальше
+    // загрузить сюда шейдер и передать его параметры дальше
 	glUseProgram(_shaderProgram);
     glUniform3f(glGetUniformLocation(_shaderProgram, "textColor"), color.x, color.y, color.z);
     glActiveTexture(GL_TEXTURE0);
@@ -190,7 +176,6 @@ void Font::RenderText(const Unicode &text, GLfloat x, GLfloat y, GLfloat scale, 
     		   { xpos,     ypos + h,   0.0, 0.0 },
     		   { xpos,     ypos,       0.0, 1.0 },
     		   { xpos + w, ypos,       1.0, 1.0 },
-
     		   { xpos,     ypos + h,   0.0, 0.0 },
     		   { xpos + w, ypos,       1.0, 1.0 },
     		   { xpos + w, ypos + h,   1.0, 0.0 }
