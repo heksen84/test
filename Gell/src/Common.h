@@ -46,13 +46,11 @@ typedef unsigned char 		byte;
 #include <freetype/ft2build.h>
 #include FT_FREETYPE_H
 #include "sqlite3/sqlite3.h"
-
 #include "Msg.h"
 
 // глобально
 extern bool g_AppRun;
 extern FT_Library ft;
-
 extern void COM_InitLibs(void);
 
 #endif
