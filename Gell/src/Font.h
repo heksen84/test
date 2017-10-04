@@ -10,9 +10,9 @@ class Font
 		Font(const String &fontName);
 		virtual ~Font();
 	private:
-		GLuint 			texture;
-		FT_Face     	face;
-		FT_GlyphSlot  	slot;
+		GLuint texture;
+		FT_Face	face;
+		FT_GlyphSlot slot;
 };
 
 #endif

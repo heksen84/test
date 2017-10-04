@@ -60,7 +60,8 @@ static wchar_t symbols_table[] = L"0123456789абвгдеёжзийклмноп�
  */
 void Font::CreateSymbol(const wchar_t &symbol){
 
-	if ( FT_Load_Char(face, symbol, FT_LOAD_RENDER) ) Msg::Error(L"Font: Glyph loading symbol %d error!", symbol);
+	if ( FT_Load_Char(face, symbol, FT_LOAD_RENDER) )
+		Msg::Error(L"Font: Glyph loading symbol %d error!", symbol);
 
 	glGenTextures(1, &texture);
 	glBindTexture(GL_TEXTURE_2D, texture);
