@@ -1,6 +1,7 @@
 // --------------------------
 // Gell.cpp
 // Ilya Bobkov
+// 2017 (c)
 // --------------------------
 #include "Common.h"
 #include "Util.h"
