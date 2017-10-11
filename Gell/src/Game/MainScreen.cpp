@@ -46,9 +46,9 @@ void MainScreen::Render()
 
 MainScreen::~MainScreen()
 {
-	SOIL_free_image_data(background_image);
 	glDeleteBuffers(1, &ebo);
 	glDeleteBuffers(1, &vbo);
 	glDeleteVertexArrays(1, &vao);
+	SOIL_free_image_data(background_image);
 }
 
