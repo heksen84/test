@@ -16,6 +16,7 @@ public:
 	void Render();
 private:
 	GLuint vbo, vao, ebo;
+	byte* background_image;
 };
 
 #endif /* MAINSCREEN_H_ */
