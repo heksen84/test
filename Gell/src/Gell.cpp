@@ -47,7 +47,7 @@ const GLchar* fragmentSource = R"glsl(
     }
 )glsl";
 
-void CreatePlane(){
+void CreatePlane() {
 
 	    glGenVertexArrays(1, &vao);
 	    glBindVertexArray(vao);
@@ -138,11 +138,11 @@ LRESULT CALLBACK DlgProc(HWND hWndDlg, UINT Msg, WPARAM wParam, LPARAM lParam) {
 switch(Msg) {
 	case WM_INITDIALOG:
 	return TRUE;
-	/*case WM_COMMAND:
+	case WM_COMMAND:
 		switch(wParam){
 			case IDOK: EndDialog(hWndDlg, 0); return TRUE;
 		}
-		break;*/
+		break;
 		case WM_CLOSE: EndDialog(hWndDlg, 0); break;
 	}
 	return FALSE;
@@ -155,9 +155,6 @@ switch(Msg) {
 --------------------------------*/	
 int main(void) {
 
-	Msg::Info(L"Терезе алды құлпырды\nҚызыл, сары, көкала,\nШешек атты гүл түрлі,\nҮйір болды көп ара.\nҚызыға қарап тұрғанда\nШағып алды басымнан\nЕңбекшіні қуам ба\nБалын бізге тасыған!");
-	Msg::Info(L"Die Vögelein schweigen im Walde.");
-
 	COM_InitLibs();
 	CreatePlane();
 
@@ -165,13 +162,11 @@ int main(void) {
 	gui.CreateFont(L"arial.ttf", L"arial");
 
 	Font arial("D:/projects/Steppe/data/fonts/diablo/diablo-font-1.ttf");
-	//Font arial("D:/projects/Steppe/data/fonts/fonts_kz/baltica kz.ttf");
 	Shader shader("vertex","fragment");
 
 	MainScreen main_screen;
 
-	while (g_AppRun)
-	{
+	while (g_AppRun) {
 		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
@@ -179,11 +174,8 @@ int main(void) {
 
 		arial.RenderText(L"\"cataleptycs\"", 470, 500, 1.0f, glm::vec3(255, 155, 155));
 		arial.RenderText(L"presents", 595, 470, 0.5f, glm::vec3(255, 155, 155));
-		//arial.RenderText(L"Алтын күн аспаны Алтын дән даласы Ерліктің дастаны Еліме қарашы Ежелден ер деген Даңқымыз шықты ғой Намысын бермеген Қазағым мықты ғой!", 10, 700, 1.2f, glm::vec3(255, 155, 155));
 		glfwPollEvents();
 		glfwSwapBuffers(window);
-
-		//DrawPlane();
     }
 
 	glDeleteTextures(1, &tex);
