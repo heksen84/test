@@ -10,8 +10,7 @@
 MainScreen::MainScreen() {
 
 	// x, y, r, g, b, u, w
-	GLfloat background_vertices[] =
-	{
+	GLfloat background_vertices[] = {
 	   -0.25f,  0.4f, 	1.0f, 0.0f, 0.0f, 0.0f, 0.0f, // Top-left
 		0.25f,  0.4f, 	0.0f, 1.0f, 0.0f, 1.0f, 0.0f, // Top-right
 		0.25f, -0.4f, 	0.0f, 0.0f, 1.0f, 1.0f, 1.0f, // Bottom-right
@@ -34,7 +33,7 @@ MainScreen::MainScreen() {
 
    	int width, height;
 
-   	background_image = SOIL_load_image("D:/projects/steppe/data/gui/menu/mainmenu.jpg", &width, &height, 0, SOIL_LOAD_RGB);
+   	background_image = SOIL_load_image("D:\\projects\\Steppe\\data\\Img\\background.jpg", &width, &height, 0, SOIL_LOAD_RGB);
 
    	if (!background_image)
    		Msg::Error(L"SOIL_load_image: background image not found");
@@ -42,11 +41,12 @@ MainScreen::MainScreen() {
    	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, background_image);
 }
 
-void MainScreen::Render(){
+// --- отрисовка ---
+void MainScreen::Render() {
 
 }
 
-MainScreen::~MainScreen(){
+MainScreen::~MainScreen() {
 	glDeleteBuffers(1, &ebo);
 	glDeleteBuffers(1, &vbo);
 	glDeleteVertexArrays(1, &vao);
