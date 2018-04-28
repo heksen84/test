@@ -18,8 +18,7 @@ template <typename T> class Singleton {
         static T* msSingleton;
 
     public:
-        Singleton( void )
-    	{
+        Singleton( void ) {
             assert( !msSingleton );
         }
         ~Singleton( void )
