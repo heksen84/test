@@ -6,8 +6,8 @@
 #include "Texture.h"
 #include "Util.h"
 
-Texture::Texture(const String &filename)
-{
+Texture::Texture(const String &filename) {
+
 	width 		= 0;
 	height 		= 0;
 	pixeldepth 	= 0;
@@ -26,6 +26,6 @@ Texture::Texture(const String &filename)
 	}
 }
 
-Texture::~Texture(){
+Texture::~Texture() {
 	SAFE_DELETE(data);
 }

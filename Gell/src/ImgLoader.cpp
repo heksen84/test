@@ -5,8 +5,7 @@
  *      Author: Соня
  */
 
-#include "ImageLoader.h"
+#include "ImgLoader.h"
 
-void ImageLoader::LoadImage(const String &fileName)
-{
+void ImgLoader::LoadImage(const String &fileName) {
 }

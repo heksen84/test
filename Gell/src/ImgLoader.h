@@ -9,7 +9,7 @@
 #define IMAGELOADER_H_
 #include "Common.h"
 
-class ImageLoader {
+class ImgLoader {
 public:
 	static void LoadImage(const String &fileName);
 };

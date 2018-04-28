@@ -165,16 +165,18 @@ int main(void) {
 	Font arial("D:/projects/Steppe/data/fonts/diablo/diablo-font-1.ttf");
 	Shader shader("vertex","fragment");
 
-	MainScreen main_screen;
+	MainScreen ms;
 
 	while (g_AppRun) {
+
 		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-		main_screen.Render();
+		ms.Render();
 
 		arial.RenderText(L"\"cataleptycs\"", 470, 500, 1.0f, glm::vec3(255, 155, 155));
 		arial.RenderText(L"presents", 595, 470, 0.5f, glm::vec3(255, 155, 155));
+		arial.RenderText(L"большой приветик!", 500, 250, 0.5f, glm::vec3(255, 155, 155));
 		glfwPollEvents();
 		glfwSwapBuffers(window);
     }

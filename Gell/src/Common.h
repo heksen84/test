@@ -44,9 +44,9 @@ typedef unsigned char 		byte;
 #include <glfw3/glfw3.h>
 #include <soil/soil.h>
 #include <freetype/ft2build.h>
-#include FT_FREETYPE_H
 #include "sqlite3/sqlite3.h"
 #include "Msg.h"
+#include FT_FREETYPE_H
 
 // глобально
 extern bool g_AppRun;
