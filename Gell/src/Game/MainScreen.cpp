@@ -7,8 +7,8 @@
 
 #include "MainScreen.h"
 
-MainScreen::MainScreen()
-{
+MainScreen::MainScreen() {
+
 	// x, y, r, g, b, u, w
 	GLfloat background_vertices[] = {
 	   -0.25f,  0.4f, 	1.0f, 0.0f, 0.0f, 0.0f, 0.0f, // Top-left

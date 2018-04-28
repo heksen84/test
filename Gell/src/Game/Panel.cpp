@@ -5,6 +5,5 @@
 --------------------------*/
 #include "Panel.h"
 
-void Panel::Render(void)
-{
+void Panel::Render(void) {
 }

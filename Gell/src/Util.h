@@ -2,8 +2,7 @@
 #define UTIL_H_
 #include "Common.h"
 
-class Util
-{
+class Util {
 	public:	
 	static String GetFileExtension(const String &filename);
 };

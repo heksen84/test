@@ -115,8 +115,11 @@ void CreatePlane() {
 
 	    // Загрузка текстуры
 	   	int width, height;
+
 	   	byte* image = SOIL_load_image("D:/projects/steppe/data/gui/menu/mainmenu.jpg", &width, &height, 0, SOIL_LOAD_RGB);
-	   	if (!image) Msg::Error(L"SOIL_load_image: image not found");
+
+	   	if (!image)
+	   		Msg::Error(L"SOIL_load_image: image not found");
 
 	    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, image);
 	    SOIL_free_image_data(image);
@@ -174,9 +177,8 @@ int main(void) {
 
 		ms.Render();
 
-		arial.RenderText(L"\"cataleptycs\"", 470, 500, 1.0f, glm::vec3(255, 155, 155));
-		arial.RenderText(L"presents", 595, 470, 0.5f, glm::vec3(255, 155, 155));
-		arial.RenderText(L"большой приветик!", 500, 250, 0.5f, glm::vec3(255, 155, 155));
+		//arial.RenderText(L"\"AksuArena 2018\"", 470, 500, 1.0f, glm::vec3(255, 155, 155));
+		arial.RenderText(L"Ilya Bobkov", 470, 500, 0.8f, glm::vec3(255, 155, 155));
 		glfwPollEvents();
 		glfwSwapBuffers(window);
     }
@@ -193,5 +195,6 @@ int main(void) {
 
     //Msg::Info(L"Приобрести полную версию\nwww.steppegame.com");
     //DialogBox(GetModuleHandle(0), MAKEINTRESOURCE(100), 0, reinterpret_cast<DLGPROC>(DlgProc));
+
     return 0;
 }

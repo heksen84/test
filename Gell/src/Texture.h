@@ -2,8 +2,7 @@
 #define TEXTURE_H_
 #include "Common.h"
 
-class Texture
-{
+class Texture {
 	public:			
 		uint width;
 		uint height;

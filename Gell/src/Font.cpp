@@ -12,8 +12,7 @@ const GLchar* _VertexSource = R"glsl(
 layout (location = 0) in vec4 vertex; // <vec2 pos, vec2 tex>
 out vec2 TexCoords;
 uniform mat4 projection;
-void main()
-{
+void main() {
     gl_Position = projection * vec4(vertex.xy, 0.0, 1.0);
     TexCoords = vertex.zw;
 }  
@@ -25,15 +24,13 @@ in vec2 TexCoords;
 out vec4 color;
 uniform sampler2D text;
 uniform vec3 textColor;
-void main()
-{    
+void main() {    
     vec4 sampled = vec4(1.0, 1.0, 1.0, texture(text, TexCoords).r);
     color = vec4(textColor, 1.0) * sampled;
 }
 )glsl";
 
-struct Glyph
-{
+struct Glyph {
     GLuint TextureID;
     glm::ivec2 Size;
     glm::ivec2 Bearing;
@@ -48,6 +45,7 @@ GLuint _shaderProgram;
 std::map<wchar_t, Glyph> Symbols;
 std::map<wchar_t, Glyph>::const_iterator item;
 
+// таблица символов
 static wchar_t symbols_table[] = L"0123456789абвгдеёжзийклмнопрстуфхцчшщьыъэюяАБВГДЕЁЖЗBИЙКЛМНОПРСТУФХЦЧШЩЬЫЪЭЮЯ"	// кириллица
 								  "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"							// латиница
 								  "әғқңөұүhіӘҒҚҢӨҰҮH"																// арабский
@@ -84,8 +82,7 @@ void Font::CreateSymbol(const wchar_t &symbol){
 }
 
 /* конструктор */
-Font::Font(const String &fontName)
-{
+Font::Font(const String &fontName){
 	int result=0;
 
 	glPushAttrib(GL_ALL_ATTRIB_BITS);

@@ -9,8 +9,7 @@
 #define SINGLETON_H_
 #include "Common.h"
 
-template <typename T> class Singleton
-{
+template <typename T> class Singleton {
 	private:
 		Singleton(const Singleton<T> &);
 		Singleton& operator=(const Singleton<T> &);

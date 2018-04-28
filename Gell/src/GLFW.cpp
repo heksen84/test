@@ -14,7 +14,7 @@ GLFWcursor*  cursor_default;
 GLFWcursor*  cursor_loading;
 const GLFWvidmode* 	mode;
 
-void SetSystemCursors(){
+void SetSystemCursors() {
 
 	int width, height;
 	GLFWimage image_default, image_loading;
