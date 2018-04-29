@@ -8,9 +8,11 @@
 #ifndef GLTFMESH_H_
 #define GLTFMESH_H_
 
+#include "Common.h"
+
 class GLTFMesh {
 public:
-	GLTFMesh();
+	GLTFMesh(const String &meshFileName);
 	virtual ~GLTFMesh();
 };
 

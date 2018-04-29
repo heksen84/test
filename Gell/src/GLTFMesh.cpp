@@ -6,9 +6,12 @@
  */
 
 #include "GLTFMesh.h"
+#include "Common.h"
+#include "gltf2/gltf2/glTF2.hpp"
 
-GLTFMesh::GLTFMesh() {
-	// TODO Auto-generated constructor stub
+GLTFMesh::GLTFMesh(const String &meshFileName) {
+    gltf2::Asset mesh = gltf2::load(meshFileName.c_str());
+    Msg::Info(L"%d", mesh.metadata.version.c_str());
 }
 
 GLTFMesh::~GLTFMesh() {

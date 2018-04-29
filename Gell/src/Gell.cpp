@@ -12,7 +12,7 @@
 #include "Font.h"
 #include "Gui.h"
 #include "Shader.h"
-//#include "GLTFMesh.h"
+#include "GLTFMesh.h"
 #include "Game//MainScreen.h"
 
 bool g_AppRun = true;
@@ -169,22 +169,30 @@ int main(void) {
 
 	//GLTFMesh gltf;
 
+	CreatePlane();
+
+	//GLTFMesh *m = new GLTFMesh("D:/projects/Steppe/data/Meshes/BoxTextured.gltf");
+
 	while (g_AppRun) {
 
 		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 
+		//DrawPlane();
+
 		// нужно установить 2D режим
 		// x,y, цвет
-		fnt_diablo.RenderText(L"*** Всё рисуется в 3D x=0.0f вправо, y=10.0f вверх ***", 0.0f, 10.0f, 0.35f, glm::vec3(1.0, 1.0f, 1.0f));
-		fnt_diablo.RenderText(L"Ilya Bobkov", 540.0f, 570.0f, 0.9f, glm::vec3(1.0, 1.0f, 1.0f));
-		fnt_diablo.RenderText(L"presents", 550.0f, 545.0f, 0.4f, glm::vec3(1.0, 1.0f, 1.0f));
+		fnt_diablo.RenderText(L"*** Всё рисуется в 3D x=0.0f вправо, y=10.0f вверх ***", 0, 10, 0.35, glm::vec3(1.0, 1.0f, 1.0f));
+		fnt_diablo.RenderText(L"Ilya Bobkov", 540, 570, 0.9, glm::vec3(1.0, 1.0f, 1.0f));
+		fnt_diablo.RenderText(L"presents", 550, 545, 0.4, glm::vec3(1.0, 1.0f, 1.0f));
 
 
 		glfwPollEvents();
 		glfwSwapBuffers(window);
     }
+
+	//SAFE_DELETE(m);
 
 	glDeleteTextures(1, &tex);
 
