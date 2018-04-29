@@ -6,6 +6,7 @@
  */
 
 #include "GLTFMesh.h"
+#include "gltf/tiny_gltf.h"
 
 GLTFMesh::GLTFMesh() {
 	// TODO Auto-generated constructor stub
