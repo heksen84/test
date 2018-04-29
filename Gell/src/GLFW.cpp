@@ -12,6 +12,7 @@ GLFWwindow*  window;
 GLFWmonitor* monitor;
 GLFWcursor*  cursor_default;
 GLFWcursor*  cursor_loading;
+
 const GLFWvidmode* 	mode;
 
 void SetSystemCursors() {
@@ -41,8 +42,7 @@ void SetSystemCursors() {
 обработка ввода
 ------------------------------------*/
 void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods) {
-    switch(key)
-    {
+    switch(key) {
 		case GLFW_KEY_ESCAPE:
 
 			/* switch(Screen->getActiveElement())
@@ -53,7 +53,9 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
 			*/
 			glfwDestroyCursor(cursor_default);
 			glfwDestroyCursor(cursor_loading);
+
 			g_AppRun=false;
+
 			break;
 	}
 }

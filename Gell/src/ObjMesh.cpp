@@ -34,26 +34,22 @@ void ObjMesh::LoadFromFile(const String &filename)
 
 
 		String line;
-	    while (getline(file, line))
-	    {
+	    while (getline(file, line)){
 	    	// вершины
-	    	if (line.substr(0,2) == "v ")
-	        {
+	    	if (line.substr(0,2) == "v "){
 	            std::istringstream s(line.substr(2));
 	            glm::vec4 v; s >> v.x; s >> v.y; s >> v.z; v.w = 1.0f;
 	            //msg::info("%f %f %f", v.x, v.y, v.z);
 	            vertices.push_back(v);
 	        }
 	    	// нормали
-	    	else if (line.substr(0,2) == "vn")
-	    	{
+	    	else if (line.substr(0,2) == "vn"){
 	    		std::istringstream s(line.substr(2));
 	    		glm::vec3 v; s >> v.x; s >> v.y; s >> v.z;
 	    		normals.push_back(v);
 	    	}
 	    	// индексы поверхности
-	        else if (line.substr(0,2) == "f ")
-	        {
+	        else if (line.substr(0,2) == "f "){
 	        	std::istringstream s(line.substr(2));
 	            GLushort a,b,c;
 	            s >> a; s >> b; s >> c;
