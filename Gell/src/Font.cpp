@@ -165,12 +165,11 @@ void Font::RenderText(const Unicode &text, GLfloat x, GLfloat y, GLfloat scale, 
     	if (item != Symbols.end()) {
     		Glyph ch = item->second;
     		GLfloat xpos = x + ch.Bearing.x * scale;
-    		GLfloat ypos = y - (ch.Size.y - ch.Bearing.y) * scale;
+    		GLfloat ypos = y - (ch.Size.y - ch.Bearing.y) * scale+7;
     		GLfloat w = ch.Size.x * scale;
     		GLfloat h = ch.Size.y * scale;
 
-    		GLfloat vertices[6][4] =
-    		{
+    		GLfloat vertices[6][4] = {
     		   { xpos,     ypos + h,   0.0, 0.0 },
     		   { xpos,     ypos,       0.0, 1.0 },
     		   { xpos + w, ypos,       1.0, 1.0 },

@@ -162,11 +162,10 @@ int main(void) {
 	COM_InitLibs();
 	CreatePlane();
 
-	Gui gui;
-	gui.CreateFont(L"arial.ttf", L"arial");
+	//Gui gui;
+	//gui.CreateFont(L"arial.ttf", L"arial");
 
-	Font arial("D:/projects/Steppe/data/fonts/diablo/diablo-font-1.ttf");
-	Shader shader("vertex","fragment");
+	Font fnt_diablo("D:/projects/Steppe/data/fonts/diablo/diablo-font-1.ttf");
 
 	MainScreen ms;
 
@@ -177,13 +176,17 @@ int main(void) {
 
 		ms.Render();
 
-		//arial.RenderText(L"\"AksuArena 2018\"", 470, 500, 1.0f, glm::vec3(255, 155, 155));
-		arial.RenderText(L"Ilya Bobkov", 470, 500, 0.8f, glm::vec3(255, 155, 155));
+		//fnt_diablo.RenderText(L"Ilya Bobkov", 0, 0, 1.0f, glm::vec3(255, 10, 10));
+		fnt_diablo.RenderText(L"main programmer", 0, 0, 0.5f, glm::vec3(255, 155, 155));
+
+		//DrawPlane();
+
 		glfwPollEvents();
 		glfwSwapBuffers(window);
     }
 
 	glDeleteTextures(1, &tex);
+
 	glDeleteProgram(shaderProgram);
 	glDeleteShader(fragmentShader);
 	glDeleteShader(vertexShader);
