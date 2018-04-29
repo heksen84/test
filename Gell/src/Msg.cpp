@@ -9,6 +9,8 @@
 va_list	argptr;
 wchar_t text[1024];
 
+
+// ***** UNICODE *****
 /* ошибка */
 void Msg::Error(const wchar_t *msg, ... ) {
 	va_start( argptr, msg );

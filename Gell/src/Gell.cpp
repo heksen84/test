@@ -13,6 +13,8 @@
 #include "Gui.h"
 #include "Shader.h"
 #include "Game//MainScreen.h"
+#define TINYOBJLOADER_IMPLEMENTATION
+#include "tinyObjLoader//tiny_obj_loader.h"
 
 bool g_AppRun = true;
 
@@ -166,19 +168,22 @@ int main(void) {
 
 	MainScreen ms;
 
-	//GLTFMesh gltf;
-
 	CreatePlane();
+	String inputfile = "cornell_box.obj";
 
-	//GLTFMesh *m = new GLTFMesh("D:/projects/Steppe/data/Meshes/BoxTextured.gltf");
+	tinyobj::attrib_t attrib;
+	std::vector<tinyobj::shape_t> shapes;
+	std::vector<tinyobj::material_t> materials;
+	std::string err;
+
+	bool ret = tinyobj::LoadObj(&attrib, &shapes, &materials, &err, inputfile.c_str());
+
+	if (!err.empty()) Msg::Error(L"mesh %s not found", inputfile.c_str());
 
 	while (g_AppRun) {
 
 		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
-
-		//DrawPlane();
 
 		// нужно установить 2D режим
 		// x,y, цвет
@@ -191,7 +196,6 @@ int main(void) {
 		glfwSwapBuffers(window);
     }
 
-	//SAFE_DELETE(m);
 
 	glDeleteTextures(1, &tex);
 
