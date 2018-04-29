@@ -174,7 +174,7 @@ int main(void) {
 
 		// нужно установить 2D режим
 		// x,y, цвет
-		fnt_diablo.RenderText(L"[x=0.0f вправо, y=10.0f вверх]", 0.0f, 10.0f, 0.40f, glm::vec3(1.0, 1.0f, 1.0f));
+		fnt_diablo.RenderText(L"*** Всё рисуется в 3D x=0.0f вправо, y=10.0f вверх ***", 0.0f, 10.0f, 0.35f, glm::vec3(1.0, 1.0f, 1.0f));
 		fnt_diablo.RenderText(L"Ilya Bobkov", 540.0f, 570.0f, 0.9f, glm::vec3(1.0, 1.0f, 1.0f));
 		fnt_diablo.RenderText(L"presents", 550.0f, 545.0f, 0.4f, glm::vec3(1.0, 1.0f, 1.0f));
 
