@@ -6,7 +6,8 @@ class Font
 {
 	public:
 		void CreateSymbol(const wchar_t &symbol);
-		void RenderText(const Unicode &text, GLfloat x, GLfloat y, GLfloat scale, glm::vec3 color);
+		void RenderText(const Unicode &text, GLfloat x, GLfloat y, GLfloat scale, glm::vec3 color );
+		void CenterText(const Unicode &text, glm::vec3 color );
 		Font(const String &fontName);
 		virtual ~Font();
 	private:

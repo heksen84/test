@@ -83,7 +83,9 @@ void Font::CreateSymbol(const wchar_t &symbol){
 
 /* конструктор */
 Font::Font(const String &fontName){
+
 	int result=0;
+	int width, height;
 
 	glPushAttrib(GL_ALL_ATTRIB_BITS);
 	glPushClientAttrib(GL_CLIENT_VERTEX_ARRAY_BIT);
@@ -130,11 +132,10 @@ Font::Font(const String &fontName){
 	 glBindFragDataLocation(_shaderProgram, 0, "outColor");
 	 glLinkProgram(_shaderProgram);
 
-	 int width, height;
 	 glfwGetWindowSize(window, &width, &height);
 	 glViewport(0, 0, width, height);
 
-	 glm::mat4 projection = glm::ortho(0.0f, static_cast<GLfloat>(1.0f*width), 0.0f, static_cast<GLfloat>(1.0f*height));
+	 glm::mat4 projection = glm::ortho(0.0f, static_cast<GLfloat>(width), 0.0f, static_cast<GLfloat>(height));
 	 glUseProgram(_shaderProgram);
 	 glUniformMatrix4fv(glGetUniformLocation(_shaderProgram, "projection"), 1, GL_FALSE, glm::value_ptr(projection));
 
@@ -166,7 +167,7 @@ void Font::RenderText(const Unicode &text, GLfloat x, GLfloat y, GLfloat scale, 
     	if (item != Symbols.end()) {
     		Glyph ch = item->second;
     		GLfloat xpos = x + ch.Bearing.x * scale;
-    		GLfloat ypos = y - (ch.Size.y - ch.Bearing.y) * scale+5;
+    		GLfloat ypos = y - (ch.Size.y - ch.Bearing.y) * scale;
     		GLfloat w = ch.Size.x * scale;
     		GLfloat h = ch.Size.y * scale;
 
@@ -194,4 +195,8 @@ void Font::RenderText(const Unicode &text, GLfloat x, GLfloat y, GLfloat scale, 
     glBindTexture(GL_TEXTURE_2D, 0);
     glPopClientAttrib();
     glPopAttrib();
+}
+
+void Font::CenterText(const Unicode &text, glm::vec3 color ) {
+
 }
