@@ -12,7 +12,6 @@
 #include "Font.h"
 #include "Gui.h"
 #include "Shader.h"
-#include "GLTFMesh.h"
 #include "Game//MainScreen.h"
 
 bool g_AppRun = true;
