@@ -179,7 +179,7 @@ int main(void) {
 
 	bool ret = tinyobj::LoadObj(&attrib, &shapes, &materials, &err, inputfile.c_str());
 
-	if (!err.empty()) Msg::Error(L"mesh %s not found", inputfile.c_str());
+	//if (!err.empty()) Msg::Error(L"mesh %s not found", inputfile.c_str());
 
 	while (g_AppRun) {
 
