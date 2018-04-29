@@ -1,11 +1,12 @@
-#include <iostream>
-#include <fstream>
-#include <string>
-#include "ext/json.hpp"
 #include "gltf2/glTF2.hpp"
-#include "gltf2/Exceptions.hpp"
 
+#include <cstddef>
+#include <cstdint>
 #include <fstream>
+#include <stdexcept>
+
+#include "ext/json.hpp"
+#include "gltf2/Exceptions.hpp"
 
 namespace gltf2 {
 
