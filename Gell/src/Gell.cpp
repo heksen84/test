@@ -162,9 +162,6 @@ int main(void) {
 	COM_InitLibs();
 	CreatePlane();
 
-	//Gui gui;
-	//gui.CreateFont(L"arial.ttf", L"arial");
-
 	Font fnt_diablo("D:/projects/Steppe/data/fonts/diablo/diablo-font-1.ttf");
 
 	MainScreen ms;
@@ -174,12 +171,9 @@ int main(void) {
 		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-		ms.Render();
+		// нужно установить 2D режим
+		fnt_diablo.RenderText(L"main programmer", 0, 0, 1.0f, glm::vec3(255, 155, 155));
 
-		//fnt_diablo.RenderText(L"Ilya Bobkov", 0, 0, 1.0f, glm::vec3(255, 10, 10));
-		fnt_diablo.RenderText(L"main programmer", 0, 0, 0.5f, glm::vec3(255, 155, 155));
-
-		//DrawPlane();
 
 		glfwPollEvents();
 		glfwSwapBuffers(window);

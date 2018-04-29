@@ -132,8 +132,9 @@ Font::Font(const String &fontName){
 
 	 int width, height;
 	 glfwGetWindowSize(window, &width, &height);
+	 glViewport(0, 0, width, height);
 
-	 glm::mat4 projection = glm::ortho(0.0f, static_cast<GLfloat>(width), 0.0f, static_cast<GLfloat>(height));
+	 glm::mat4 projection = glm::ortho(0.0f, static_cast<GLfloat>(1.0f*width), 0.0f, static_cast<GLfloat>(1.0f*height));
 	 glUseProgram(_shaderProgram);
 	 glUniformMatrix4fv(glGetUniformLocation(_shaderProgram, "projection"), 1, GL_FALSE, glm::value_ptr(projection));
 
@@ -165,7 +166,7 @@ void Font::RenderText(const Unicode &text, GLfloat x, GLfloat y, GLfloat scale, 
     	if (item != Symbols.end()) {
     		Glyph ch = item->second;
     		GLfloat xpos = x + ch.Bearing.x * scale;
-    		GLfloat ypos = y - (ch.Size.y - ch.Bearing.y) * scale+7;
+    		GLfloat ypos = y - (ch.Size.y - ch.Bearing.y) * scale+5;
     		GLfloat w = ch.Size.x * scale;
     		GLfloat h = ch.Size.y * scale;
 
