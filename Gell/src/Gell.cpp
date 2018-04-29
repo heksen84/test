@@ -12,6 +12,7 @@
 #include "Font.h"
 #include "Gui.h"
 #include "Shader.h"
+//#include "GLTFMesh.h"
 #include "Game//MainScreen.h"
 
 bool g_AppRun = true;
@@ -165,6 +166,8 @@ int main(void) {
 	Font fnt_diablo("D:/projects/Steppe/data/fonts/diablo/diablo-font-1.ttf");
 
 	MainScreen ms;
+
+	//GLTFMesh gltf;
 
 	while (g_AppRun) {
 

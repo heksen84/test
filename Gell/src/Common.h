@@ -23,6 +23,7 @@
 #include <wchar.h>
 #include <tchar.h>
 #include <assert.h>
+#include <errno.h>
 
 typedef std::stringstream 	StringStream;
 typedef std::string 		String;			// анси строка		(char*)
