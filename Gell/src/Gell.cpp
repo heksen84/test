@@ -12,11 +12,11 @@
 #include "Font.h"
 #include "Gui.h"
 #include "Shader.h"
-#include "Game//MainScreen.h"
+#include "Game\MainScreen.h"
 
 // Tiny Obj Loader
 #define TINYOBJLOADER_IMPLEMENTATION
-#include "tinyObjLoader//tiny_obj_loader.h"
+#include "lib\tiny_obj_loader.h"
 
 bool g_AppRun = true;
 
