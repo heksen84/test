@@ -171,22 +171,29 @@ int main(void) {
 	MainScreen ms;
 
 	CreatePlane();
-	String inputfile = "cornell_box.obj";
+	String inputfile = "D:\\cornell_box.obj";
 
 	tinyobj::attrib_t attrib;
 	std::vector<tinyobj::shape_t> shapes;
 	std::vector<tinyobj::material_t> materials;
 	std::string err;
 
-	bool ret = tinyobj::LoadObj(&attrib, &shapes, &materials, &err, inputfile.c_str());
+	bool ret = tinyobj::LoadObj(&attrib, &shapes, &materials, &err, inputfile.c_str(), "D:\\");
 
 	if (!err.empty())
-		Msg::Error("Mesh %s not found", inputfile.c_str());
+		Msg::Warning(err.c_str());
+
+	if (!ret)
+		Msg::Error("Mesh %s not found!", inputfile.c_str());
+
+	Msg::Info("Name: %s\n---------------------------------\nShapes: %d\nMaterials: %d", inputfile.c_str(), shapes.size(), materials.size());
 
 	while (g_AppRun) {
 
 		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+		//fnt_diablo.RenderText(L"Shapes", 550, 700, 0.4, glm::vec3(1.0, 1.0f, 1.0f));
 
 		// нужно установить 2D режим
 		// x,y, цвет
