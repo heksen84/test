@@ -162,6 +162,7 @@ switch(Msg) {
 --------------------------------*/	
 int main(void) {
 
+
 	COM_InitLibs();
 	CreatePlane();
 
@@ -179,7 +180,8 @@ int main(void) {
 
 	bool ret = tinyobj::LoadObj(&attrib, &shapes, &materials, &err, inputfile.c_str());
 
-	//if (!err.empty()) Msg::Error(L"mesh %s not found", inputfile.c_str());
+	if (!err.empty())
+		Msg::Error("Mesh %s not found", inputfile.c_str());
 
 	while (g_AppRun) {
 
