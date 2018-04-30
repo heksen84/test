@@ -14,6 +14,7 @@
 #include "Shader.h"
 #include "Game//MainScreen.h"
 
+// Tiny Obj Loader
 #define TINYOBJLOADER_IMPLEMENTATION
 #include "tinyObjLoader//tiny_obj_loader.h"
 
@@ -162,16 +163,12 @@ switch(Msg) {
 --------------------------------*/	
 int main(void) {
 
-
 	COM_InitLibs();
 	CreatePlane();
 
 	Font fnt_diablo("D:/projects/Steppe/data/fonts/diablo/diablo-font-1.ttf");
 
-	MainScreen ms;
-
-	CreatePlane();
-	String inputfile = "D:\\cornell_box.obj";
+	String inputfile = "D:\\aksu.obj";
 
 	tinyobj::attrib_t attrib;
 	std::vector<tinyobj::shape_t> shapes;
@@ -186,7 +183,7 @@ int main(void) {
 	if (!ret)
 		Msg::Error("Mesh %s not found!", inputfile.c_str());
 
-	Msg::Info("Name: %s\n---------------------------------\nShapes: %d\nMaterials: %d", inputfile.c_str(), shapes.size(), materials.size());
+	//Msg::Info("Name: %s\n---------------------------------\nShapes: %d\nMaterials: %d\nVertices: %d", inputfile.c_str(), shapes.size(), materials.size(), attrib.vertices.size());
 
 	while (g_AppRun) {
 
