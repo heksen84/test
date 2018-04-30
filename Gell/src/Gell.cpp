@@ -52,6 +52,7 @@ const GLchar* fragmentSource = R"glsl(
     }
 )glsl";
 
+
 void CreatePlane() {
 
 	    glGenVertexArrays(1, &vao);
