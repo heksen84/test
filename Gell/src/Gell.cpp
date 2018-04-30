@@ -168,7 +168,7 @@ int main(void) {
 
 	Font fnt_diablo("D:/projects/Steppe/data/fonts/diablo/diablo-font-1.ttf");
 
-	String inputfile = "D:\\aksu.obj";
+	String inputfile = "D:\\cornell_box.obj";
 
 	tinyobj::attrib_t attrib;
 	std::vector<tinyobj::shape_t> shapes;
@@ -183,7 +183,13 @@ int main(void) {
 	if (!ret)
 		Msg::Error("Mesh %s not found!", inputfile.c_str());
 
-	//Msg::Info("Name: %s\n---------------------------------\nShapes: %d\nMaterials: %d\nVertices: %d", inputfile.c_str(), shapes.size(), materials.size(), attrib.vertices.size());
+	Msg::Info("Name: %s\n---------------------------------\nShapes: %d\nMaterials: %d\nVertices: %d\nIndexes: %d",
+			inputfile.c_str(),
+			shapes.size(),
+			materials.size(),
+			attrib.vertices.size(),
+			shapes[0].mesh.indices.size()
+			);
 
 	while (g_AppRun) {
 
